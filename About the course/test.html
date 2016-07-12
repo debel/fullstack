@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="data-title" value="This is a template and I can change the a string var just once">
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <scripts>
+        const getMetaValue = (key1, key2 = 'value') => document.head.querySelector(`meta[name="data-${key1}"]`).getAttribute(key2),
+              title =  getMetaValue('title');
+        document.head.querySelector('title').innerHTML = title;
+    </script>
+  </body>
+</html>
