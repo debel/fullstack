@@ -1,0 +1,9 @@
+<script src="../bower_components/reveal-js/js/reveal.min.js"></script>
+<script>
+  Reveal.initialize({
+    transition: 'fade',
+    transitionSpeed: 'fast',
+    controls: false,
+    history: true
+  });
+</script>
