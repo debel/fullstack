@@ -1,11 +1,17 @@
 {
   "name": "full-stack-slides",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "scripts": {
+    "build": "bower install && gulp build-reveal",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Mihail Mikov",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {},
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-tap": "^0.1.3"
+  },
+  "description": ""
 }
