@@ -5,6 +5,17 @@ const fs = require('fs'),
       footerTemplate = fs.readFileSync('./templates/footer-template.html');
 
 gulp.task('build-reveal', () => {
+  const css = [
+    "./bower_components/reveal-js/css/reveal.min.css",
+    "./bower_components/reveal-js/css/theme/night.css",
+    "./bower_components/reveal-js/lib/css/zenburn.css"
+  ],
+      js = [
+          "./bower_components/reveal-js/lib/js/head.min.js",
+          "./bower_components/reveal-js/js/reveal.min.js",
+          "./bower_components/reveal-js/plugin/highlight/highlight.js"
+        ];
+
   gulp.src('./src/**/index.html')
               .pipe(tap(file => {
                 const path = file.path.substr(file.path.indexOf('src') + 4),
@@ -16,5 +27,8 @@ gulp.task('build-reveal', () => {
                   footerTemplate
                 ]);
               }))
-              .pipe(gulp.dest('./build'));
+              .pipe(gulp.dest('../Web/Fullstack/'));
+
+  gulp.src(js).pipe(gulp.dest('../Web/Fullstack/js/'));
+  gulp.src(css).pipe(gulp.dest('../Web/Fullstack/css/'));
 });
