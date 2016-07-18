@@ -2,7 +2,9 @@ const fs = require('fs'),
       gulp = require('gulp'),
       tap = require('gulp-tap'),
       headerTemplate = fs.readFileSync('./templates/header-template.html'),
-      footerTemplate = fs.readFileSync('./templates/footer-template.html');
+      footerTemplate = fs.readFileSync('./templates/footer-template.html'),
+      deployPath = '/usr/share/nginx/html/';
+      //deployPath = '../Web/Fullstack/';
 
 gulp.task('build-reveal', () => {
   const css = [
@@ -27,8 +29,8 @@ gulp.task('build-reveal', () => {
                   footerTemplate
                 ]);
               }))
-              .pipe(gulp.dest('../Web/Fullstack/'));
+              .pipe(gulp.dest(deployPath));
 
-  gulp.src(js).pipe(gulp.dest('../Web/Fullstack/js/'));
-  gulp.src(css).pipe(gulp.dest('../Web/Fullstack/css/'));
+  gulp.src(js).pipe(gulp.dest(deployPath +'js/'));
+  gulp.src(css).pipe(gulp.dest(deployPath + 'css/'));
 });
