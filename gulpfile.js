@@ -4,7 +4,8 @@ const fs = require('fs'),
   headerTemplate = fs.readFileSync('./templates/header-template.html'),
   footerTemplate = fs.readFileSync('./templates/footer-template.html'),
   deploymentMap = { local: '../Web/Fullstack/',
-                    aws: '/usr/share/nginx/html/'},
+                    aws: '/usr/share/nginx/html/'
+                  },
   deployPath = deploymentMap[process.env.FULL_STACK_PATH || 'aws'];
 
 gulp.task('build-reveal', () => {
@@ -33,6 +34,6 @@ gulp.task('build-reveal', () => {
     }))
     .pipe(gulp.dest(deployPath));
 
-  gulp.src(js).pipe(gulp.dest(deployPath + 'js/'));
-  gulp.src(css).pipe(gulp.dest(deployPath + 'css/'));
+  gulp.src(js_libs).pipe(gulp.dest(deployPath + 'js/'));
+  gulp.src(css_libs).pipe(gulp.dest(deployPath + 'css/'));
 });
