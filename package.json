@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "build": "bower install && gulp build-reveal",
+    "build": "bower install && gulp",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Mihail Mikov",
@@ -11,6 +11,7 @@
   "dependencies": {},
   "devDependencies": {
     "gulp": "^3.9.1",
+    "gulp-clean": "^0.3.2",
     "gulp-tap": "^0.1.3"
   },
   "description": ""

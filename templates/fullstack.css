@@ -1,0 +1,63 @@
+hr {
+  margin: 0px;
+  margin-bottom: 5px;
+  border:none;
+  border-top:1px dashed gray;
+  height:1px;
+  width:90%;
+}
+
+tr td:first-child {
+  vertical-align: middle;
+  text-align: center !important;
+  border-left: none !important;
+}
+tr td:last-child {
+  border-right: none !important;
+}
+tr:first-child td {
+  text-align: center !important;
+  padding-left: 0px !important;
+}
+tr:last-child td {
+  border-bottom: none !important;
+}
+td {
+  border-left: 1px dashed gray !important;
+  border-bottom: 1px dashed gray !important;
+  padding: 5px !important;
+  padding-left: 20px !important;
+}
+.goal>h4 {
+  text-decoration: underline;
+}
+.question {
+  border-bottom: 1px dashed gray !important;
+}
+.answer {
+  margin-top: 5px !important;
+}
+#all_modules {
+  column-count: 2;
+  column-gap: 100px;
+}
+.es5>code {
+  border: 1px solid indianred;
+}
+.es6>code {
+  border: 1px solid mediumseagreen;
+}
+.es7>code {
+  border: 1px solid orange;
+}
+
+.event>.year {
+  color: cyan;
+  display: inline-block;
+  margin-right: 20px;
+}
+
+.event {
+  margin-bottom: 20px !important;
+  border-bottom: 1px dashed gray !important;
+}

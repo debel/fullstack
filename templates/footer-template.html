@@ -2,20 +2,16 @@
 </div>
 <script src="../js/head.min.js"></script>
 <script src="../js/reveal.min.js"></script>
+<script src="../js/highlight.js"></script>
 <script>
   Reveal.initialize({
     transition: 'fade',
     transitionSpeed: 'fast',
-    controls: false,
-    history: true,
-    dependencies: [
-            {
-                src: '../js/highlight.js',
-                callback: function () { hljs.initHighlightingOnLoad(); }
-            }
-    ]
+    controls: true,
+    history: true
   });
+
+  hljs.initHighlightingOnLoad();
 </script>
 </body>
-
 </html>

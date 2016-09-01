@@ -1,0 +1,27 @@
+{
+  "homeLink": "<section>Back to <a href=\"/\">Fullstack technologies</a></section>",
+  "titleHeading": "<section><h2>{{title}}</h2></section>",
+
+  "syllabus": "https://docs.google.com/document/d/1_aEqhUzq0GinrVGfXBimme2kc2jszbdSC4o4Nm37iMI/edit?usp=sharing",
+
+  "week1": "17.09.2016",
+  "week2": "24.09.2016",
+  "week3": "1.10.2016",
+  "week4": "8.10.2016",
+  "week5": "15.10.2016",
+
+  "css_libs" : [
+    "./bower_components/reveal-js/css/reveal.min.css",
+    "./bower_components/reveal-js/css/theme/night.css",
+    "./bower_components/reveal-js/lib/css/zenburn.css",
+    "./templates/fullstack.css"
+  ],
+  "js_libs" : [
+    "./bower_components/reveal-js/lib/js/head.min.js",
+    "./bower_components/reveal-js/js/reveal.min.js",
+    "./bower_components/reveal-js/plugin/highlight/highlight.js"
+  ],
+  "images": [
+    "./images/*"
+  ]
+}
