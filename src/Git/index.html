@@ -1,38 +1,62 @@
 <section id="contents">
-  <h2>Git</h2>
   <h4>distributed source code management</h4>
-  <ul>
+  <ul class="fragment">
     <li>basic local commands</li>
     <li>remote commands</li>
     <li>scenarios and workflows</li>
     <li>tools</li>
   </ul>
 </section>
+<section>
+  <h3>How does git work?</h3>
+    <ul>
+      <li>Working directory</li>
+      <li>Index</li>
+      <li>Repository</li>
+      <li>Remotes</li>
+    </ul>
+</section>
 <section id="local-cmds-1">
-  <code>
-    $ git init
-    $ git add
-    $ git commit
-    $ git status
-    $ git checkout
-    $ git branch
-  </code>
+  <h3>Basic local commands:</h3>
+  <pre><code>
+    $ git init #create a new repository in the current dir
+    $ git add #add files to the index
+    $ git commit #create a new commit
+    $ git status #show the status of the working dir vs the index
+    $ git checkout #get specific versions of files
+    $ git branch #manipulate branches
+  </code></pre>
 </section>
 <section id="local-cmds-2">
-  <code>
+  <h3>More local commands:</h3>
+  <pre><code>
     $ git log
     $ git reset
     $ git merge
     $ git rebase
-  </code>
+  </code></pre>
 </section>
 <section id="remote-cmds-1">
-  <code>
+  <h3>Remote commands:</h3>
+  <pre><code>
     $ git clone
     $ git fetch
     $ git push
-  </code>
+  </code></pre>
 </section>
 <section id="workflows">
-  Clone a repo, make some commits and push them to a topic branch
+  <h3>Workflows</h3>
+  <ul>
+    <li>All-in-master</li>
+    <li>Feature branches</li>
+    <li>Pull/Merge requests</li>
+    <li>Multi-tier</li>
+  </ul>
+</section>
+<section>
+  <h3>Hooks:</h3>
+  <ul>
+    <li>Client eg. Pre-commit</li>
+    <li>Server eg. Post-update</li>
+  </ul>
 </section>

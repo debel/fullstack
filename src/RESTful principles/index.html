@@ -1,22 +1,127 @@
 <section>
-  <h2>RESTful principles</h2>
+  <div>
+    REST stands for REpresentational State Transfer.
+    Originally a PHD thesis descibing a set of architectural principles for building scalable and maintainable web systems.
+  </div>
 </section>
 <section>
-  REST stands for REpresentational State Transfer.
-  Originally a white-paper?? descibing a set of principles for building scalable and maintainable web systems
+   <div>
+     Rules
+   </div>
+  <ul>
+    <li>The system is composed of resources and capabilites</li>
+    <li>The system is connected through hyper-media</li>
+    <li>Stateless Communication</li>
+    <li>Uniform Interfaces</li>
+  </ul>
 </section>
 <section>
   <h3>Resources and Representations</h3>
-</section>
-<section>
-  <h3>Actions and Side effects</h3>
+  <div>
+    URI stand for Uniform Resource Indentifier
+  </div>
+  <ul>
+    <li>Every resource in your application should have an unique identity</li>
+    <li>Every resource can have multiple representations</li>
+    <li>Capabilities (manipulation of resources) should be accessible through uniform interfaces</li>
+  </ul>
 </section>
 <section>
   <h3>Hyper-media</h3>
+  <div>
+    Links provide access to resource capabilites
+  </div>
+  <ul>
+    <li>Links should be the application entry points</li>
+    <li>Links decouple communication</li>
+    <li>Links are platform independant</li>
+  </ul>
+</section>
+<section>
+  <h3>Actions and Side effects</h3>
+  <div>
+    Side effects are unexpected or unintended consequences
+  </div>
+  <ul>
+    <li>Actions should be predictable</li>
+    <li>Side effects should be made explict</li>
+  </ul>
+</section>
+<section>
+  <div>
+    <div>
+      DOes:
+    </div>
+    <ul>
+      <li>Use well known formats and protocols</li>
+      <li>Return links to further actions and resources</li>
+      <li>Use templates and forms to help clients build complex requests</li>
+    </ul>
+  </div>
+  <div>
+    <div>
+      DONTs:
+    </div>
+    <ul>
+      <li>Thinking only about pretty looking templated URLs</li>
+      <li>Constructing URLs manually</li>
+      <li>Hardcoding URLs into the client</li>
+    </ul>
+  </div>
+
+</section>
+<section>
+  <h3>In practice</h3>
+  <div>
+    A simple Node.js to-do service.
+    Notice the shape of the example object.
+    The creation endpoint returns all methods, not just an id to the frontend.
+    This means you can add functionality without changing the frontend.
+    Do the urls need to human readable? No, but's its a plus if they are easy to understand.
+    Also notice the tasks facade-object representing all tasks related functionalities.
+  </div>
+</section>
+<section>
+  <pre><code style="max-height: 100%" class="es2015">
+    example_task_object = {
+      "message": "get milk",
+      "done": false,
+      "methods": {
+        "toggleDone": { "url": "tasks.xyz/task/id123/toggle", "method": "PUT"},
+        "editMessage": { "url": "tasks.xyz/task/id123", "method": "PUT", "fields": ["message"] },
+        "delete": { "url": "tasks.abc/id123", "method": "DELETE" }
+    }
+  };
+
+    //create new tasks
+    srv.post('/task', (req, res) => {
+      task = tasks.createTask(req.params);
+      res.json(task);
+    });
+
+    //get an existing task
+    srv.get('/task/:id', (req, res) => {
+      res.json(tasks.get(req.params.id));
+    });
+
+    //toggle task done
+    srv.put('/task/:id/toggle', (req, res) => {
+      const task = tasks.get(req.params.id);
+      task.done = !task.done;
+      res.json(task);
+    });
+
+    srv.delete('/:id', (req, res) => {
+      tasks.delete(req.params.id);
+      res.json({ deleted: true });
+    });
+
+  </code></pre>
 </section>
 <section>
   <h3>Links</h3>
   <ul>
-    <li><a href="https://www.youtube.com/watch?v=pspy1H6A3FM"></a></li>
+    <li><a href="http://www.ics.uci.edu/~fielding/pubs/dissertation/rest_arch_style.htm">Original REST paper</a></li>
+    <li><a href="https://www.youtube.com/watch?v=pspy1H6A3FM">GOTO 2014 | REST: I don't Think it Means What You Think it Does by Stefan Tilkov</a></li>
   </ul>
 </section>

@@ -1,0 +1,46 @@
+<section>
+  <h3>Static web server</h3>
+  <p>
+    Return only the contents of files.
+  </p>
+</section>
+<section>
+  <h3>CGI</h3>
+  <p>
+    Common Gateway Interface - run a program to generate a response
+  </p>
+</section>
+<section>
+  <h3>Application Server</h3>
+  <p>Language/Platform specific http implementations</p>
+  <ul>
+    <li>CGI - PHP</li>
+    <li>webContainer - Java</li>
+    <li>USAPI - dotNet</li>
+    <li>uWSGI - Python</li>
+    <li>libUV - node.js</li>
+  </ul>
+</section>
+
+<section>
+  <h3>running a http server in node.js</h3>
+  <pre><code class="javascript">
+          /* server.js */
+          var http = require('http'),
+              server = http.createServer(function (req, res) {
+                  //server executes callback on every connection
+                  res.end('Hello Web!');
+          });
+
+          //start the server on port 8080
+          server.listen(8080);
+          </code></pre>
+  <div>run the server from the console</div>
+  <pre><code class="bash">
+          $ node server.js
+        </code></pre>
+</section>
+
+<section>
+  <h3></h3>
+</section>
