@@ -66,3 +66,7 @@ td {
   margin-bottom: 20px !important;
   border-bottom: 1px dashed gray !important;
 }
+
+pre>code {
+  max-height: 100% !important; 
+}

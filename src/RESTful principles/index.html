@@ -1,13 +1,10 @@
 <section>
   <div>
-    REST stands for REpresentational State Transfer.
-    Originally a PHD thesis descibing a set of architectural principles for building scalable and maintainable web systems.
+    REST stands for REpresentational State Transfer. Originally a PHD thesis descibing a set of architectural principles for building scalable and maintainable web systems.
   </div>
 </section>
 <section>
-   <div>
-     Rules
-   </div>
+  <h3>Rules</h3>
   <ul>
     <li>The system is composed of resources and capabilites</li>
     <li>The system is connected through hyper-media</li>
@@ -48,80 +45,62 @@
   </ul>
 </section>
 <section>
-  <div>
-    <div>
-      DOes:
-    </div>
+    <h5>DOes:</h5>
     <ul>
       <li>Use well known formats and protocols</li>
       <li>Return links to further actions and resources</li>
       <li>Use templates and forms to help clients build complex requests</li>
     </ul>
-  </div>
-  <div>
-    <div>
-      DONTs:
-    </div>
+  </section>
+  <section>
+    <h5>DONTs:</h5>
     <ul>
       <li>Thinking only about pretty looking templated URLs</li>
       <li>Constructing URLs manually</li>
       <li>Hardcoding URLs into the client</li>
     </ul>
-  </div>
-
+</section>
+<section>
+  <h3>In practice</h3>
+  <pre><code class="json">
+  {
+      "id": "id123",
+      "message": "get milk",
+      "done": false,
+      "methods": {
+        "get": { "url": "todo.xyz/task/id123", "method": "GET" },
+        "toggleDone": { "url": "todo.xyz/task/id123/toggle", "method": "PUT" },
+        "editMessage": { "url": "todo.xyz/task/id123/message", "method": "PUT" },
+        "delete": { "url": "todo.abc/task/id123", "method": "DELETE" }
+    }
+  }
+  </code></pre>
+  <pre><code class="html">
+    &lt;article сlass=&quot;todo-task&quot; id=&quot;id123&quot;&gt;
+      &lt;form сlass=&quot;toggle&quot; action=&quot;todo.xyz/task/id123/toggle&quot; method=&quot;PUT&quot;&gt;
+        &lt;input type=&quot;checkbox&quot; checked/&gt;
+        &lt;input type=&quot;submit&quot; value=&quot;toggle&quot;/&gt;
+      &lt;/form&gt;
+      &lt;p class=&quot;message&quot;&gt;get milk&lt;/p&gt;
+      &lt;a href=&quot;todo.xyz/task/id123&quot;&gt;View item&lt;/a&gt;
+      &lt;form class=&quot;delete&quot; action=&quot;todo.abc/task/id123&quot; method=&quot;DELETE&quot;&gt;
+        &lt;input type=&quot;submit&quot; value=&quot;delete&quot;/&gt;
+      &lt;/form&gt;
+    &lt;/article&gt;
+  </code></pre>
 </section>
 <section>
   <h3>In practice</h3>
   <div>
-    A simple Node.js to-do service.
-    Notice the shape of the example object.
-    The creation endpoint returns all methods, not just an id to the frontend.
-    This means you can add functionality without changing the frontend.
-    Do the urls need to human readable? No, but's its a plus if they are easy to understand.
-    Also notice the tasks facade-object representing all tasks related functionalities.
+    Notice the shape of the example object. Creating an task returns a representation with all methods, not just an id.
+    This means you can add functionality without changing the frontend. Do the urls need to human readable?
+    No, but's its a plus if they are easy to understand.
   </div>
-</section>
-<section>
-  <pre><code style="max-height: 100%" class="es2015">
-    example_task_object = {
-      "message": "get milk",
-      "done": false,
-      "methods": {
-        "toggleDone": { "url": "tasks.xyz/task/id123/toggle", "method": "PUT"},
-        "editMessage": { "url": "tasks.xyz/task/id123", "method": "PUT", "fields": ["message"] },
-        "delete": { "url": "tasks.abc/id123", "method": "DELETE" }
-    }
-  };
-
-    //create new tasks
-    srv.post('/task', (req, res) => {
-      task = tasks.createTask(req.params);
-      res.json(task);
-    });
-
-    //get an existing task
-    srv.get('/task/:id', (req, res) => {
-      res.json(tasks.get(req.params.id));
-    });
-
-    //toggle task done
-    srv.put('/task/:id/toggle', (req, res) => {
-      const task = tasks.get(req.params.id);
-      task.done = !task.done;
-      res.json(task);
-    });
-
-    srv.delete('/:id', (req, res) => {
-      tasks.delete(req.params.id);
-      res.json({ deleted: true });
-    });
-
-  </code></pre>
 </section>
 <section>
   <h3>Links</h3>
   <ul>
     <li><a href="http://www.ics.uci.edu/~fielding/pubs/dissertation/rest_arch_style.htm">Original REST paper</a></li>
-    <li><a href="https://www.youtube.com/watch?v=pspy1H6A3FM">GOTO 2014 | REST: I don't Think it Means What You Think it Does by Stefan Tilkov</a></li>
+    <li><a href="https://www.youtube.com/watch?v=pspy1H6A3FM">GOTO 2014 REST (youtube)</a></li>
   </ul>
 </section>

@@ -40,7 +40,31 @@
           $ node server.js
         </code></pre>
 </section>
-
 <section>
-  <h3></h3>
+  <h3>Express for RESTful node.js</h3>
+  <pre><code class="javascript">
+    //create new tasks
+     srv.post('/task', (req, res) => {
+       task = tasks.createTask(req.params);
+       res.json(task);
+     });
+
+     //get an existing task
+     srv.get('/task/:id', (req, res) => {
+       res.json(tasks.get(req.params.id));
+     });
+
+     //toggle task done
+     srv.put('/task/:id/toggle', (req, res) => {
+       const task = tasks.get(req.params.id);
+       task.done = !task.done;
+       res.json(task);
+     });
+
+     srv.delete('/:id', (req, res) => {
+       tasks.delete(req.params.id);
+       res.json({ deleted: true });
+     });
+ 
+  </code></pre>
 </section>
