@@ -38,6 +38,7 @@ td {
   margin-top: 5px !important;
 }
 #all_modules {
+  -moz-column-count: 2;
   column-count: 2;
   column-gap: 100px;
 }
@@ -51,7 +52,11 @@ td {
   border: 1px solid orange;
 }
 
-.event>.year {
+.event>.title, .color-carrot {
+  color: #e7ad52;
+}
+
+.event-year {
   color: cyan;
   display: inline-block;
   margin-right: 20px;
