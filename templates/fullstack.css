@@ -70,3 +70,16 @@ td {
 pre>code {
   max-height: 100% !important; 
 }
+
+.larger-font {
+  font-size: 1.2em !important;
+}
+
+.smaller-font {
+  font-size: 0.8em !important;
+}
+
+.two-columns {
+  -moz-column-count: 2;
+  column-count: 2;
+}
