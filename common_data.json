@@ -14,6 +14,7 @@
     "./bower_components/reveal-js/css/reveal.min.css",
     "./bower_components/reveal-js/css/theme/night.css",
     "./bower_components/reveal-js/lib/css/zenburn.css",
+    "./bower_components/reveal-js/css/print/pdf.css",
     "./templates/fullstack.css"
   ],
   "js_libs" : [

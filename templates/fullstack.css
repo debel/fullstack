@@ -68,7 +68,11 @@ td {
 }
 
 pre>code {
-  max-height: 100% !important; 
+  max-height: 100% !important;
+}
+
+body.print-pdf * {
+  color: black !important;
 }
 
 .larger-font {
