@@ -1,46 +1,110 @@
 <section id="contents">
-  <h4>distributed source code management</h4>
-  <ul class="fragment">
-    <li>basic local commands</li>
-    <li>remote commands</li>
-    <li>scenarios and workflows</li>
-    <li>tools</li>
+  <h3>Git - distributed source code management</h3>
+ <ul>
+    <li>Concepts</li>
+    <li>Local commands</li>
+    <li>Remote commands</li>
+    <li>Workflows</li>
+    <li>Tools</li>
   </ul>
 </section>
 <section>
-  <h3>How does git work?</h3>
-    <ul>
+  <h3>Concepts</h3>
+  <ul>
+      <li>Repository</li>
       <li>Working directory</li>
       <li>Index</li>
-      <li>Repository</li>
+      <li>Commit</li>
       <li>Remotes</li>
+      <li>Branches</li>
     </ul>
 </section>
+<section id="concepts-1">
+  <h5>Repository</h5>
+  <p>All files and sub-folders in the prject folder.
+    <br/>Files can be excluded through the <code class="boxed">.gitignore</code> file</p>
+  <hr/>
+  <h5>Remotes</h5>
+  <p>Other repositories represented by a name and a url
+    <br/>List remotes by running <code class="boxed">git remote -v</code></p>
+  <hr/>
+  <h5>Working directory</h5>
+  <p>The current state of the repository
+    <br/>See changed files by running <code class="boxed">git status</code>
+    <br/>Or view all changes by running <code class="boxed">git diff</code></p>
+  <hr/>
+</section>
+<section>
+    <img width="80%" src="../images/git_index_structure.png" />  
+</section>
+<section id="concepts-2">
+  <h5>Index</h5>
+  <p>Selected changes waiting to be committed.  
+    <br/>Add changes by running the <code class="boxed">git add</code> command</p>
+  </p><hr/>
+  <h5>Commits</h5>
+  <p>A SHA1 identified package of changes. Each commit points to its parent commit.
+    The commit history can be explored with <code class="boxed">git log</code></p><hr/>
+  <h5>Branches</h5>
+  <p>Branches are simply pointers to commits.
+    <br/>The <code class="boxed">HEAD</code> points to the current commit. 
+    <br/>List branches with <code class="boxed">git branch -v</code>
+  </p><hr/>
+</section>
+<section>
+  <img src="../images/git_log.png" />
+</section>
 <section id="local-cmds-1">
-  <h3>Basic local commands:</h3>
-  <pre><code>
-    $ git init #create a new repository in the current dir
-    $ git add #add files to the index
-    $ git commit #create a new commit
-    $ git status #show the status of the working dir vs the index
-    $ git checkout #get specific versions of files
-    $ git branch #manipulate branches
+  <h3>Local commands:</h3>
+  <pre><code class="bash">
+    #create a new repository in the current dir
+    $ git init
+
+    #add files to the index
+    $ git add 
+    
+    #create a new commit
+    $ git commit
+
+    #show the status of the working dir vs the index
+    $ git status 
+    
+    #get specific versions of files
+    $ git checkout
+
+    #manipulate branches
+    $ git branch 
   </code></pre>
 </section>
 <section id="local-cmds-2">
   <h3>More local commands:</h3>
-  <pre><code>
+  <pre><code class="bash">
+    #explore the tree of commits 
     $ git log
+
+    #move the HEAD pointer
     $ git reset
+
+    #create a commit with muliple parent commits
     $ git merge
+
+    #re-create a commit on top of a different parent
     $ git rebase
   </code></pre>
 </section>
+<section>
+  <img width="50%" src="../images/git_log_2.png" />
+</section>
 <section id="remote-cmds-1">
   <h3>Remote commands:</h3>
-  <pre><code>
+  <pre><code class="bash">
+    #download a repository from a given url
     $ git clone
+
+    #download commits from a remote repository
     $ git fetch
+
+    #upload commits to a remote repository
     $ git push
   </code></pre>
 </section>
@@ -63,6 +127,8 @@
 <section>
   <h3>Links:</h3>
   <ul>
+    <li><a href="https://git-scm.com/book/en/v2">The git book</a></li>
+    <li><a href="https://codewords.recurse.com/issues/two/git-from-the-inside-out">Git from the inside out</a></li>
     <li><a href="https://www.youtube.com/watch?v=dBSHLb1B8sw">Deep dive into GIT (youtube)</a></li>
   </ul>
 </section>

@@ -87,3 +87,9 @@ body.print-pdf * {
   -moz-column-count: 2;
   column-count: 2;
 }
+
+code.boxed {
+  background-color: #3F3F3F;
+  color: #DCDCDC;
+  font-size: 0.8em;
+}
