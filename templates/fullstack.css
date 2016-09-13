@@ -52,7 +52,7 @@ td {
   border: 1px solid orange;
 }
 
-.event>.title, .color-carrot {
+.color-carrot {
   color: #e7ad52;
 }
 
@@ -92,4 +92,12 @@ code.boxed {
   background-color: #3F3F3F;
   color: #DCDCDC;
   font-size: 0.8em;
+}
+
+.top-border {
+  border-top: 1px dashed gray !important;
+}
+
+.event>.title, .color-azure {
+  color: #52d2e7;
 }
