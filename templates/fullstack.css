@@ -101,3 +101,10 @@ code.boxed {
 .event>.title, .color-azure {
   color: #52d2e7;
 }
+
+.thin-margins {
+  margin: 0 !important;
+  margin-top: 5px !important;
+  margin-bottom: 5px !important;
+  padding: 0 !important;
+}

@@ -11,7 +11,7 @@
   <p>Return only the contents of files.</p>
 </section>
 <section>
-  <h3>CGI</h3>
+  <h3>CGI Protocol</h3>
   <p>Common Gateway Interface - run a program to generate a response</p>
 </section>
 <section>
@@ -24,6 +24,9 @@
     <li>uWSGI - Python</li>
     <li>libUV - node.js</li>
   </ul>
+</section>
+<section>
+
 </section>
 <section>
   <h3>running a http server in node.js</h3>
@@ -46,7 +49,7 @@
 <section>
   <h3>Routing</h3>
   <ol>
-    <li>Parse the url</li>
+    <li>Parse the URL</li>
     <li>Execute the appropriate response function</li>
   </ol>
 </section>
@@ -75,6 +78,35 @@
        tasks.delete(req.params.id);
        res.json({ deleted: true });
      });
- 
   </code></pre>
+</section>
+<section>
+  <h3>Flask for RESTful Python</h3>
+  <pre><code class="python">
+    @app.route('/')
+    def show_entries():
+      db_cursor = db.execute('SELECT title, text FROM entries ORDER BY id DESC')
+      entries = db_cursor.fetchall()
+      return render_template('show_entries.html', entries=entries)
+    
+    @app.route('/add', methods=['POST'])
+    def add_entry():
+      if not session.get('logged_in'):
+        abort(401)
+      db.execute('INSERT INTO entries (title, text) VALUES (?, ?)', 
+                      [request.form['title'], request.form['text']])
+      db.commit()
+      flash('New entry was successfully posted')
+      return redirect(url_for('show_entries'))
+  </code></pre>
+</section>
+<section>
+  <h3>Links</h3>
+  <ul>
+    <li><a href="http://flask.pocoo.org/">Flask for Pythons</a></li>
+    <li><a href="http://expressjs.com/">Express for NodeJS</a></li>
+    <li><a href="http://guides.rubyonrails.org/getting_started.html">Rails for Ruby</a></li>
+    <li><a href="https://docs.asp.net/en/latest/tutorials/first-mvc-app/">ASP.NET for C#</a></li>
+    <li><a href="http://www.dropwizard.io/1.0.0/docs/getting-started.html">Dropwizard for Java</a></li>
+  </ul>
 </section>
