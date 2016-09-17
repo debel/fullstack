@@ -17,7 +17,62 @@
   </ul>
 </section>
 <section>
-  <h3>
+  <h3>Vagrant: Overview</h3>
+  <p>Create and configure reproducible and portable development environments</p>
+  <ul>
+    <li>Boxes - Virtual Machine Templates</li>
+    <li>Provisioning - Setup Scripts</li>
+    <li>Vagrantfile - Configuration as ruby code</li>
+    <li>Vagrant CLI - shell commands</li> 
+  </ul>
+</section>
+<section>
+  <h3>Vagrant: Client commands</h3>
+  <pre><code class="bash">
+    #List locally available boxes
+    vagrant box list
+
+    #Initialize a new Vagrantfile with examples and comments
+    vagrant init [BOX-NAME]
+
+    #Start a virtual machine
+    vagrant up
+
+    #Stop a virtual machine
+    vagrant halt
+
+    #Restart a virtual machine
+    vagrant reload [--provision]
+
+    #Destroy a virtual machine
+    vagrant destroy
+
+    #Connect to a virtual machine
+    vagrant ssh
+  </code></pre>
+</section>
+<section>
+  <h3>Basic Bash scripting</h3>
+  <pre><code class="bash">
+    #List files in a folder
+    ls PATH
+
+    #Change folder
+    cd PATH
+
+    #Create directory
+    mkdir NAME
+
+    #Copy files
+    cp FILE1 FILE2 DESTINATION
+
+    #move/rename file
+    mv FILE1 FILE2 #renames FILE1 to FILE2
+    mv src/FILE1 dist/FILE2 #move file
+
+    #View the contnets of a text file
+    cat FILENAME
+  </code></pre>
 </section>
 <section>
   <h3>Links:</h3>
@@ -25,8 +80,10 @@
     <li><a href="http://www.dreamcreative.net/how-tos/guides-server-maintenance/linux-ssh-cheat-sheet-basics/">Basic Bash commands</li>
     <li><a href="https://emson.co.uk/2009/06/18-useful-bash-scripts-for-web-developers/">Some Bash examples</a></li>
     <li><a href="http://lzone.de/cheat-sheet/SSH">SSH Cheat Sheet</a></li>
+    
     <h6 class="thin-margins">Tools</h6>
     <li><a href="https://www.vagrantup.com/docs/getting-started/project_setup.html">Vagrant: Getting Started</a></li>
+
     <h6 class="thin-margins">Infrastructure as Code</h6>
     <li><a href="https://aws.amazon.com/cloudformation/">Amazon Cloudformation</a></li>
     <li><a href="https://cloud.google.com/deployment-manager/">Google Deployment Manager</a></li>
