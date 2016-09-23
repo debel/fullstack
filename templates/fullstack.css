@@ -108,3 +108,13 @@ code.boxed {
   margin-bottom: 5px !important;
   padding: 0 !important;
 }
+
+ul.children-inline {
+  display: inline !important;
+  list-style: none;
+}
+
+ul.children-inline>li {
+  display: inline !important;
+
+}
