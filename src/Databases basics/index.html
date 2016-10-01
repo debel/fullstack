@@ -5,14 +5,14 @@
     <li>Key-Value: Raik, Redis</li>
     <li>Document-based: MongoDb, Couchbase </li>
     <li>Columnar: Hbase, Cassandra</li>
-    <li>Graph: WhiteDB, Trinity </li>
+    <li>Graph: WhiteDB, Trinity, neo4j</li>
   </ul>
 </section>
 <section>
   <h3>Relational:</h3>
   <ul>
-    <li>Normalized data - Related Rows in Tables</li>
     <li>SQL</li>
+    <li>Normalized data - Related Rows in Tables</li>
     <li>Row values are stored continuously</li>
   </ul>
 </section>
@@ -139,12 +139,29 @@
   </ul>
 </section>
 <section>
-  {{Hbase / Cassandra example}}
+  <h4>Using Hbase with Java</h4>
+  <pre><code class="java">
+  public String GetCell(String date, String symbol, byte[] column) throws IOException {
+    try (Connection conn = ConnectionFactory.createConnection(config)) {
+        Table table = conn.getTable(TableName.valueOf(TABLE_NAME));
+        
+        Get get = new Get(makeKey(date, symbol));
+        get.addColumn(COLUMN_FAMILY, column);
+        
+        Result r = table.get(get);
+        
+        if ( r.isEmpty() ) return null;
+        
+        return new String(r.value());
+    }
+  }
+  </code></pre>
 </section>
 <section>
-  <h3>Full-text</h3>
+  <h3>Many others</h3>
   <ul>
-    <li>Elastic search</li>
+    <li>Full-text e.g. Elastic search</li>
+    <li>Graph dbs e.g. neo4j</li>
   </ul>
 </section>
 <section id="links">
