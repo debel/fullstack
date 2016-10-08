@@ -1,10 +1,130 @@
 <section>
+  <h3>Process Overview</h3>
+  <img src="../images/ci-architecture.png" />
+</section>
+<section>
+  <h3>Process Overview</h3>
+  <ol>
+    <li>Commit code changes</li>
+    <li>Run build &amp; test locally</li>
+    <li>Push code to team repository</li>
+    <li>CI runs build &amp; tests</li>
+    <li>CI reports outcomes</li>
+    <li>CI triggers deployment on success</li>
+  </ol>
+</section>
+<section>
+  <h3>Benefits</h3>
   <ul>
-    <li>
-      Deploy faster
-    </li>
-    <li>
-      Automate processes
-    </li>
+    <li>Automatically running tests</li>
+    <li>Automatically running builds</li>
+    <li>Infrastructure as code</li>
+    <li>Seamless integraton with Source Control</li>
+  </ul>
+</section>
+<section>
+  <h3>Hosted vs SaaS</h3>
+  <ul>
+    <li>Hosted: more control</li>
+    <li>SaaS: less management</li>
+  </ul>
+</section>
+<section>
+  <h3>Many existing tools</h3>
+  <ul>
+    <li>Drone.io</li>
+    <li>TravisCI</li>
+    <li>CircleCI</li>
+    <li>SnapCI</li>
+    <li>Codeship</li>
+    <li>Jenkins</li>
+    <li>TeamCity</li>
+    <li>Many others</li>
+  </ul>
+</section>
+<section>
+  <h3>Common settings</h3>
+  <ul>
+    <li>Build environment</li>
+    <li>Build variables</li>
+    <li>Encrypted secrets</li>
+    <li>Test commands</li>
+    <li>Notification</li>
+    <li>Deployment</li>
+  </ul>
+</section>
+<section>
+  <h3>Example .drone.yml</h3>
+  <pre><code class="yml">
+    build:
+      frontend:
+        image: node:4.4
+        commands:
+          - npm install
+          - npm run test
+      backend:
+        image: python:3.5
+        commands:
+          - pip install -r requirments.txt
+          - pytest tests/
+    notify:
+      email:
+        from: noreply@github.com
+        host: smtp.mailgun.org
+        username: USER
+        password: PASS
+        recipients:
+          - m.mikoff@gmail.com
+    deploy:
+      rsync:
+        user: m_mikoff
+        host: 104.199.157.108
+        port: 22
+        source: path/to/repo/artifacts
+        target: path/on/server
+        recursive: true
+        commands:
+          - service nginx restart 
+  </code></pre>
+</section>
+<section>
+  <h3>Example .travis.yml</h3>
+  <pre><code class="yml">
+    language: node_js
+    node_js: '6'
+    env:
+      global:
+        secure: ENCRYPTED-GIT-KEY
+    before_install:
+      - openssl aes-256-cbc -K $encrypted_033b91806de4_key -iv $encrypted_033b91806de4_iv 
+        -in .deploy_key.pem.enc -out .deploy_key.pem -d
+    install:
+      - npm install
+    script:
+      - npm run lint
+      - npm run build
+      - npm run test
+    after_success:
+      - eval "$(ssh-agent -s)"
+      - chmod 600 .deploy_key.pem
+      - ssh-add .deploy_key.pem
+      - ssh-keyscan 104.199.157.108 >> ~/.ssh/known_hosts
+      - git remote add deploy m_mikoff@104.199.157.108:~/node-todo-example
+      - git push deploy master -f
+    notifications:
+      slack:
+        secure: ENCRYPTED-SLACK-KEY
+  </code></pre>
+</section>
+<section>
+  <h3>Links</h3>
+  <ul>
+    <li><a href="https://drone.io/">Drone.io</a></li>
+    <li><a href="https://travis-ci.org/">TravisCI</a></li>
+    <li><a href="https://circleci.com/">CircleCI</a></li>
+    <li><a href="https://jenkins.io/">Jenkins</a></li>
+    <li><a href="https://snap-ci.com/">SnapCI</a></li>
+    <li><a href="https://codeship.com/">Codeship</a></li>
+    <li><a href="https://www.jetbrains.com/teamcity/">TeamCity</a></li>
   </ul>
 </section>

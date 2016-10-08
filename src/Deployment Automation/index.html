@@ -1,0 +1,96 @@
+<section>
+  <h3>Process Overview</h3>
+  <img src="../images/app_deploy_diagram.png" />
+</section>
+<section>
+  <h3>Benefits</h3>
+  <ul>
+    <li>Repeatable &amp; reliable</li>
+    <li>Easier state management</li>
+    <li>Infrastructure as code</li> 
+  </ul>
+</section>
+<section>
+  <h3>Concepts</h3>
+    <ul>
+      <li>Artifacts</li>
+      <li>Workflows</li>
+      <li>Containers vs VMs vs Bare metal</li>
+      <li>Blue/Green</li>
+    </ul>
+</section>
+<section>
+  <h3>Artifacts</h3>
+  <p>Building your application produces various <b>artifacts</b>. For example:</p>
+  <ul>
+    <li>Executable files</li>
+    <li>Compressed resources</li>
+    <li>Images, Fonts, etc</li>
+  </ul>
+  <hr/>
+  <p>Artifacts are deployed to the production server, not your entire codebase</p>
+</section>
+<section>
+  <h3>Workflows</h3>
+  <ul>
+    <li>Simpe Push: a hook on a specific remote triggers the deployment</li>
+    <li>Through CI: service monitors repository and reacts triggering a build</li>
+    <li>Provider Tool: most hosting environments provide specific tools for deployment</li>
+  </ul>
+</section>
+<section>
+  <h3>Containers vs VMs vs Bare metal</h3>
+  <ul>
+    <li>Containers: new, lite and provider agnostic</li>
+    <li>VMs: familiar, tested and provider agnostic</li>
+    <li>Bare metal: for when you need all the power you can get</li>   
+  </ul> 
+</section>
+<section>
+  <h3>Tools</h3>
+  <ul>
+    <li>Git &amp; SSH</li>
+    <li>FTP &amp; Rsync</li>
+    <li>Ansible</li>
+    <li>Terraform</li>
+    <li>Provider specific options</li>
+  </ul>
+</section>
+<section>
+  <h3>Example git post-recieve hook</h3>
+  <p>Git hooks are scripts that let you react to repository events<br/>
+  the post-recieve hook triggers after a push is recieved </p>
+  <pre><code class="bash">
+    # hooks/post-recieve
+    GIT_WORK_TREE=~/src-full-stack git checkout master -f &&
+    cd ~/src-full-stack &&
+    npm install &&
+    npm run build &&
+    echo "Deployed successfully"
+  </code></pre>
+</section>
+<section>
+  <h3>Blue/Green deployment</h3>
+  <img width="80%" src="../images/blue_green.jpg" />
+</section>
+<section>
+  <h3>Blue/Green deployment: Process overview</h3>
+  <ol>
+    <li>A new deployment is triggered</li>
+    <li>A new environment is setup (green)</li>
+    <li>Old version continues serving all requests (blue)</li>
+    <li>Small amount of traffic is given to the new version (green)</li>
+    <li>New version (green) is monitored against predefined metrics</li>
+    <li>If the new version performs well, continue with next server, else rollback</li>
+  </ol>
+</section>
+<section>
+  <h3>Links:</h3>
+  <ul>
+    <li><a href="https://www.ansible.com">Ansible (utility)</a></li>
+    <li><a href="https://www.terraform.io/">Terraform (utility)</a></li>
+    <li><a href="https://oncletom.io/2016/travis-ssh-deploy/">Deploying through Travis with RSync</a></li>
+    <li><a href="https://www.digitalocean.com/community/tutorials/how-to-deploy-a-basic-php-application-using-ansible-on-ubuntu-14-04">Deploying PHP via Ansible</a></li>
+    <li><a href="http://martinfowler.com/bliki/BlueGreenDeployment.html">Martin Fowler on Blue/Green deployment</a></li>
+  </ul>
+</section>
