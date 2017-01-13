@@ -1,0 +1,21 @@
+{
+  "paths": {
+    "index": "./src/index.html",
+    "topics": "./topics/*/index.html",
+    "css": [
+        "./bower_components/reveal-js/css/reveal.min.css",
+        "./bower_components/reveal-js/css/theme/night.css",
+        "./bower_components/reveal-js/lib/css/zenburn.css",
+        "./bower_components/reveal-js/css/print/pdf.css",
+        "./templates/fullstack.css"
+    ],
+    "js": [
+        "./bower_components/reveal-js/lib/js/head.min.js",
+        "./bower_components/reveal-js/js/reveal.min.js",
+        "./bower_components/reveal-js/plugin/highlight/highlight.js"
+    ],
+    "images": [
+        "./images/*"
+    ]
+  }
+}
