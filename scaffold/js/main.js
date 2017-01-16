@@ -1,8 +1,10 @@
 window.FullStack101 = Object.freeze({
-    initialize() {
+    initialize(options) {
         initializeReveal();
-        initializeGA();
-        initializeNav();
+        if (!options.debug) {
+          initializeGA();
+        }
+        initializeNav(options.title);
         initializePrint();
     }
 });

@@ -14,6 +14,7 @@
     <div class="header">
       <a href="/" class="title">INF397 Full Stack Technologies</a>
       <a href="#" id="topics_toggle">List all topics</a>
+      <a href="#" id="last_topic">Last topic</a>
     </div>
     <div id="presentation" class="reveal">
         <div class="slides">
@@ -27,7 +28,10 @@
     </div>
     <script src="../js/bundle.js"></script>
     <script>
-      window.FullStack101.initialize();
+      window.FullStack101.initialize({
+        title: "{{title}}",
+        debug: {{DEBUG_MODE}}
+      });
     </script>
 </body>
 </html>

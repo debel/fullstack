@@ -1,13 +1,11 @@
 {
-  "homeLink": "<section>Back to <a href=\"/\">Fullstack technologies</a></section>",
   "titleSlide": "<section><h2>{{title}}</h2></section>",
 
   "syllabus": "https://docs.google.com/document/d/1_aEqhUzq0GinrVGfXBimme2kc2jszbdSC4o4Nm37iMI/edit?usp=sharing",
 
-  "Week 1": "04.02.2017",
-  "Week 2": "xx.02.2017",
-  "Week 3": "xx.02.2017",
-  "Week 4": "xx.03.2017",
-  "Week 5": "xx.03.2017"
-
+  "Week 1": "03.02.2017",
+  "Week 2": "10.02.2017",
+  "Week 3": "17.02.2017",
+  "Week 4": "24.03.2017",
+  "Week 5": "17.03.2017"
 }
