@@ -1,0 +1,24 @@
+{
+  "name": "full-stack-slides",
+  "description": "",
+  "main": "index.js",
+  "authors": [
+    "Mihail Mikov"
+  ],
+  "license": "ISC",
+  "moduleType": [
+    "globals"
+  ],
+  "homepage": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "reveal.js": "^3.4.0"
+  }
+}

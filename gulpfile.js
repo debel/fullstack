@@ -1,17 +1,19 @@
-'use strict';
-
-const gulp = require('gulp'),
-  clean = require('gulp-clean'),
-  helpers = require('./gulp_tasks/helpers'),
-  path = require('path'),
-
-  buildAndDeploy = deployPath => () => {
-    helpers.getAllTopics().then(topics => {
-      helpers.renderTopics(topics);
-      helpers.renderIndex(topics);
-      helpers.bundleLibs();
-    });
-  };
+const gulp = require('gulp');
+const libs = require('./gulp_tasks/libs');
+const clear = require('./gulp_tasks/clear');
+const topics = require('./gulp_tasks/topics');
+const render = require('./gulp_tasks/render');
+const buildAndDeploy = deployPath => () => {
+    clear.clearOldDeploy(deployPath)
+        .then(() => topics.extractTopicNames())
+        .then(topics => {
+            render.renderTopics(topics, deployPath);
+            render.renderIndex(topics, deployPath);
+            libs.buildJs(deployPath);
+            libs.buildCss(deployPath);
+            libs.copyImages(deployPath);
+        }).catch(error => console.log(error));
+};
 
 gulp.task('build-reveal', buildAndDeploy('/usr/share/nginx/html/'));
 

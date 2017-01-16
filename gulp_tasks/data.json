@@ -1,21 +1,21 @@
 {
   "paths": {
-    "index": "./src/index.html",
+    "index": "./topics/index.html",
     "topics": "./topics/*/index.html",
     "css": [
-        "./bower_components/reveal-js/css/reveal.min.css",
-        "./bower_components/reveal-js/css/theme/night.css",
-        "./bower_components/reveal-js/lib/css/zenburn.css",
-        "./bower_components/reveal-js/css/print/pdf.css",
-        "./templates/fullstack.css"
+        "./bower_components/reveal.js/css/reveal.css",
+        "./bower_components/reveal.js/css/theme/night.css",
+        "./bower_components/reveal.js/lib/css/zenburn.css",
+        "./scaffold/css/*.css"
     ],
     "js": [
-        "./bower_components/reveal-js/lib/js/head.min.js",
-        "./bower_components/reveal-js/js/reveal.min.js",
-        "./bower_components/reveal-js/plugin/highlight/highlight.js"
+        "./bower_components/reveal.js/lib/js/head.min.js",
+        "./bower_components/reveal.js/js/reveal.js",
+        "./bower_components/reveal.js/plugin/highlight/highlight.js",
+        "./scaffold/js/*.js"
     ],
     "images": [
-        "./images/*"
+        "./scaffold/images/*"
     ]
   }
 }

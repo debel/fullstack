@@ -10,16 +10,19 @@
     <meta property="og:image" content="http://fullstack101.xyz/images/welcome-rick-and-morty.jpg">
     <link rel="stylesheet" href="../css/bundle.css" />
 </head>
-
 <body>
-    <button></button>
-    <section id="full_topics_list">
-        <h3>All topics:</h3> {{all_modules}}
-    </section>
-    <div class="reveal">
+    <div class="header">
+      <a href="/" class="title">INF397 Full Stack Technologies</a>
+      <a href="#" id="topics_toggle">List all topics</a>
+    </div>
+    <div id="presentation" class="reveal">
         <div class="slides">
             {{titleSlide}}
             {{content}}
+            <section id="full_topics_list">
+                <h5>All topics:</h5>
+                {{topics_list}}
+            </section>
         </div>
     </div>
     <script src="../js/bundle.js"></script>
