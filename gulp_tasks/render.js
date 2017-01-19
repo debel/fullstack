@@ -4,7 +4,9 @@ const tap = require('gulp-tap');
 const gulpData = require('./data.json');
 
 const scaffoldData = JSON.parse(fs.readFileSync('./scaffold/data.json'));
-const template = fs.readFileSync('./scaffold/template.html');
+
+const mainTemplate = fs.readFileSync('./scaffold/template.html');
+const scheduleTemplate = fs.readFileSync('./scaffold/schedule.html');
 
 const _render = (view, data) => {
     return Object.keys(data).reduce(
@@ -18,15 +20,19 @@ const _render = (view, data) => {
     );
 }
 
+const renderSchedule = topics => _render(scheduleTemplate.toString(), Object.assign({}, scaffoldData, topics));
+
 const renderFiles = (files, extraData) => (topics, deployPath) => {
+    topics.topics_map.toString = () => '';
+    const schedule = renderSchedule(topics);
     extraData = extraData || {};
     return gulp.src(files).pipe(tap(file => {
         const data = Object.assign({}, topics, scaffoldData, extraData);
-        delete data.topics_map;
         data['title'] = topics.topics_map[file.path] || 'Welcome';
-       
+        data['schedule'] = schedule;
+
         const fullPage = _render(
-          template.toString(),
+          mainTemplate.toString(),
           { 'content': file.contents.toString() }
         );
 

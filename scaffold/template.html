@@ -13,17 +13,13 @@
 <body>
     <div class="header">
       <a href="/" class="title">INF397 Full Stack Technologies</a>
-      <a href="#" id="topics_toggle">List all topics</a>
-      <a href="#" id="last_topic">Last topic</a>
+      <a href="#" id="topics_toggle">View Schedule</a>
     </div>
     <div id="presentation" class="reveal">
         <div class="slides">
             {{titleSlide}}
             {{content}}
-            <section id="full_topics_list">
-                <h5>All topics:</h5>
-                {{topics_list}}
-            </section>
+            {{schedule}}
         </div>
     </div>
     <script src="../js/bundle.js"></script>

@@ -3,19 +3,6 @@ function initializeNav(title) {
     const lsKey = 'fs101.' + title;
     const startSlide = parseInt(localStorage.getItem(lsKey), 10) || 0;
 
-    const lastTopic = localStorage.getItem('fs101.LAST_TOPIC');
-    const lastTopicLink = document.querySelector('#last_topic');
-
-    if (lastTopic) {    
-        lastTopicLink.href = '/' + lastTopic;
-        lastTopicLink.textContent = lastTopic;
-        lastTopicLink.style.display = 'inline';
-    }
-
-    if (title !== 'Welcome' && title !== lastTopic) {
-        localStorage.setItem('fs101.LAST_TOPIC', title);
-    }
-
     Reveal.addEventListener('ready', () => {
       Reveal.slide(startSlide);
     });
@@ -30,7 +17,7 @@ function initializeNav(title) {
     let savedState = null;
     topicsToggle.onclick = (event) => {
         if (savedState) {
-            topicsToggle.textContent = 'List all topics';
+            topicsToggle.textContent = 'View Schedule';
             Reveal.setState(savedState);
             savedState = null;
         } else {
