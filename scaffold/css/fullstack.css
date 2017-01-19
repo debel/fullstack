@@ -57,8 +57,8 @@ hr {
   width:90%;
 }
 
-table {
-  left: -10%;
+.shifted-left {
+  left: -30%;
 }
 
 tr td:first-child {
@@ -172,5 +172,24 @@ ul.children-inline {
 
 ul.children-inline>li {
   display: inline !important;
+
+}
+
+@media
+only screen and (max-width: 760px),
+(min-device-width: 768px) and (max-device-width: 1024px)  {
+
+  table {
+    left: 0 !important;
+  }
+	table, thead, tbody, th, tr {
+		display: block;
+	}
+
+	tr { border: 1px solid #ccc; }
+
+  td:first-child {
+  		display:block;
+  }
 
 }

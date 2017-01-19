@@ -1,7 +1,8 @@
 {
   "titleSlide": "<section><h2>{{title}}</h2></section>",
 
-  "syllabus": "https://docs.google.com/document/d/1_aEqhUzq0GinrVGfXBimme2kc2jszbdSC4o4Nm37iMI/edit?usp=sharing",
+  "syllabus_link": "https://docs.google.com/document/d/1_aEqhUzq0GinrVGfXBimme2kc2jszbdSC4o4Nm37iMI/edit?usp=sharing",
+  "github_link": "https://github.com/debel/fullstack",
 
   "Week 1": "03.02.2017",
   "Week 2": "10.02.2017",

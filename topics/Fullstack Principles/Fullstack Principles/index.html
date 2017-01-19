@@ -1,0 +1,182 @@
+<section>
+    <div class="question">
+        What does full stack mean?
+    </div>
+    <div class="fragment answer">
+        It means understanding and working on many / all levels of a given system.<hr/>
+    </div>
+    <div class="fragment answer">
+        <span class="color-azure">Electronics Systems</span> would require understanding chips, sensors<br/>
+        <span class="color-azure">Cryptographic systems</span> require mathematics and threat modeling<br/>
+        <span class="color-azure">Games</span> - 3D, game theory, networking<br/>
+        There are also many overlapping topics.<br/>
+        This course focuses on Full Stack <span class="color-azure">Web Development</span>.
+    </div>
+</section>
+<section>
+    <div class="question">
+        Which technologies are full stack?
+    </div>
+    <div class="fragment answer">
+        There are many technology stacks that provide utilities on almost all levels.
+        However being Full Stack does <u>NOT</u> mean knowing a set of technologies.
+        It means knowing the <span class="color-azure">layers</span>
+        and the <span class="color-azure">principles</span> by which they operate and connect.
+    </div>
+</section>
+<section>
+    <div class="question">
+        What are the web layers?
+    </div>
+    <div class="fragment answer">
+        There are, basically, three layers:
+        <span style="font-size: 1.2em">Front-end</span>,
+        <span style="font-size: 1.2em">Back-end</span>
+        and the <span style="font-size: 1.2em">Network</span>.
+        However each layer has its own ecosystem of tools and best practices.
+        In {{Web Architectures}} we will explore typical patterns found in popular web applications.
+        We will also look into the {{RESTful principles}} and the {{SOLID principles}}.
+    </div>
+</section>
+<section class="frontend">
+    <h3>Frontend</h3>
+    <div>
+        Can be a static page in a browser, an ajax -, or a mobile app.
+        Your code runs on the user's device with restricted previliages.
+        In all cases, the frontend is the user faceing side of the system.
+        The input/output mechanism of the web application.
+    </div>
+    <div class="smaller-font top-border">
+        {{Frontend Overview}} | {{Frontend Frameworks}}
+    </div>
+</section>
+<section class="backend">
+    <h3>Backend</h3>
+    <div>
+        Can be a home pc, data center rack or a virtual container in the cloud.
+        On the backend your code is king.
+        It is where the complex, secret, and long-running tasks should run.
+        The backend is the "heart" of the web application.
+    </div>
+    <div class="smaller-font top-border">
+        {{Backend Overview}} | {{Backend Tooling}}
+    </div>
+</section>
+<section class="network">
+    <h3>Network</h3>
+    <div>
+        The network connects the front-end, the back-end and the WORLD.
+        The internet is based on the TCP/IP protocol.
+        The web is based on the HTTP protocol.
+        Other popular protocols include: HTTPS, WebSockets, BitTorrent.
+
+        There are multiple modes of communication: request/response, streaming;
+        And multiple degrees of durability, reliability, security, latency, etc
+    </div>
+    <div class="smaller-font top-border">
+        {{Network Overview}}
+    </div>
+</section>
+<section>
+    <div class="question">
+        What are the typical tasks for a full stack developer?
+    </div>
+    <ul class="answer">
+        <li class="fragment">Analysing domain specific processes and data.</li>
+        <li class="fragment">Writing code, tests, automation scripts and documentation.</li>
+        <li class="fragment">Creating monitoring graphics, dashboards and alerts for both the application and the underlying infrastructure.</li>
+        <li class="fragment">Analysing the current state of both the code-base and the running application.</li>
+        <li class="fragment">Fixing bugs, improving performance and usability.</li>
+    </ul>
+</section>
+<section>
+    <div class="question">
+        Are there any general full stack principles?
+    </div>
+    <div class="fragment answer">
+        <ul>
+            <li>Quality</li>
+            <li>Testing</li>
+            <li>Automation</li>
+            <li>Monitoring</li>
+            <li>Agile Processes</li>
+        </ul>
+    </div>
+</section>
+<section id="readability-quote">
+    <h3>Quality</h3>
+    <div class="fragment fade-in">
+        <div class="fragment fade-out">IFYOUWANTYOURCODETOBEEASYTOWRITEMAKEITEASYTOREAD</div>
+        <div class="fragment">If you want your code to be easy to write, make it easy to read.
+            <br/>
+            <div style="text-align: right;">--Uncle Bob</div>
+        </div>
+    </div>
+</section>
+<section>
+    <h6>Quality</h6>
+    <ul>
+        <li>respect the code</li>
+        <li>write documentation</li>
+        <li>utilze tools</li>
+        <li>follow standards</li>
+        <li>perform regular code reviews</li>
+    </ul>
+</section>
+<section id="automation-quote">
+    <h3>Automation</h3>
+    <div class="fragment">The art of programming is the art of organizing complexity
+        <br/>
+        <div style="text-align: right">--Edsger Dijkstra</div>
+    </div>
+</section>
+<section>
+    <h6>{{Automation}}</h6>
+    <div>automate standard procedures</div>
+    <ul>
+        <li>analysis</li>
+        <li>testing</li>
+        <li>generation</li>
+        <li>integration</li>
+        <li>deployment</li>
+    </ul>
+</section>
+<section id="testing-quote">
+    <h3>Testing</h3>
+    <div class="fragment">Beware of bugs in the above code;
+        <br/>I have only proved it correct, not tried it.
+        <br/>
+        <div style="text-align: right"> --Donald Knuth</div>
+    </div>
+</section>
+<section>
+    <h6>{{Testing}}</h6>
+    <div>
+        create automated test suits with unit, integration, acceptence tests; catch problems as early as possible
+    </div>
+</section>
+<section id="monitoring-quote">
+  <h3>Monitoring</h3>
+  <div class="fragment">
+    The most effective debugging tool is still careful thought,<br/>
+    coupled with judiciously placed print statements.
+    <div style="text-align: right"> --Brian W. Kernighan</div>
+  </div>
+</section>
+<section>
+    <h6>{{Monitoring}}</h6>
+    <div>
+        ensure there is sufficient visibility into both the technical and comercial aspects of the system
+    </div>
+</section>
+<section id="evolution-quote">
+    <h3>Agile Processes</h3>
+    <div class="fragment">“The best way to predict the future is to implement it.”
+        <br/>
+        <div style="text-align: right;">--David Hansson</div>
+    </div>
+</section>
+<section>
+    <h6>{{Agile Processes}}</h6>
+    <div>create a short and focused production loop based on monitoring and feedback, Fail forward</div>
+</section>
