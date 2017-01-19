@@ -2,7 +2,9 @@
   "titleSlide": "<section><h2>{{title}}</h2></section>",
 
   "syllabus_link": "https://docs.google.com/document/d/1_aEqhUzq0GinrVGfXBimme2kc2jszbdSC4o4Nm37iMI/edit?usp=sharing",
-  "github_link": "https://github.com/debel/fullstack",
+  "github_link": "https://github.com/fullstack101",
+  "trello_link": "https://trello.com/fullstack101",
+  "slack_link": "https://fullstack101.slack.com",
 
   "Week 1": "03.02.2017",
   "Week 2": "10.02.2017",
