@@ -1,27 +1,84 @@
 <section>
   <ul>
     <li>Collecting vs Reporting metrics</li>
-    <li>Analysis</li>
-    <li>Aggregation</li>
+    <li>User Analytics</li>
+    <li>App Performance</li>
     <li>Dashboards</li>
     <li>Alerts</li>
   </ul>
 </section>
 <section>
   <h3>Collecting vs Reporting metrics</h3>
+  <ul>
+    <li>Reporting: application activly send metrics</li>
+    <li>Collecting: external agent collects data about the application</li>
+    <li>Healthcheck: asking the application if everything is ok</li>
+  </ul>
 </section>
 <section>
-  <h3>Analysis</h3>
+  <h3>User Analytics</h3>
+  <p>Client-side user-related metrics</p>
+  <ul>
+    <li>Audience: who are our users?
+      <br/>age, gender, language, location</li>
+    <li>Acquisition: where did the users come from?
+      <br/>direct, search, social, referral</li>
+    <li>Behavior: how are the users using the site?
+      <br/>visit length, pages viewed, buttons clicked</li>
+  </ul>
 </section>
 <section>
-  <h3>Aggregation</h3>
+  <h3>Dashboards: Google Analytics</h3>
+  <img src="../images/ga.png" />
 </section>
 <section>
-  <h3>Dashboards</h3>
+  <h3>App Performance</h3>
+  <p>Server-side app-related metrics</p>
+  <ul>
+    <li>Resources: how much is our app consuming?</li>
+    <li>Throughput: how much traffic can our app handle?</li>
+    <li>Events: what functionality is running and when?</li>
+    <li>Errors: what isn't working and why?</li>
+  </ul>
+</section>
+<section>
+ <h3>Dashboards: Grafana</h3>
+  <img src="../images/grafana.png" />
 </section>
 <section>
   <h3>Alerts</h3>
+  <p>Recieve email/sms notification if something goes wrong. For example:</p>
+  <ul>
+    <li>if response-time jumps over some threshold</li>
+    <li>if the number of errors jumps over some threshold</li>
+    <li>if a particular service is not responding</li>
+    <li>if a server runs out of cpu/memory/disk</li> 
+  </ul>
 </section>
 <section>
   <h3>Tools</h3>
+  <p>Using statsd to report metrics</p>
+  <pre><code class="javascript">
+    var StatsD = require('node-statsd');
+    var client = new StatsD();
+
+    client.timing('my_app.response_time', 42);
+
+    client.increment('my_app.logins');
+
+    client.decrement('my_app.active_users');
+
+    client.gauge('my_app.running_tasks', 123);
+  </code></pre>
+</section>
+<section>
+  <h3>Links</h3>
+  <ul>
+    <li><a href="https://www.elastic.co/products/logstash">Logstash</li>
+    <li><a href="https://www.elastic.co/products/kibana">Kibana for logs</a></li>
+    <li><a href="https://github.com/etsy/statsd">StatsD for collecting metrics</a></li>
+    <li><a href="http://grafana.org/">Grafana for dashboards</a></li>
+    <li><a href="http://www.monitis.com/">Monitis suite</a></li>
+    <li><a href="https://victorops.com/">VictorOPS for alets</a></li>
+  </ul>
 </section>
