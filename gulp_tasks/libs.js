@@ -9,10 +9,15 @@ const buildJs = (deployPath) => gulp.src(gulpData.paths.js)
   .pipe(gulp.dest(buildDeployPath(deployPath, 'js')))
   .on('error', err => console.log(err));
 
-const buildCss = (deployPath) => gulp.src(gulpData.paths.css)
+const buildCss = (deployPath) => {
+  gulp.src("./bower_components/reveal.js/css/print/pdf.css")
+    .pipe(gulp.dest(buildDeployPath(deployPath, 'css')));
+
+  return gulp.src(gulpData.paths.css)
   .pipe(concat('bundle.css'))
   .pipe(gulp.dest(buildDeployPath(deployPath, 'css')))
   .on('error', err => console.log(err));
+}
 
 const copyImages = (deployPath) => gulp.src(gulpData.paths.images)
   .pipe(gulp.dest(buildDeployPath(deployPath, 'images')))

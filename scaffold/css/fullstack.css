@@ -3,7 +3,7 @@ body {
   color: white;
 }
 
-#topics_toggle, #last_topic {
+#topics_toggle, #print_topic {
     padding: 5px;
     color: white;
     background-color: #e7ad52;
@@ -14,9 +14,8 @@ body {
     float:right;
 }
 
-#last_topic {
+#print_topic {
   margin-right: 25px;
-  display: none;
 }
 
 .header {
