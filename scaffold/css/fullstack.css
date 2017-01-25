@@ -3,6 +3,10 @@ body {
   color: white;
 }
 
+img {
+  width: 90%;
+}
+
 #topics_toggle, #print_topic {
     padding: 5px;
     color: white;
