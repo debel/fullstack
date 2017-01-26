@@ -1,29 +1,154 @@
 <section>
   <h3>Principles:</h3>
   <ul>
-    <li>Virtualization &amp; Infrastructure as code</li>
-    <li>Keep development and production as similar as possible</li>
-    <li>{{Testing}} &amp; {{Monitoring}}</li>
-    <li>{{Automation}} everywhere including {{Deployment}}</li>
+    <li>Virtualization &amp; Containers</li>
+    <li>Source Control &amp; Infrastructure as code</li>
+    <li>{{Testing}} &amp; {{Continuous Integration}}</li>
+    <li>{{Monitoring}} &amp; {{Deployment Automation}}</li>
   </ul>
 </section>
 <section>
-  <h3>Basic technologies:</h3>
+  <h3>Technologies:</h3>
   <ul>
-    <li>Vagrant</li>
-    <li>Bash</li>
-    <li>{{Git}}</li>
-    <li>{{Continuous Integration}}</li>
+    <li>Bash &amp; ssh (Command line tools)</li>
+    <li>Vagrant (Virtualization)</li>
+    <li>Docker (Containers)</li>
+    <li>{{Git}} (Source control)</li>
+    <li>Travis / Circle / Drone {{Continuous Integration}}</li>
+    <li>LogStash &amp; Grafana (Logging and {{Monitoring}})</li>
   </ul>
+</section>
+<section>
+  <h3>Bash</h3>
+  <pre><code class="bash">
+    # Bash is a command prompt / shell
+
+    #Get the current date and time
+    date
+
+    # get the current user name
+    whoami # returns myName
+
+    #set an environment variable
+    MY_VAR=value
+
+    #print the value of an env. var
+    echo $MY_VAR
+
+    #set a global variable to the result of a command
+    export MY_NAME=`whoami`
+
+    #print the value of a var plus some text
+    echo "my name is $MY_NAME"
+
+    #get the current directory
+    pwd #returns /usr/myName/
+  </code></pre>
+</section>
+<section>
+  <h3>Bash</h3>
+  <pre><code class="bash">
+    # / (slash) is the root directory
+    # ~ (tilda) is the user's home directory
+
+    #The ls command takes a path
+    #List files and directories in the root directory
+    ls /
+
+    #List all files in the user's directory as a list
+    ls ~/ -al
+
+    #Files and dirs begining with . (dot) are hidden
+    #Print the file's name if it exists in the root directory
+    ls /.hidden_file
+
+    #Absolute paths begin with / (slash) and start from the root
+    #Relative paths start from the current dir (or home dir with ~)
+    ls /my_project #lists a dir under root
+    ls my_project #lists a dir under the current dir
+  </code></pre>
+</section>
+<section>
+  <h3>Bash</h3>
+  <pre><code class="bash">
+    # . (just dot) is the current directory
+    # .. (double dot) is the parent directory
+    # - (dash) is the last directory
+
+    #Go to the root directory
+    cd /
+
+    #Go back to where you were before
+    cd -
+
+    #Go to the parent of the current dir
+    cd ..
+
+    #Go to a project under your home directory
+    cd ~/my_project
+
+    #Root is the parent of itself
+    cd /../../../ #still in root
+  </code></pre>
+</section>
+<section>
+  <h3>Bash</h3>
+  <pre><code class="bash">
+    #Create directory
+    mkdir NAME
+
+    #Copy files
+    cp FILE1 FILE2 DESTINATION
+
+    #move/rename file
+    mv FILE1 FILE2 #renames FILE1 to FILE2
+
+    #mv moves and renames file
+    mv src/FILE1 dist/FILE2
+
+    #delete files
+    rm FILE1 FILE_N
+
+    #delete directories with files inside
+    rm -r DIR_NAME
+
+    #find text in a file
+    grep "some text" FILE
+  </code></pre>
+</section>
+
+<section>
+  <h3>Bash</h3>
+  <pre><code class="bash">
+    #Connect to a shell on another computer
+    #ssh can use either passwords or crypto keys
+    ssh USER@ADDRESS
+
+    #Get the name of the current computer
+    hostname #returns myServer
+
+    #Get currently running processes
+    ps
+
+    #root is also the name of the super user
+    #the sudo command runs commands as root
+    sudo ps #get processes as super user
+
+    #install python on debian/ubuntu
+    sudo apt-get install python
+
+    #Disconnect/Close the terminal
+    exit
+  </code></pre>
 </section>
 <section>
   <h3>Vagrant: Overview</h3>
-  <p>Create and configure reproducible and portable development environments</p>
+  <p>Create and configure reproducible and portable virtual machines</p>
   <ul>
     <li>Boxes - Virtual Machine Templates</li>
     <li>Provisioning - Setup Scripts</li>
     <li>Vagrantfile - Configuration as ruby code</li>
-    <li>Vagrant CLI - shell commands</li> 
+    <li>Vagrant CLI - shell commands</li>
   </ul>
 </section>
 <section>
@@ -52,35 +177,12 @@
   </code></pre>
 </section>
 <section>
-  <h3>Basic Bash scripting</h3>
-  <pre><code class="bash">
-    #List files in a folder
-    ls PATH
-
-    #Change folder
-    cd PATH
-
-    #Create directory
-    mkdir NAME
-
-    #Copy files
-    cp FILE1 FILE2 DESTINATION
-
-    #move/rename file
-    mv FILE1 FILE2 #renames FILE1 to FILE2
-    mv src/FILE1 dist/FILE2 #move file
-
-    #View the contnets of a text file
-    cat FILENAME
-  </code></pre>
-</section>
-<section>
   <h3>Links:</h3>
   <ul>
     <li><a href="http://www.dreamcreative.net/how-tos/guides-server-maintenance/linux-ssh-cheat-sheet-basics/">Basic Bash commands</li>
     <li><a href="https://emson.co.uk/2009/06/18-useful-bash-scripts-for-web-developers/">Some Bash examples</a></li>
     <li><a href="http://lzone.de/cheat-sheet/SSH">SSH Cheat Sheet</a></li>
-    
+
     <h6 class="thin-margins">Tools</h6>
     <li><a href="https://www.vagrantup.com/docs/getting-started/project_setup.html">Vagrant: Getting Started</a></li>
 

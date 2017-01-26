@@ -3,7 +3,7 @@ function initializeReveal() {
         width: 1000,
         height: 1000,
         margin: 0.1,
-        minScale: 0.5,
+        minScale: 0.1,
         maxScale: 1.5,
         transition: 'fade',
         transitionSpeed: 'fast',
