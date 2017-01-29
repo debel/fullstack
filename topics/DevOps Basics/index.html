@@ -10,15 +10,16 @@
 <section>
   <h3>Technologies:</h3>
   <ul>
-    <li>Bash &amp; ssh (Command line tools)</li>
+    <li><a href="#bash">bash</a> &amp;
+      <a href="#ssh">ssh</a> (Command line tools)</li>
     <li>Vagrant (Virtualization)</li>
     <li>Docker (Containers)</li>
     <li>{{Git}} (Source control)</li>
-    <li>Travis / Circle / Drone {{Continuous Integration}}</li>
+    <li>Travis / Circle / Drone ({{Continuous Integration}})</li>
     <li>LogStash &amp; Grafana (Logging and {{Monitoring}})</li>
   </ul>
 </section>
-<section>
+<section id="bash">
   <h3>Bash</h3>
   <pre><code class="bash">
     # Bash is a command prompt / shell
@@ -28,6 +29,9 @@
 
     # get the current user name
     whoami # returns myName
+
+    #Get the name of the current computer
+    hostname #returns myServer
 
     #set an environment variable
     MY_VAR=value
@@ -40,14 +44,14 @@
 
     #print the value of a var plus some text
     echo "my name is $MY_NAME"
-
-    #get the current directory
-    pwd #returns /usr/myName/
   </code></pre>
 </section>
 <section>
   <h3>Bash</h3>
   <pre><code class="bash">
+    #get the current directory
+    pwd #returns /usr/myName/
+
     # / (slash) is the root directory
     # ~ (tilda) is the user's home directory
 
@@ -112,33 +116,60 @@
     #delete directories with files inside
     rm -r DIR_NAME
 
-    #find text in a file
-    grep "some text" FILE
+    #use \ (backslach) to escape spaces in names
+    cp my\ file\ name.txt myNewFileName
   </code></pre>
 </section>
-
 <section>
   <h3>Bash</h3>
+  <pre><code class="bash">
+    #find text in a file
+    grep "some text" FILE
+
+    #Get currently running user processes
+    ps
+
+    #use | (pipe) to pass the output
+    #of one process to another
+    ps | grep "myApp"
+
+    #use > (greater sign) to write the output to a file
+    whoami > /my/path/user.txt
+
+    #use >> (double greater sign) to append the output to a file
+    cat todays_log >> combined_log
+
+    #root is also the name of the super user
+    #the sudo command runs commands as root
+    #get processes started by the super user
+    sudo ps
+
+    #install python on debian/ubuntu
+    sudo apt-get install python
+  </code></pre>
+</section>
+<section id="ssh">
+  <h3>SSH</h3>
   <pre><code class="bash">
     #Connect to a shell on another computer
     #ssh can use either passwords or crypto keys
     ssh USER@ADDRESS
 
-    #Get the name of the current computer
-    hostname #returns myServer
+    whoami #returns localUser
+    hostname #returns myComputer
+    #Your prompt should include user and host information
 
-    #Get currently running processes
-    ps
+    #Use ssh to connect to another computer
+    ssh remoteUser@remoteHost
 
-    #root is also the name of the super user
-    #the sudo command runs commands as root
-    sudo ps #get processes as super user
-
-    #install python on debian/ubuntu
-    sudo apt-get install python
+    #We can now use bash on the remoteHost
+    whoami #returns remoteUser
+    hostname #returns remoteHost
 
     #Disconnect/Close the terminal
-    exit
+    exit #back to myComputer
+
+    whoami #returns localUser
   </code></pre>
 </section>
 <section>
