@@ -3,9 +3,11 @@ function initializeNav(title) {
     const lsKey = 'fs101.' + title;
     const startSlide = parseInt(localStorage.getItem(lsKey), 10) || 0;
 
+    if (!document.location.hash.substring(2)){
     Reveal.addEventListener('ready', () => {
-      Reveal.slide(startSlide);
+        Reveal.slide(startSlide);
     });
+  }
 
     Reveal.addEventListener('slidechanged', (event) => {
       if (event.indexh < lastSlide) {
