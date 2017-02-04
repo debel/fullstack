@@ -1,33 +1,42 @@
 <section>
-  <h3>Concepts:</h3>
-  <ul>
-    <li>Environment</li>
-    <li>Architecture</li>
-    <li>Tooling</li>
-  </ul>
+    <h3>Static web server</h3>
+    <p>Return only the contents of files</p>
 </section>
 <section>
-  <h3>Static web server</h3>
-  <p>Return only the contents of files.</p>
+    <h3>CGI Protocol</h3>
+    <p>Common Gateway Interface - run a program to generate a response</p>
 </section>
 <section>
-  <h3>CGI Protocol</h3>
-  <p>Common Gateway Interface - run a program to generate a response</p>
+    <h3>Application Server</h3>
+    <p>Language/Platform specific http implementations</p>
+    <ul>
+        <li>CGI - PHP</li>
+        <li>webContainer - Java</li>
+        <li>USAPI - dotNet</li>
+        <li>uWSGI - Python</li>
+        <li>libUV - node.js</li>
+    </ul>
 </section>
 <section>
-  <h3>Application Server</h3>
-  <p>Language/Platform specific http implementations</p>
-  <ul>
-    <li>CGI - PHP</li>
-    <li>webContainer - Java</li>
-    <li>USAPI - dotNet</li>
-    <li>uWSGI - Python</li>
-    <li>libUV - node.js</li>
-  </ul>
+    <h3>Serverless</h3>
+    <div>Execute code on shared cloud infrastructure</div>
 </section>
 <section>
-  <h3>running a http server in node.js</h3>
-  <pre><code class="javascript">
+    <h3>CLEAN application structure</h3>
+    <img src="../images/clean-architecture.jpg" />
+</section>
+<section>
+    <h3>CLEAN application structure</h3>
+    <ul>
+        <li>Use-cases encapsulate Domain/Business logic</li>
+        <li>Use-cases have input &amp; output interfaces</li>
+        <li>Controllers initiate use-cases</li>
+        <li>Presenters observe use-case results</li>
+    </ul>
+</section>
+<section>
+    <h3>http server in node.js</h3>
+    <pre><code class="javascript">
           /* server.js */
           var http = require('http'),
               server = http.createServer(function (req, res) {
@@ -38,21 +47,22 @@
           //start the server on port 8080
           server.listen(8080);
           </code></pre>
-  <div>run the server from the console</div>
-  <pre><code class="bash">
-      $ node server.js
+    <div>run the server from the console</div>
+    <pre><code class="bash">
+      node server.js
   </code></pre>
 </section>
 <section>
-  <h3>Routing</h3>
-  <ol>
-    <li>Parse the URL</li>
-    <li>Execute the appropriate response function</li>
-  </ol>
+    <h3>Routing</h3>
+    <ol>
+        <li>Parse the URL</li>
+        <li>Select the most appropriate response strategy</li>
+        <li>Execute it with on the request parameters</li>
+    </ol>
 </section>
 <section>
-  <h3>Express for RESTful node.js</h3>
-  <pre><code class="javascript">
+    <h3>Express for Node.js</h3>
+    <pre><code class="javascript">
     //create new tasks
      srv.post('/task', (req, res) => {
        task = tasks.createTask(req.params);
@@ -70,27 +80,22 @@
        task.done = !task.done;
        res.json(task);
      });
-
-     srv.delete('/:id', (req, res) => {
-       tasks.delete(req.params.id);
-       res.json({ deleted: true });
-     });
   </code></pre>
 </section>
 <section>
-  <h3>Flask for RESTful Python</h3>
-  <pre><code class="python">
+    <h3>Flask for Python</h3>
+    <pre><code class="python">
     @app.route('/')
     def show_entries():
-      db_cursor = db.execute('SELECT title, text FROM entries ORDER BY id DESC')
+      db_cursor = db.execute('SELECT title, text FROM entries')
       entries = db_cursor.fetchall()
       return render_template('show_entries.html', entries=entries)
-    
+
     @app.route('/add', methods=['POST'])
     def add_entry():
       if not session.get('logged_in'):
         abort(401)
-      db.execute('INSERT INTO entries (title, text) VALUES (?, ?)', 
+      db.execute('INSERT INTO entries (title, text) VALUES (?, ?)',
                       [request.form['title'], request.form['text']])
       db.commit()
       flash('New entry was successfully posted')
@@ -98,12 +103,36 @@
   </code></pre>
 </section>
 <section>
-  <h3>Links</h3>
-  <ul>
-    <li><a href="http://flask.pocoo.org/">Flask for Pythons</a></li>
-    <li><a href="http://expressjs.com/">Express for NodeJS</a></li>
-    <li><a href="http://guides.rubyonrails.org/getting_started.html">Rails for Ruby</a></li>
-    <li><a href="https://docs.asp.net/en/latest/tutorials/first-mvc-app/">ASP.NET for C#</a></li>
-    <li><a href="http://www.dropwizard.io/1.0.0/docs/getting-started.html">Dropwizard for Java</a></li>
+    <h3>Vert.x for Java</h3>
+    <pre><code class="java">
+      public static void main(String[] args) {
+        Router router = Router.router(vertx);
+
+        router.get("/products").handler(this::handleListProducts);
+
+        vertx.createHttpServer()
+          .requestHandler(router::accept)
+          .listen(8080);
+      }
+
+      private void handleListProducts(RoutingContext routingContext) {
+        JsonArray results = new JsonArray();
+
+        products.forEach((k, v) -> results.add(v));
+
+        routingContext.response()
+          .putHeader("content-type", "application/json")
+          .end(results.encodePrettily());
+      }
+    </code></pre>
+</section>
+<section>
+    <h3>Links</h3>
+    <ul>
+        <li><a href="http://flask.pocoo.org/">Flask for Pythons</a></li>
+        <li><a href="http://expressjs.com/">Express for NodeJS</a></li>
+        <li><a href="http://guides.rubyonrails.org/getting_started.html">Rails for Ruby</a></li>
+        <li><a href="https://docs.asp.net/en/latest/tutorials/first-mvc-app/">ASP.NET for C#</a></li>
+        <li><a href="http://vertx.io/docs/">Vert.x for Java</a></li>
   </ul>
 </section>

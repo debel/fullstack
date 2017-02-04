@@ -18,13 +18,14 @@
 <section id="bad_parts_examples">
     <h4>Bad parts</h4>
     <pre class="es5"><code class="javascript">
-      //Global scope
-      (function doStuff() {
-        //this = window
-        a = 5;
-      }());
-      
-      window.a // returns 5
+      //local variable
+      var a = 5;
+      //implicit global
+      b = 10;
+
+      //globals are accessible to any script on the page
+      window.a // undefined
+      window.b // returns 10
 
       //Bad math
       0.1 + 0.2 === 0.3 //false
@@ -34,6 +35,7 @@
       if ([] == true) { doStuff(); /* DOSN'T get called */ }
       if ([] === false) { doStuff(); /* DOSN'T get called */}
 
+      //Any many more
     </code></pre>
 </section>
 <section>
@@ -44,14 +46,18 @@
         <li>this, scope and common pitfalls</li>
         <hr/>
         <li>tooling</li>
-        <li>loading</li>
+        <li>execution context</li>
     </ul>
+</section>
+<section>
+  <h3>The event loop</h3>
+  <img src="../images/event-loop.png" />
 </section>
 <section>
     <h3>The good parts</h3>
     <ul>
-        <li>Objects as Property bags</li>
-        <li>Functions</li>
+        <li>Flexible Objects</li>
+        <li>Flexible Functions</li>
         <li>Lexical Closure</li>
         <hr/>
         <li>OOP &amp; Functional</li>
@@ -96,552 +102,421 @@
 <section id="let-const-declarations">
     <h4>Variable declaration</h4>
     <pre class="es5"><code class="javascript">
-                //es5
-                function incCounter() {
-                    counter += five;
+      //es5
+      function incCounter() {
+          counter += five;
 
-                    if (false) {
-                        var five = 5;
-                    }
-                    //logical error! - the value of five is undefined
-                }
+          if (false) {
+              var five = 5;
+          }
+          //logical error! - the value of five is undefined
+      }
 
-                var counter = 0;
+      var counter = 0;
 
-                //this code "works" because of var hoisting
-            </code></pre>
-    <pre class="es6"><code class="javascript">
-                //es6
-                if (condition) {
-                    let j = 12; //j exists only inside the if block
-                }
+      //this code "works" because of var hoisting
+  </code></pre>
+  <pre class="es6"><code class="javascript">
+    //es6
+    if (condition) {
+        let j = 12; //j exists only inside the if block
+    }
 
-                console.log(j); //throws an Error
+    console.log(j); //throws an Error
 
-                const pi = { value: 3.14 }; //pi cannot be reassigned
+    const pi = { value: 3.14 }; //pi cannot be reassigned
 
-                pi = 3.14; //throws an Error
+    pi = 3.14; //throws an Error
 
-                pi.value = 4; //works because the value itself is not immutable
+    //we can still change properties of the object
+    pi.value = 4;
 
-                const me = Object.freeze({ name: 'Mihail' }); //true constant
-            </code></pre>
+    //the "me" object cannot be changed
+    const me = Object.freeze({ name: 'Mihail' });
+  </code></pre>
 </section>
 <section id="why-let-const-declarations">
     <h4>How do const and let help?</h4>
     <ul>
-        <li>
-            Readability
-            <ul>
-                <li>Clear intent</li>
-            </ul>
-        </li>
-        <br/>
-        <li>
-            Quality
-            <ul>
-                <li>Block scope (const, let)</li>
-                <li>Immutable binding (const)</li>
-            </ul>
-        </li>
+      <li>Clear intent</li>
+      <li>Block scope (const, let)</li>
+      <li>Immutable binding (const)</li>
     </ul>
 </section>
-
 <section id="arrow-functions">
     <h4>Arrow functions</h4>
     <pre class="es5"><code class="javascript">
-                    //es5
-                    [1, 2, 3, 4].map(function square(i) {
-                        return i*i;
-                    }); // [1, 4, 9, 16]
+      //es5
+      [1, 2, 3, 4].map(function square(i) {
+          return i*i;
+      }); // [1, 4, 9, 16]
 
-                    getNumbersAsync(function callback(a, b) {
-                        return a + b;
-                    });
+      getNumbersAsync(function callback(a, b) {
+          return a + b;
+      });
 
-                    fancyObject.coolMethod = function () {
-                        var self = this;
-                        this.elements.forEach(function (el) {
-                            self.processElement(el); //different "this", use self
-                        });
-                    }
-                </code></pre>
-    <pre class="es6"><code class="javascript">
-                    //es6
-                    [1, 2, 3, 4].map(i => i*i); // [1, 4, 9, 16]
+      fancyObject.coolMethod = function () {
+          var self = this;
+          this.elements.forEach(function (el) {
+              self.processElement(el); //different "this", use self
+          });
+      }
+  </code></pre>
+  <pre class="es6"><code class="javascript">
+    //es6
+    [1, 2, 3, 4].map(i => i*i); // [1, 4, 9, 16]
 
-                    getNumbersAsync((a, b) => a + b);
+    getNumbersAsync((a, b) => a + b);
 
-                    fancyObject.coolMethod = () => {
-                        this.elements.forEach(el => {
-                            this.processElement(el);
-                            //error! - "this" doesn't point to fancyObject
-                        });
-                    }
-                </code></pre>
+    fancyObject.coolMethod = () => {
+        this.elements.forEach(el => {
+            this.processElement(el);
+            //error! - "this" doesn't point to fancyObject
+        });
+    }
+  </code></pre>
 </section>
 <section id="why-arrows-functions">
     <h4>How do arrow functions help?</h4>
     <ul>
-        <li>Readability
-            <ul>
-                <li>concise</li>
-            </ul>
-        </li>
-        <br/>
-        <li>Quality
-            <ul>
-                <li>use the outer "this"</li>
-                <li>no arguments meta parameter</li>
-                <li style="color: red">not a full substitute of functions</li>
-            </ul>
-        </li>
+      <li>Concise &amp; Clear intent</li>
+      <li>Uses the outer scope's "this"</li>
+      <li>No arguments meta parameter</li>
+      <li style="color: #aa1717">Not a full substitute of functions</li>
     </ul>
 </section>
-
 <section id="classes">
     <h4>Classes</h4>
     <pre class="es5"><code class="javascript">
-                //es5
-                function Car(model, color) {
-                    this.model = model;
-                    this.color = color;
-                }
+      //es5
+      function Car(model, color) {
+          this.model = model;
+          this.color = color;
+      }
 
-                Car.prototype.startEngine = function () {
-                    return "Started the engine of the " + this.model;
-                };
+      Car.prototype.startEngine = function () {
+          return "Started the engine of the " + this.model;
+      };
 
-                var myCar = new Car('Tesla', 'white');
-            </code></pre>
+      var myCar = new Car('Tesla', 'white');
+    </code></pre>
     <pre class="es6"><code class="javascript">
-                //es6
-                class Car {
-                    constructor(model, color) {
-                        this.model = model;
-                        this.color = color;
-                    }
+      //es6
+      class Car {
+          constructor(model, color) {
+              this.model = model;
+              this.color = color;
+          }
 
-                    startEngine() {
-                        return "Started the engine of the " + this.model;
-                    }
-                }
+          startEngine() {
+              return "Started the engine of the " + this.model;
+          }
+      }
 
-                let myCar = new Car('Tesla', 'white');
-            </code></pre>
+      let myCar = new Car('Tesla', 'white');
+    </code></pre>
 </section>
 <section id="why-classes">
     <h4>How do classes help?</h4>
     <ul>
-        <li>
-            Readability
-            <ul>
-                <li>Concise</li>
-                <li>All declarations stay together</li>
-            </ul>
-        </li>
-        <br/>
-        <li>
-            Quality
-            <ul>
-                <li>Methods on the prototype by default</li>
-            </ul>
-        </li>
+      <li>All declarations stay together</li>
+      <li>Methods on the prototype by default</li>
     </ul>
 </section>
-
 <section id="object-literal-syntax">
     <h4>Object literals syntax</h4>
     <pre class="es5"><code class="javascript">
-                //es5
-                var name = 'Mihail',
-                    myObject = {
-                        name: name,
-                        getFriends: function () { ... }
-                    };
+      //es5
+      var name = 'Mihail',
+          myObject = {
+              name: name,
+              getFriends: function () { ... }
+          };
 
-                myObject[getPropertyName()] = 'some value';
-            </code></pre>
+      myObject[getPropertyName()] = 'some value';
+    </code></pre>
     <pre class="es6"><code class="javascript">
-                //es6
-                let name = 'Mihail',
-                    myObject = {
-                        name,
-                        getFriends() { ... },
-                        [getPropertyName()]: 'some value'
-                    };
-            </code></pre>
+      //es6
+      let name = 'Mihail',
+          myObject = {
+              name,
+              getFriends() { ... },
+              [getPropertyName()]: 'some value'
+          };
+    </code></pre>
 </section>
 <section id="why-object-literal-syntax">
     <h4>How does object literals syntax help?</h4>
     <ul>
-        <li>
-            Readability
-            <ul>
-                <li>Concise</li>
-                <li>All declarations stay together</li>
-            </ul>
-        </li>
+      <li>Compact &amp; clear intent</li>
+      <li>All declarations stay together</li>
     </ul>
 </section>
-
 <section id="destructuring">
     <h4>Destructuring</h4>
     <pre class="es5"><code class="javascript">
-                //es5
-                var coordinates = [23, 14],
-                    x = coordinates[0],
-                    y = coordinates[1];
+      //es5
+      var coordinates = [23, 14],
+          x = coordinates[0],
+          y = coordinates[1];
 
-                var personalInfo = getPersonalInfo(),
-                    name = personalInfo.name,
-                    age = personalInfo.age,
-                    petName = personalInfo.pet.name;
-            </code></pre>
+      var personalInfo = getPersonalInfo(),
+          name = personalInfo.name,
+          age = personalInfo.age,
+          petName = personalInfo.pet.name;
+    </code></pre>
     <pre class="es6"><code class="javascript">
-                //es6
-                let [x, y] = [23, 14];
+        //es6
+        let [x, y] = [23, 14];
 
-                let { name, age, pet: { name: petName } } = getPersonalInfo();
+        let { name, age, pet: { name: petName } } = getPersonalInfo();
 
-                //with function parameters
-                function sayHi({ name }) {
-                    console.log('Hi, ' + name);
-                }
+        //with function parameters
+        function sayHi({ name }) {
+            console.log('Hi, ' + name);
+        }
 
-                sayHi(getPersonalInfo());
-            </code></pre>
+        sayHi(getPersonalInfo());
+    </code></pre>
 </section>
 <section id="why-destructuring">
     <h4>How does destructuring help?</h4>
     <ul>
-        <li>
-            Readability
-            <ul>
-                <li>Clear intent</li>
-            </ul>
-        </li>
-        <br/>
-        <li>
-            Evolution
-            <ul>
-                <li>Pattern Matching</li>
-            </ul>
-        </li>
+      <li>Clear intent</li>
+      <li>Pattern Matching</li>
     </ul>
 </section>
-
 <section id="spreading">
     <h4>Array spreading</h4>
     <pre class="es5"><code class="javascript">
-                //es5
-                function variableNumberOfArguments() {
-                    //hack to get the arguments as an array
-                    var args = Array.prototype.splice.call(arguments, 0);
-                }
+        //es5
+        function variableNumberOfArguments() {
+            //hack to get the arguments as an array
+            var args = Array.prototype.splice.call(arguments, 0);
+        }
 
-                var numbers = [1, 2, 3],
-                    letters = ['a', 'b', 'c'],
-                    both = numbers.concat(letters);
-            </code></pre>
+        var numbers = [1, 2, 3],
+            letters = ['a', 'b', 'c'],
+            both = numbers.concat(letters);
+    </code></pre>
     <pre class="es6"><code class="javascript">
-                //es6
-                function variableNumberOfArguments(...args) {
-                    //args is already an array with all arguments
-                }
+        //es6
+        function variableNumberOfArguments(...args) {
+            //args is already an array with all arguments
+        }
 
-                let numbers = [1, 2, 3],
-                    letters = ['a', 'b', 'c'],
-                    both = [...numbers, ...letters];
-            </code></pre>
+        let numbers = [1, 2, 3],
+            letters = ['a', 'b', 'c'],
+            both = [...numbers, ...letters];
+    </code></pre>
 </section>
 <section id="why-spreading">
     <h4>How does spreading help?</h4>
     <ul>
-        <li>
-            Readability
-            <ul>
-                <li>Concise and composable</li>
-            </ul>
-        </li>
-        <br/>
-        <li>
-            Quality
-            <ul>
-                <li>Removes the need for the<br/>"arguments" meta parameter</li>
-            </ul>
-        </li>
+      <li>Concise and composable</li>
+      <li>No need for the "arguments" parameter</li>
     </ul>
 </section>
-
 <section id="default-parameters">
     <h4>Default parameters</h4>
     <pre class="es5"><code class="javascript">
-                //es5
-                function makeCaption(text, style) {
-                    text = text || 'default caption';
-                    style = typeof style === 'object' ? style : { color: 'red' };
+        //es5
+        function makeCaption(text, style) {
+            text = text || 'default caption';
+            style = typeof style === 'object' ? style : { color: 'red' };
 
-                    myH1.style.color = style.color;
-                    myH1.text = text;
-                }
-            </code></pre>
+            myH1.style.color = style.color;
+            myH1.text = text;
+        }
+    </code></pre>
     <pre class="es6"><code class="javascript">
-                //es6
-                function h1(text = 'text', { color } = { color: 'red' }) {
-                    const myH1 = document.createElement('h1');
-                    myH1.style.color = color;
-                    myH1.textContent = text;
-                    return myH1;
-                }
-            </code></pre>
+        //es6
+        function h1(text = 'text', { color } = { color: 'red' }) {
+            const myH1 = document.createElement('h1');
+            myH1.style.color = color;
+            myH1.textContent = text;
+            return myH1;
+        }
+    </code></pre>
 </section>
 <section id="why-default-parameters">
     <h4>How do default parameters help?</h4>
     <ul>
-        <li>
-            Readability
-            <ul>
-                <li>Concise</li>
-                <li>Clear intent</li>
-            </ul>
-        </li>
+        <li>Readability</li>
+        <li>Prevents undefined behaviour</li>
     </ul>
 </section>
-
 <section id="string-templates">
     <h4>Template strings</h4>
     <pre class="es5"><code class="javascript">
-                //es5
-                "A " + car.color + " " + car.model + " just drove by"
-            </code></pre>
+        //es5
+        "A " + car.color + " " + car.model + " just drove by"
+    </code></pre>
     <pre class="es6"><code class="javascript">
-                //es6
-                `A ${car.color} ${car.model} just drove by`
-            </code></pre>
+        //es6
+        `A ${car.color} ${car.model} just drove by`
+    </code></pre>
 </section>
 <section id="why-string-templates">
     <h4>How do template strings help?</h4>
     <ul>
-        <li>
-            Abstraction
-            <ul>
-                <li>Built-in template engine</li>
-            </ul>
-        </li>
-        <br/>
-        <li>
-            Evolution
-            <ul>
-                <li>Customizable through functions</li>
-            </ul>
-        </li>
+      <li>Built-in template engine</li>
+      <li>Customizable through functions</li>
     </ul>
 </section>
-
 <section id="maps-and-sets">
-    <h4>Sets & Maps</h4>
+    <h4>Sets &amp; Maps</h4>
     <pre class="es6"><code class="javascript">
-                //es6
-                //Sets
-                var key = 'any type of value',
-                    set = new Set();
+        //es6
+        //Sets
+        var key = 'any type of value',
+            set = new Set();
 
-                set.add(key);
-                set.delete(key);
-                set.has(key) //returns true or false
+        set.add(key);
+        set.delete(key);
+        set.has(key) //returns true or false
 
-                //Maps
-                let key = { a: 1 },
-                    value = { b: 2 },
-                    map = new Map();
+        //Maps
+        let key = { a: 1 },
+            value = { b: 2 },
+            map = new Map();
 
-                map.set(key, value);
-                map.delete(key);
-                map.get(key); //returns value
-            </code></pre>
+        map.set(key, value);
+        map.delete(key);
+        map.get(key); //returns value
+    </code></pre>
 </section>
 <section id="why-maps-and-sets">
     <h4>How do sets & maps help?</h4>
     <ul>
-        <li>
-            Abstraction
-            <ul>
-                <li>Ability to relate any values types</li>
-                <li>No more abusing objects and arrays<br/> for sets and maps</li>
-            </ul>
-        </li>
-        <br/>
-        <li>
-            Quality
-            <ul>
-                <li>WeakMap and WeakSet help stop memory leaks</li>
-            </ul>
-        </li>
-        <br/>
-        <li>
-            Evolution
-            <ul>
-                <li>Built-in implementations improve performance</li>
-            </ul>
-        </li>
+      <li>Ability to relate any values types</li>
+      <li>No more abusing objects and arrays<br/> for sets and maps</li>
+      <li>WeakMap and WeakSet help stop memory leaks</li>
+      <li>Built-in implementations improve performance</li>
     </ul>
 </section>
-
 <section id="promises">
     <h4>Promises</h4>
     <pre class="es6"><code class="javascript">
-                //es6
-                //how to create a promise
-                let getData = (url) => new Promise((resolve, reject) => {
-                    ajax(url, (error, data) => {
-                        if (error) {
-                            reject(error);
-                        } else {
-                            resolve(data);
-                        }
-                    });
-                });
+        //es6
+        //how to create a promise
+        let getData = (url) => new Promise((resolve, reject) => {
+            ajax(url, (error, data) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    resolve(data);
+                }
+            });
+        });
 
-                //using the promise
-                getData('http://somesite.com/data')
-                    .then(doSomethingClever)
-                    .catch(logError);
-            </code></pre>
+        //using the promise
+        getData('http://somesite.com/data')
+            .then(doSomethingClever)
+            .catch(logError);
+    </code></pre>
 </section>
 <section id="promises-continued">
     <h4>Promises</h4>
     <pre class="es6"><code class="javascript">
-                //es6
-                //chaining promises
-                getNumbersAsync()
-                    .then(([a, b]) => a + b)
-                    .then(checkSumWithServer)
-                    .then(handleServerResponse)
-                    .catch(logError);
+        //es6
+        //chaining promises
+        getNumbersAsync()
+            .then(([a, b]) => a + b)
+            .then(checkSumWithServer)
+            .then(handleServerResponse)
+            .catch(logError);
 
-                //promise helper methods
-                Promise.resolve(value) //returns a "thenable" promise
-                Promise.reject(error) //returns a "catchable" promise
-                Promise.all([array, of, promises]) // waits for all
-                Promise.race([array, of, promises]) //the first to resolve wins
-            </code></pre>
+        //promise helper methods
+        Promise.resolve(value) //returns a "thenable" promise
+        Promise.reject(error) //returns a "catchable" promise
+        Promise.all([array, of, promises]) // waits for all
+        Promise.race([array, of, promises]) //the first to resolve wins
+    </code></pre>
 </section>
 <section id="why-promises">
     <h4>How do promises help?</h4>
     <ul>
-        <li>
-            Readability
-            <ul>
-                <li>Clear and natural API</li>
-                <li>Reduce callback hell</li>
-            </ul>
-        </li>
-        <br/>
-        <li>
-            Abstraction
-            <ul>
-                <li>Future value semantics</li>
-                <li>Invert the flow of control</li>
-            </ul>
-        </li>
-        <br/>
-        <li>
-            Evolution
-            <ul>
-                <li>Basis for implementing the async/await pattern</li>
-            </ul>
-        </li>
+      <li>Clear and natural API</li>
+      <li>Reduce callback hell</li>
+      <li>Future value semantics</li>
+      <li>Invert the flow of control</li>
+      <li>Basis for implementing the async/await pattern</li>
     </ul>
 </section>
-
 <section id="generators">
     <h4>Generators</h4>
     <pre class="es6"><code class="javascript">
-                //es6
-                function* squaresMaker() {
-                    let i = 1;
-                    while (true) {
-                        let step = yield i*i;
-                        i += step || 1;
-                    }
-                };
+        //es6
+        function* squaresMaker() {
+            let i = 1;
+            while (true) {
+                let step = yield i*i;
+                i += step || 1;
+            }
+        };
 
-                let squares = squaresMaker();
-                squares.next();  // { value: 1, done: false }
-                squares.next();  // { value: 4, done: false }
-                squares.next();  // { value: 9, done: false }
-                squares.next(2); // { value: 16, done: false }
-                //step = 2
-                squares.next();  // { value: 36, done: false }
-            </code></pre>
+        let squares = squaresMaker();
+        squares.next();  // { value: 1, done: false }
+        squares.next();  // { value: 4, done: false }
+        squares.next();  // { value: 9, done: false }
+        squares.next(2); // { value: 16, done: false }
+        //step = 2
+        squares.next();  // { value: 36, done: false }
+    </code></pre>
 </section>
 <section id="why-generators">
     <h4>How do generators help?</h4>
     <ul>
-        <li>
-            Abstraction
-            <ul>
-                <li>State machine inside a function</li>
-                <li>Two way message passing</li>
-                <li>Co-routines and flow of control</li>
-            </ul>
-        </li>
-        <br/>
-        <li>
-            Evolution
-            <ul>
-                <li>Basis for implementing the async/await pattern</li>
-            </ul>
-        </li>
+      <li>State machine inside a function</li>
+      <li>Two way message passing</li>
+      <li>Co-routines and flow of control</li>
+      <li>Basis for implementing the async/await pattern</li>
     </ul>
 </section>
-
 <section id="async-await">
     <h4>Async/Await</h4>
     <pre class="es7"><code class="javascript">
-                //es7
-                async function combinedQuery() {
-                    let firstAnswer = await firstQuery(),
-                        secondAnswer = await secondQuery(firstAnswer);
+        //es7
+        async function combinedQuery() {
+            let firstAnswer = await firstQuery(),
+                secondAnswer = await secondQuery(firstAnswer);
 
-                    return secondAnswer;
-                }
+            return secondAnswer;
+        }
 
-                //use inside another async function
-                async function useQueryAsync() {
-                    let answer = await combinedQuery();
-                    doSomethingClever(answer);
-                }
+        //use inside another async function
+        async function useQueryAsync() {
+            let answer = await combinedQuery();
+            doSomethingClever(answer);
+        }
 
-                //or use the result as a promise
-                function useQuery() {
-                    combinedQuery().then(doSomethingClever);
-                }
-            </code></pre>
+        //or use the result as a promise
+        function useQuery() {
+            combinedQuery().then(doSomethingClever);
+        }
+    </code></pre>
 </section>
-
 <section id="annotations">
     <h4>Annotations</h4>
     <pre class="es7"><code class="javascript">
-                //es7
-                let myObject = {
-                    //built-in annotation
-                    @readonly
-                    myConstant: 42
-                };
+        //es7
+        let myObject = {
+            //built-in annotation
+            @readonly
+            myConstant: 42
+        };
 
-                myObject.constant = 7; //throws an error
+        myObject.constant = 7; //throws an error
 
-                //annotation definitions are just functions
-                function authorized() { ... }
+        //annotation definitions are just functions
+        function authorized() { ... }
 
-                //using our custom annotation
-                @authorized
-                function getData() { ... }
-            </code></pre>
+        //using our custom annotation
+        @authorized
+        function getData() { ... }
+    </code></pre>
 </section>
-
 <section id="webassembly">
     <h4>WebAssembly</h4>
     <ul>
@@ -650,7 +525,6 @@
         <li>Compiled from many languages</li>
     </ul>
 </section>
-
 <section id="links">
     <h4>Links:</h4>
     <ul>

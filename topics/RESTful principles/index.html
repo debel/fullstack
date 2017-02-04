@@ -68,26 +68,28 @@
   <h3>In practice</h3>
   <pre><code class="json">
   {
-      "id": "id123",
-      "message": "get milk",
-      "done": false,
-      "methods": {
-        "get": { "url": "todo.xyz/task/id123", "method": "GET" },
-        "toggleDone": { "url": "todo.xyz/task/id123/toggle", "method": "PUT" },
-        "editMessage": { "url": "todo.xyz/task/id123/message", "method": "PUT" },
-        "delete": { "url": "todo.abc/task/id123", "method": "DELETE" }
+    "id": "id123",
+    "message": "get milk",
+    "done": false,
+    "methods": {
+      "get": {  "url": "todo.xyz/task/id123", "method": "GET" },
+      "toggle": { "url": "todo.xyz/task/id123/toggle", "method": "PUT" },
+      "edit": { "url": "todo.xyz/task/id123/message", "method": "PUT" },
+      "delete": { "url": "todo.abc/task/id123", "method": "DELETE" }
     }
   }
   </code></pre>
   <pre><code class="html">
     &lt;article сlass=&quot;todo-task&quot; id=&quot;id123&quot;&gt;
-      &lt;form сlass=&quot;toggle&quot; action=&quot;todo.xyz/task/id123/toggle&quot; method=&quot;PUT&quot;&gt;
+      &lt;form сlass=&quot;toggle&quot;
+        action=&quot;todo.xyz/task/id123/toggle&quot; method=&quot;PUT&quot;&gt;
         &lt;input type=&quot;checkbox&quot; checked/&gt;
         &lt;input type=&quot;submit&quot; value=&quot;toggle&quot;/&gt;
       &lt;/form&gt;
       &lt;p class=&quot;message&quot;&gt;get milk&lt;/p&gt;
       &lt;a href=&quot;todo.xyz/task/id123&quot;&gt;View item&lt;/a&gt;
-      &lt;form class=&quot;delete&quot; action=&quot;todo.abc/task/id123&quot; method=&quot;DELETE&quot;&gt;
+      &lt;form class=&quot;delete&quot; action=&quot;todo.abc/task/id123&quot;
+        method=&quot;DELETE&quot;&gt;
         &lt;input type=&quot;submit&quot; value=&quot;delete&quot;/&gt;
       &lt;/form&gt;
     &lt;/article&gt;
@@ -95,9 +97,9 @@
 </section>
 <section>
   <h3>In practice</h3>
-  <p>Notice the shape of the example object. Creating a task returns a representation with all methods, not just an id.</p>
-  <p>This means you can add functionality without changing the frontend.</p>
-  <p>Do the urls need to human readable? No, but's its a plus if they are easy to understand.</p>
+  <div class="fragment">Notice the shape of the example object. Creating a task returns a representation with all methods, not just an id.<hr/></div>
+  <div class="fragment">This means you can add functionality without changing the frontend.<hr/></div>
+  <div class="fragment">Do the urls need to human readable? No, but's its a plus if they are easy to understand.</div>
 </section>
 <section>
   <h3>Links</h3>

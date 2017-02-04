@@ -1,95 +1,106 @@
 <section>
-  <h3>Concepts</h3>
-  <ul>
-    <li><span class="bigger-font color-azure">Node</span> - a device in the network</li>
-    <li><span class="bigger-font color-azure">Connection</span> - a link between devices</li>
-    <li><span class="bigger-font color-azure">Protocol</span> - a set of data formats and rules for communication</li>
-    <li><span class="bigger-font color-azure">Stack</span> - layers of protocols</li>
-    <li><span class="bigger-font color-azure">Topology</span> - the graph of connections</li>
-  </ul>
-</section>
-<section>
-  <h3>The OSI stack</h3>
-  <ul>
-    <li>Application Layer Protocols (HTTP, FTP, SSH)</li>
-    <li>Transport Layer (TCP, UPD)</li>
-    <li>Network Layer (IPv4, IPv6)</li>
-    <li>Link Layer (Ethernet, Point-to-Point)</li>
-    <li>Physical Layer (ISDN, WiFi, Optic-Fiber)</li>
-  </ul>
+    <h3>Concepts</h3>
+    <ul>
+        <li><span class="bigger-font color-azure">Node</span> - a device in the network</li>
+        <li><span class="bigger-font color-azure">Connection</span> - a link between devices</li>
+        <li><span class="bigger-font color-azure">Protocol</span> - a set of data formats and rules for communication</li>
+        <li><span class="bigger-font color-azure">Stack</span> - layers of protocols</li>
+        <li><span class="bigger-font color-azure">Topology</span> - the graph of connections</li>
+    </ul>
 </section>
 <section>
     <h3>The OSI stack</h3>
-  <img src="../images/osi-stack.png" />
+    <ul>
+        <li>Application Layer Protocols (HTTP, FTP, SSH)</li>
+        <li>Transport Layer (TCP, UPD)</li>
+        <li>Network Layer (IPv4, IPv6)</li>
+        <li>Link Layer (Ethernet, Point-to-Point)</li>
+        <li>Physical Layer (ISDN, WiFi, Optic-Fiber)</li>
+    </ul>
 </section>
 <section>
-  <h3>Topologies</h3>
-  <ul>
-    <li>Bus (Shared)</li>
-    <li>Star (Centralized)</li>
-    <li>Ring (Linear)</li>
-    <li>Mesh</li>
-  </ul>
+    <h3>The OSI stack</h3>
+    <img src="../images/osi-stack.png" />
 </section>
 <section>
-  <h3>Topologies</h3>
-  <img src="../images/network_topologies.jpg">
+    <h3>Topologies</h3>
+    <ul>
+        <li>Bus (Shared)</li>
+        <li>Star (Centralized)</li>
+        <li>Ring (Linear)</li>
+        <li>Mesh</li>
+    </ul>
 </section>
 <section>
-  <h3>Modes of communication</h3>
-  <ul>
-    <li>request/response</li>
-    <li>polling</li>
-    <li>streaming</li>
-    <li>full duplex</li>
-  </ul>
-</section>
-
-<section>
-  <h3>Concepts</h3>
-  <ul>
-    <li>Bandwidth<br/>
-      The total capacity of a connection (measured in Gb/s)<hr/>
-    </li>
-    <li>Throughput<br/>
-      The amount of data a node can process (measured in Gb/s)<hr/>
-    </li>
-    <li>Latency</br/>
-      The amount of time a client waits for a response (measured in milisecons)
-    </li>
-  </ul>
+    <h3>Topologies</h3>
+    <img src="../images/network_topologies.jpg">
 </section>
 <section>
-  <h3>Concepts</h3>
-  <ul>
-    <li>Packet switching<br/>
-      breaking messages into small chunks and interleaving them<hr/>
-    </li>
-    <li>durability<br/>
-      the maximum amount of time/hops a message takes to reach its destination<hr/>
-    </li>
-    <li>reliability<br/>
-      the level of garantee given by the network a message will be delivered<hr/>
-    </li>
-    <li>security<br/>
-      popular attacks: request forgery, xss, man in the middle, ddos<hr/>
-    </li>
-  </ul>
+    <h3>Modes of communication</h3>
+    <img src="../images/polling-vs-sockets.jpg" />
 </section>
 <section>
-  <h3>Web Protocols:</h3>
-  <ul>
-    <li>TCP/IP</li>
-    <li>HTTP</li>
-    <li>HTTPS</li>
-    <li>DNS</li>
-    <li>WebSocket</li>
-    <li>WebRTC</li>
-  </ul>
+    <h3>Modes of communication</h3>
+    <ul>
+        <li>Polling (Request/Response)</li>
+        <li>Long Polling (Keep-alive, Response on data)</li>
+        <li>Streaming (Chuncked encoding)</li>
+        <li>Web Sockets (Two-way channel)</li>
+    </ul>
 </section>
 <section>
-  <h5>HTTP Request</h5>
-  <pre><code class="http">
+    <h3>Concepts</h3>
+    <div class="fragment">
+        <div class="large-font">Bandwidth</div>
+        <div style="text-align:right">The total capacity of a connection (measured in Gb/s)</div>
+        <hr/>
+    </div>
+    <div class="fragment">
+        <div class="large-font">Throughput</div>
+        <div style="text-align:right">The amount of data a node can process (measured in Gb/s)</div>
+        <hr/>
+    </div>
+    <div class="fragment">
+        <div class="large-font">Latency</div>
+        <div style="text-align:right">The amount of time a client waits for a response (measured in milisecons)</div>
+    </div>
+</section>
+<section>
+    <h3>Concepts</h3>
+    <div class="fragment">
+        <div class="large-font">Packet switching</div>
+        <div style="text-align:right">breaking messages into small chunks and interleaving them</div>
+        <hr/>
+    </div>
+    <div class="fragment">
+        <div class="large-font">durability</div>
+        <div style="text-align:right">the maximum amount of time/hops a message takes to reach its destination</div>
+        <hr/>
+    </div>
+    <div class="fragment">
+        <div class="large-font">reliability</div>
+        <div style="text-align:right">the level of garantee given by the network a message will be delivered</div>
+        <hr/>
+    </div>
+    <div class="fragment">
+        <div class="large-font">security</div>
+        <div style="text-align:right">popular attacks: request forgery, xss, man in the middle, ddos</div>
+    </div>
+</section>
+<section>
+    <h3>Web Protocols:</h3>
+    <ul>
+        <li>TCP/IP</li>
+        <li>HTTP</li>
+        <li>HTTPS</li>
+        <li>DNS</li>
+        <li>WebSocket</li>
+        <li>WebRTC</li>
+    </ul>
+</section>
+<section>
+    <h5>HTTP Request</h5>
+    <pre><code class="http">
     POST /docs/add.html HTTP/1.1
     Host: www.nowhere123.com
     Accept: text/html
@@ -99,8 +110,8 @@
     (blank line)
     The body of the request
   </code></pre>
-  <h5>HTTP Response</h5>
-  <pre><code class="http">
+    <h5>HTTP Response</h5>
+    <pre><code class="http">
   HTTP/1.1 200 OK
   Date: Sun, 18 Sep 2016 08:56:53 GMT
   Server: Apache/2.2.14 (Win32)
@@ -111,33 +122,42 @@
   Connection: close
   Content-Type: text/html
   (blank line)
-  &lt;html&gt;&lt;body&gt;Saved &lt;a href="http://site123.com/xt76-24a"&gt;here&lt;/a&gt;&lt;/body&gt;&lt;/html&gt;
+  &lt;html&gt;&lt;body&gt;
+  Saved &lt;a href="http://site123.com/xt76-24a"&gt;here&lt;/a&gt;
+  &lt;/body&gt;&lt;/html&gt;
   </code></pre>
 </section>
 <section>
-  <h3>Secure Socket Layer SSL</h3>
-  <ul class="children-inline">
-    <li>Handshake</li>
-    <li>Certificates</li>
-    <li>Trust</li>
-  </ul>
-  <img src="../images/ssl.png"  />
+    <h3>Secure Socket Layer SSL</h3>
+    <ul class="children-inline">
+        <li>Handshake |</li>
+        <li>Certificates |</li>
+        <li>Trust</li>
+    </ul>
+    <img src="../images/ssl.png" />
 </section>
 <section>
-  <h3>WebSockets</h3>
-  <ul class="children-inline">
-    <li>full-duplex |</li>
-    <li>real-time |</li>
-    <li>fallback to polling</li>
-  </ul>
-  <img src="../images/WebSockets.png"  />
+    <h3>SSL: Secure Socket Layer</h3>
+    <ul>
+        <li>attacker cannot see messages</li>
+        <li>attacker cannot change message</li>
+    </ul>
 </section>
 <section>
-  <h3>Domain Name System (DNS)</h3>
-  <ul class="children-inline">
-    <li>hierarchical |</li>
-    <li>distrubuted |</li>
-    <li>caching</li>
-  </ul>
-  <img src='../images/dns101.jpg' />
+    <h3>WebSockets</h3>
+    <ul class="children-inline">
+        <li>full-duplex |</li>
+        <li>real-time |</li>
+        <li>fallback to polling</li>
+    </ul>
+    <img src="../images/WebSockets.png" />
+</section>
+<section>
+    <h3>Domain Name System (DNS)</h3>
+    <ul class="children-inline">
+        <li>hierarchical |</li>
+        <li>distrubuted |</li>
+        <li>caching</li>
+    </ul>
+    <img src='../images/dns101.jpg' />
 </section>
