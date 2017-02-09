@@ -3,16 +3,27 @@
     <img src="../images/jsatt.jpg" />
     <h4>Attention! Code ahead!</h4>
 </section>
-<section>
+<section id="bad_parts">
+    <h3>The bad parts</h3>
+    <div>"Some of the worst ideas in the history of programming languages can be found in JavaScript"
+        <div style="float:right">-- Douglas Crockford</div>
+    </div>
+    <hr />
+    <div>"Perhaps my perspective is skewed, because I've seen the real WTFs in JavaScript"
+        <div style="float:right">-- Kyle Simpson</div>
+    </div>
+</section>
+<section id="bad_parts">
     <h3>The bad parts</h3>
     <ul>
         <li>global scope</li>
         <li>eval, with, void</li>
         <li>type coersion</li>
+        <li>arguments meta parameter</li>
         <li>function statment vs expression</li>
-        <li>Incorrect math</li>
+        <li>incorrect math</li>
         <hr/>
-        <li>Users run different versions</li>
+        <li>users run different versions</li>
     </ul>
 </section>
 <section id="bad_parts_examples">
@@ -28,17 +39,48 @@
       window.b // returns 10
 
       //Bad math
-      0.1 + 0.2 === 0.3 //false
+      0.1 + 0.2 === 0.3 // false
+      Number.MIN_VALUE > 0 // true
 
-      //Type coersion
-      if ([]) { doStuff(); /* gets called */ }
-      if ([] == true) { doStuff(); /* DOSN'T get called */ }
-      if ([] === false) { doStuff(); /* DOSN'T get called */}
+      //function weirdness
+      function () {} // SyntaxError
+      var f = function () {} // no problem
 
-      //Any many more
+      //arguments meta parameter
+      (function (a) {
+        // a = 1
+        arguments[0] = arguments[1];
+        // a = 2
+      }(1, 2));
     </code></pre>
 </section>
-<section>
+<section id="bad_parts_more_examples">
+    <h4>Bad parts</h4>
+    <pre class="es5"><code class="javascript">
+      //type weirdness
+      typeof null // object
+
+      typeof (new String('abc')) // object
+      typeof 'abc' //string
+
+      typeof (new Boolean(true)) //object
+      typeof true //boolean
+
+      typeof (new Array()) //object
+      typeof [] // object
+
+      typeof (new Function()) // function
+      typeof function () {} // function
+
+      //Type coersion
+      if ([]) { doStuff(); } // gets called
+      if ([] == true) { doStuff(); } // DOSN'T get called
+      if ([] === false) { doStuff(); } // DOSN'T get called
+
+      //Any much more..
+    </code></pre>
+</section>
+<section id="hard_parts">
     <h3>The hard parts</h3>
     <ul>
         <li>async and event loop</li>
@@ -49,11 +91,15 @@
         <li>execution context</li>
     </ul>
 </section>
-<section>
-  <h3>The event loop</h3>
-  <img src="../images/event-loop.png" />
+<section id="prototypes">
+  <h3>Prototypical inheritance</h3>
+  <img src="../images/prototypes.png" />
 </section>
-<section>
+<section id="event_loop">
+    <h3>The event loop</h3>
+    <img src="../images/event-loop.png" />
+</section>
+<section id="good_parts">
     <h3>The good parts</h3>
     <ul>
         <li>Flexible Objects</li>
@@ -64,7 +110,7 @@
         <li>Modern engines</li>
     </ul>
 </section>
-<section id="intro-es6">
+<section id="new-parts">
     <h3>ES2015: The new parts</h3>
     <ul>
         <li>JavaScript language specification, released in June 2015</li>
@@ -98,7 +144,6 @@
 <section id="mind-blown">
     <img src="../images/mind-blown.jpeg" />
 </section>
-
 <section id="let-const-declarations">
     <h4>Variable declaration</h4>
     <pre class="es5"><code class="javascript">
@@ -116,7 +161,7 @@
 
       //this code "works" because of var hoisting
   </code></pre>
-  <pre class="es6"><code class="javascript">
+    <pre class="es6"><code class="javascript">
     //es6
     if (condition) {
         let j = 12; //j exists only inside the if block
@@ -138,9 +183,9 @@
 <section id="why-let-const-declarations">
     <h4>How do const and let help?</h4>
     <ul>
-      <li>Clear intent</li>
-      <li>Block scope (const, let)</li>
-      <li>Immutable binding (const)</li>
+        <li>Clear intent</li>
+        <li>Block scope (const, let)</li>
+        <li>Immutable binding (const)</li>
     </ul>
 </section>
 <section id="arrow-functions">
@@ -162,7 +207,7 @@
           });
       }
   </code></pre>
-  <pre class="es6"><code class="javascript">
+    <pre class="es6"><code class="javascript">
     //es6
     [1, 2, 3, 4].map(i => i*i); // [1, 4, 9, 16]
 
@@ -179,10 +224,10 @@
 <section id="why-arrows-functions">
     <h4>How do arrow functions help?</h4>
     <ul>
-      <li>Concise &amp; Clear intent</li>
-      <li>Uses the outer scope's "this"</li>
-      <li>No arguments meta parameter</li>
-      <li style="color: #aa1717">Not a full substitute of functions</li>
+        <li>Concise &amp; Clear intent</li>
+        <li>Uses the outer scope's "this"</li>
+        <li>No arguments meta parameter</li>
+        <li style="color: #aa1717">Not a full substitute of functions</li>
     </ul>
 </section>
 <section id="classes">
@@ -219,8 +264,8 @@
 <section id="why-classes">
     <h4>How do classes help?</h4>
     <ul>
-      <li>All declarations stay together</li>
-      <li>Methods on the prototype by default</li>
+        <li>All declarations stay together</li>
+        <li>Methods on the prototype by default</li>
     </ul>
 </section>
 <section id="object-literal-syntax">
@@ -248,8 +293,8 @@
 <section id="why-object-literal-syntax">
     <h4>How does object literals syntax help?</h4>
     <ul>
-      <li>Compact &amp; clear intent</li>
-      <li>All declarations stay together</li>
+        <li>Compact &amp; clear intent</li>
+        <li>All declarations stay together</li>
     </ul>
 </section>
 <section id="destructuring">
@@ -282,8 +327,8 @@
 <section id="why-destructuring">
     <h4>How does destructuring help?</h4>
     <ul>
-      <li>Clear intent</li>
-      <li>Pattern Matching</li>
+        <li>Clear intent</li>
+        <li>Pattern Matching</li>
     </ul>
 </section>
 <section id="spreading">
@@ -313,8 +358,8 @@
 <section id="why-spreading">
     <h4>How does spreading help?</h4>
     <ul>
-      <li>Concise and composable</li>
-      <li>No need for the "arguments" parameter</li>
+        <li>Concise and composable</li>
+        <li>No need for the "arguments" parameter</li>
     </ul>
 </section>
 <section id="default-parameters">
@@ -360,8 +405,8 @@
 <section id="why-string-templates">
     <h4>How do template strings help?</h4>
     <ul>
-      <li>Built-in template engine</li>
-      <li>Customizable through functions</li>
+        <li>Built-in template engine</li>
+        <li>Customizable through functions</li>
     </ul>
 </section>
 <section id="maps-and-sets">
@@ -389,10 +434,10 @@
 <section id="why-maps-and-sets">
     <h4>How do sets & maps help?</h4>
     <ul>
-      <li>Ability to relate any values types</li>
-      <li>No more abusing objects and arrays<br/> for sets and maps</li>
-      <li>WeakMap and WeakSet help stop memory leaks</li>
-      <li>Built-in implementations improve performance</li>
+        <li>Ability to relate any values types</li>
+        <li>No more abusing objects and arrays<br/> for sets and maps</li>
+        <li>WeakMap and WeakSet help stop memory leaks</li>
+        <li>Built-in implementations improve performance</li>
     </ul>
 </section>
 <section id="promises">
@@ -437,11 +482,11 @@
 <section id="why-promises">
     <h4>How do promises help?</h4>
     <ul>
-      <li>Clear and natural API</li>
-      <li>Reduce callback hell</li>
-      <li>Future value semantics</li>
-      <li>Invert the flow of control</li>
-      <li>Basis for implementing the async/await pattern</li>
+        <li>Clear and natural API</li>
+        <li>Reduce callback hell</li>
+        <li>Future value semantics</li>
+        <li>Invert the flow of control</li>
+        <li>Basis for implementing the async/await pattern</li>
     </ul>
 </section>
 <section id="generators">
@@ -468,10 +513,10 @@
 <section id="why-generators">
     <h4>How do generators help?</h4>
     <ul>
-      <li>State machine inside a function</li>
-      <li>Two way message passing</li>
-      <li>Co-routines and flow of control</li>
-      <li>Basis for implementing the async/await pattern</li>
+        <li>State machine inside a function</li>
+        <li>Two way message passing</li>
+        <li>Co-routines and flow of control</li>
+        <li>Basis for implementing the async/await pattern</li>
     </ul>
 </section>
 <section id="async-await">
@@ -528,10 +573,11 @@
 <section id="links">
     <h4>Links:</h4>
     <ul>
+        <li><a href="https://www.youtube.com/watch?v=2pL28CcEijU">Kyle Simpson: What the... JavaScript? (youtube)</a></li>
+        <li><a href="https://www.youtube.com/watch?v=lTWGoL1N-Kc">Douglas Crockford: Really. JavaScript. (youtube)</a></li>
         <li><a href="https://github.com/getify/You-Dont-Know-JS">You don't know JavaScript book series</a></li>
         <li><a href="http://exploringjs.com/">Exploring ES6</a></li>
         <li><a href="https://addyosmani.com/resources/essentialjsdesignpatterns/book/">JavaScript Design Patterns</a></li>
         <li><a href="https://github.com/tc39">JavaScript language development committee</a></li>
-        <li><a href="https://babeljs.io/">Babel transpiler</a></li>
     </ul>
 </section>

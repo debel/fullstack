@@ -1,4 +1,4 @@
-<section>
+<section id="concepts">
     <h3>Concepts</h3>
     <ul>
         <li><span class="bigger-font color-azure">Node</span> - a device in the network</li>
@@ -8,7 +8,7 @@
         <li><span class="bigger-font color-azure">Topology</span> - the graph of connections</li>
     </ul>
 </section>
-<section>
+<section id="osi_stack">
     <h3>The OSI stack</h3>
     <ul>
         <li>Application Layer Protocols (HTTP, FTP, SSH)</li>
@@ -18,11 +18,11 @@
         <li>Physical Layer (ISDN, WiFi, Optic-Fiber)</li>
     </ul>
 </section>
-<section>
+<section id="osi_stack_img">
     <h3>The OSI stack</h3>
     <img src="../images/osi-stack.png" />
 </section>
-<section>
+<section id="topologies">
     <h3>Topologies</h3>
     <ul>
         <li>Bus (Shared)</li>
@@ -31,15 +31,11 @@
         <li>Mesh</li>
     </ul>
 </section>
-<section>
+<section id="topologies_img">
     <h3>Topologies</h3>
     <img src="../images/network_topologies.jpg">
 </section>
-<section>
-    <h3>Modes of communication</h3>
-    <img src="../images/polling-vs-sockets.jpg" />
-</section>
-<section>
+<section id="modes">
     <h3>Modes of communication</h3>
     <ul>
         <li>Polling (Request/Response)</li>
@@ -48,7 +44,11 @@
         <li>Web Sockets (Two-way channel)</li>
     </ul>
 </section>
-<section>
+<section id="modes_img">
+    <h3>Modes of communication</h3>
+    <img src="../images/polling-vs-sockets.jpg" />
+</section>
+<section id="concepts_2">
     <h3>Concepts</h3>
     <div class="fragment">
         <div class="large-font">Bandwidth</div>
@@ -65,7 +65,7 @@
         <div style="text-align:right">The amount of time a client waits for a response (measured in milisecons)</div>
     </div>
 </section>
-<section>
+<section id="concepts_3">
     <h3>Concepts</h3>
     <div class="fragment">
         <div class="large-font">Packet switching</div>
@@ -73,21 +73,17 @@
         <hr/>
     </div>
     <div class="fragment">
-        <div class="large-font">durability</div>
+        <div class="large-font">Durability</div>
         <div style="text-align:right">the maximum amount of time/hops a message takes to reach its destination</div>
         <hr/>
     </div>
     <div class="fragment">
-        <div class="large-font">reliability</div>
+        <div class="large-font">Reliability</div>
         <div style="text-align:right">the level of garantee given by the network a message will be delivered</div>
         <hr/>
     </div>
-    <div class="fragment">
-        <div class="large-font">security</div>
-        <div style="text-align:right">popular attacks: request forgery, xss, man in the middle, ddos</div>
-    </div>
 </section>
-<section>
+<section id="protocols">
     <h3>Web Protocols:</h3>
     <ul>
         <li>TCP/IP</li>
@@ -98,7 +94,16 @@
         <li>WebRTC</li>
     </ul>
 </section>
-<section>
+<section id="http">
+    <h3>HTTP (1999)</h3>
+    <ul>
+        <li>Intended for simple document retreval</li>
+        <li>Text-based</li>
+        <li>Request-Response model</li>
+        <li>Limitations have led to many workarounds</li>
+    </ul>
+</section>
+<section id="http_snippet">
     <h5>HTTP Request</h5>
     <pre><code class="http">
     POST /docs/add.html HTTP/1.1
@@ -127,7 +132,16 @@
   &lt;/body&gt;&lt;/html&gt;
   </code></pre>
 </section>
-<section>
+<section id="http2">
+    <h4>HTTP/2 (2015)</h4>
+    <ul>
+        <li>Faster and smarter (headers compression)</li>
+        <li>Two-way communication</li>
+        <li>Eliminated head-of-line blocking</li>
+        <li>Breaks many hacks around http 1.1</li>
+    </ul>
+</section>
+<section id="ssl_img">
     <h3>Secure Socket Layer SSL</h3>
     <ul class="children-inline">
         <li>Handshake |</li>
@@ -136,14 +150,25 @@
     </ul>
     <img src="../images/ssl.png" />
 </section>
-<section>
+<section id="ssl">
     <h3>SSL: Secure Socket Layer</h3>
     <ul>
-        <li>attacker cannot see messages</li>
+        <li>attacker cannot read messages</li>
         <li>attacker cannot change message</li>
+        <li>garanteed through certificates</li>
     </ul>
 </section>
-<section>
+<section id="security">
+    <h3>Security</h3>
+    <ul>
+        <li>Man in the middle</li>
+        <li>Data leak / loss</li>
+        <li>Cache poisoning</li>
+        <li>Message replay</li>
+        <li>Denial of service</li>
+    </ul>
+</section>
+<section id="websockets">
     <h3>WebSockets</h3>
     <ul class="children-inline">
         <li>full-duplex |</li>
@@ -152,7 +177,7 @@
     </ul>
     <img src="../images/WebSockets.png" />
 </section>
-<section>
+<section id="dns">
     <h3>Domain Name System (DNS)</h3>
     <ul class="children-inline">
         <li>hierarchical |</li>
@@ -160,4 +185,14 @@
         <li>caching</li>
     </ul>
     <img src='../images/dns101.jpg' />
+</section>
+<section id="links">
+  <h3>Links:</h3>
+  <ul>
+    <li><a href="https://www.digitalocean.com/community/tutorials/an-introduction-to-networking-terminology-interfaces-and-protocols">
+      Introduction to Networking</a></li>
+    <li><a href="http://openbookproject.net/courses/intro2ict/networking/intro.html">Intro to Networking</a></li>
+    <li><a href="https://daniel.haxx.se/http2/">HTTP/2 explained</a></li>
+    <li><a href="https://http2.github.io/faq/">HTTP2 FAQ</a></li>
+  </ul>
 </section>

@@ -1,12 +1,12 @@
-<section>
+<section id="static_server">
     <h3>Static web server</h3>
     <p>Return only the contents of files</p>
 </section>
-<section>
+<section id="cgi_server">
     <h3>CGI Protocol</h3>
     <p>Common Gateway Interface - run a program to generate a response</p>
 </section>
-<section>
+<section id="app_server">
     <h3>Application Server</h3>
     <p>Language/Platform specific http implementations</p>
     <ul>
@@ -17,15 +17,15 @@
         <li>libUV - node.js</li>
     </ul>
 </section>
-<section>
+<section id="serverless">
     <h3>Serverless</h3>
     <div>Execute code on shared cloud infrastructure</div>
 </section>
-<section>
+<section id="app_structure">
     <h3>CLEAN application structure</h3>
     <img src="../images/clean-architecture.jpg" />
 </section>
-<section>
+<section id="app_structure_2">
     <h3>CLEAN application structure</h3>
     <ul>
         <li>Use-cases encapsulate Domain/Business logic</li>
@@ -34,7 +34,7 @@
         <li>Presenters observe use-case results</li>
     </ul>
 </section>
-<section>
+<section id="node_js_server">
     <h3>http server in node.js</h3>
     <pre><code class="javascript">
           /* server.js */
@@ -52,7 +52,7 @@
       node server.js
   </code></pre>
 </section>
-<section>
+<section id="routing">
     <h3>Routing</h3>
     <ol>
         <li>Parse the URL</li>
@@ -60,7 +60,7 @@
         <li>Execute it with on the request parameters</li>
     </ol>
 </section>
-<section>
+<section id="express">
     <h3>Express for Node.js</h3>
     <pre><code class="javascript">
     //create new tasks
@@ -82,7 +82,7 @@
      });
   </code></pre>
 </section>
-<section>
+<section id="flask">
     <h3>Flask for Python</h3>
     <pre><code class="python">
     @app.route('/')
@@ -102,7 +102,7 @@
       return redirect(url_for('show_entries'))
   </code></pre>
 </section>
-<section>
+<section id="vertx">
     <h3>Vert.x for Java</h3>
     <pre><code class="java">
       public static void main(String[] args) {
@@ -126,7 +126,16 @@
       }
     </code></pre>
 </section>
-<section>
+<section id="security">
+  <h3>Security</h3>
+  <ul>
+    <li>System take-ove (rootkit)</li>
+    <li>Code execution (SQL injection)</li>
+    <li>Data leak / loss (Ransomware)</li>
+    <li>Malicious communication (CSRF, DDOS)</li>
+  </ul>
+</section>
+<section id="links">
     <h3>Links</h3>
     <ul>
         <li><a href="http://flask.pocoo.org/">Flask for Pythons</a></li>

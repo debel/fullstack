@@ -125,7 +125,7 @@
 
   gulp.task('build-js', function () {
     return gulp.src(['array/of/paths', 'to/all/*.js'])
-      .pipe(babel())
+      .pipe(babel({ presets: ['es2015']}))
       .pipe(concat('app.min.js'))
       .pipe(uglify())
       .pipe(gulp.dest('client/js/build/'));
@@ -139,5 +139,6 @@
     <li><a href="http://eslint.org/docs/user-guide/configuring">Getting started with Eslint</a></li>
     <li><a href="http://mherman.org/blog/2015/09/10/testing-node-js-with-mocha-and-chai/#.V--N3yh942w">Testing with mocha and chai</a></li>
     <li><a href="https://github.com/gulpjs/gulp/blob/master/docs/getting-started.md">Getting started with Gulp</a></li>
+    <li><a href="https://babeljs.io/">Getting started with the Babel transpiler</a></li>
   </ul>
 </section>
