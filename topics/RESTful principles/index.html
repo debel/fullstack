@@ -1,9 +1,15 @@
-<section>
+<section id="rest">
   <div>
-    REST stands for <span class="color-carrot">RE</span>presentational <span class="color-carrot">S</span>tate <span class="color-carrot">T</span>ransfer. Originally a PHD thesis descibing a set of architectural principles for building scalable and maintainable web systems.
+    REST stands for <span class="color-carrot">RE</span>presentational
+    <span class="color-carrot">S</span>tate <span class="color-carrot">T</span>ransfer.
+  </div>
+  <hr/>
+  <div class="smaller-font fragment">
+    Originally a PHD thesis descibing a set of architectural principles
+    for building scalable and maintainable web systems.
   </div>
 </section>
-<section>
+<section id="rules">
   <h3>Rules</h3>
   <ul>
     <li>The system is organized as resources with capabilites</li>
@@ -12,12 +18,13 @@
     <li>Uniform Interfaces</li>
   </ul>
 </section>
-<section>
+<section id="resouces">
   <h3>Resources and Representations</h3>
   <div>
     URI stand for <span class="color-carrot">U</span>niform
        <span class="color-carrot">R</span>esource <span class="color-carrot">I</span>ndentifier
   </div>
+  <hr/>
   <ul>
     <li>Resources must have unique identities</li>
     <li>Resources expose sets of capabilities</li>
@@ -26,7 +33,7 @@
     <li>Capabilities should be accessible through uniform interfaces</li>
   </ul>
 </section>
-<section>
+<section id="hyper_media">
   <h3>Hyper-media</h3>
   <div>
     Links provide access to resources & capabilites
@@ -37,7 +44,7 @@
     <li>Links are platform independant</li>
   </ul>
 </section>
-<section>
+<section id="actions_and_side_effects">
   <h3>Actions and Side effects</h3>
   <div>
     Side effects are indirect consequences<br/>
@@ -48,24 +55,24 @@
     <li>Side effects should be made explict</li>
   </ul>
 </section>
-<section>
-    <h5>DOes:</h5>
-    <ul>
-      <li>Use well known formats and protocols</li>
-      <li>Return links to further actions and resources</li>
-      <li>Use templates and forms to help clients build complex requests</li>
-    </ul>
-  </section>
-  <section>
-    <h5>DONTs:</h5>
-    <ul>
-      <li>Thinking only about pretty looking templated URLs</li>
-      <li>Constructing URLs manually</li>
-      <li>Hardcoding URLs</li>
-    </ul>
+<section id="does">
+  <h5>DOes:</h5>
+  <ul>
+    <li>Use well known formats and protocols</li>
+    <li>Return links to further actions and resources</li>
+    <li>Use templates and forms to help clients build complex requests</li>
+  </ul>
 </section>
-<section>
-  <h3>In practice</h3>
+<section id="donts">
+  <h5>DONTs:</h5>
+  <ul>
+    <li>Thinking only about pretty looking templated URLs</li>
+    <li>Constructing URLs manually</li>
+    <li>Hardcoding URLs</li>
+  </ul>
+</section>
+<section id="example_representation">
+  <h3>To-do representation example</h3>
   <pre><code class="json">
   {
     "id": "id123",
@@ -95,13 +102,13 @@
     &lt;/article&gt;
   </code></pre>
 </section>
-<section>
-  <h3>In practice</h3>
+<section id="example_notes">
+  <h3>To-do representation example</h3>
   <div class="fragment">Notice the shape of the example object. Creating a task returns a representation with all methods, not just an id.<hr/></div>
   <div class="fragment">This means you can add functionality without changing the frontend.<hr/></div>
-  <div class="fragment">Do the urls need to human readable? No, but's its a plus if they are easy to understand.</div>
+  <div class="fragment">Do the urls need to be human readable? No, but's its a plus if they are easy to understand.</div>
 </section>
-<section>
+<section id="links">
   <h3>Links</h3>
   <ul>
     <li><a href="http://www.ics.uci.edu/~fielding/pubs/dissertation/rest_arch_style.htm">Original REST paper</a></li>
