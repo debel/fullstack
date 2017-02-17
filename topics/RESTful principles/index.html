@@ -55,10 +55,20 @@
     <li>Side effects should be made explict</li>
   </ul>
 </section>
+<section id="http_verbs">
+  <h3>HTTP Verbs</h3>
+  <ul>
+    <li>GET: retrieve resources, should not change data</li>
+    <li>POST: create resources</li>
+    <li>PUT: change/update resources</li>
+    <li>DELETE: remove resources</li>
+    <li>HEAD: read resources headers</li>
+</section>
 <section id="does">
   <h5>DOes:</h5>
   <ul>
     <li>Use well known formats and protocols</li>
+    <li>Do not keep session state on the server between requests</li>
     <li>Return links to further actions and resources</li>
     <li>Use templates and forms to help clients build complex requests</li>
   </ul>
@@ -107,6 +117,17 @@
   <div class="fragment">Notice the shape of the example object. Creating a task returns a representation with all methods, not just an id.<hr/></div>
   <div class="fragment">This means you can add functionality without changing the frontend.<hr/></div>
   <div class="fragment">Do the urls need to be human readable? No, but's its a plus if they are easy to understand.</div>
+</section>
+<section id="webhooks">
+  <h3>Web Hooks</h3>
+  <div>A way for services to communicate asynchronous<hr/></div>
+  <ol>
+    <li class="fragment">A client service sends our service a callback url</li>
+    <li class="fragment">Our service stores the callback urls per event type</li>
+    <li class="fragment">Our service sends data to all callback urls
+      when a specific event happens within our sevice</li>
+    <li class="fragment">The client service processes the event data</li>
+  </ol>
 </section>
 <section id="links">
   <h3>Links</h3>
