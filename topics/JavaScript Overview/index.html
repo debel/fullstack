@@ -76,8 +76,23 @@
       if ([]) { doStuff(); } // gets called
       if ([] == true) { doStuff(); } // DOSN'T get called
       if ([] === false) { doStuff(); } // DOSN'T get called
+    </code></pre>
+</section>
+<section id="bad_parts_more_examples_2">
+    <h4>Bad parts</h4>
+    <pre class="es5"><code class="javascript">
+  hello //Error: hello is not defined
+  hello! //SyntaxError: Unexpected token !
 
-      //Any much more..
+  //statment position
+  function () {} //SyntaxError: Unexpected token (
+  (function () {}) //returns the function
+  function f() {} //returns undefined, but f is defined
+
+  function f() {}, 'hi' //SyntaxError: Unexpected token ,
+  (function f() {}, 'hi') //"hi"
+
+  //Any much more..
     </code></pre>
 </section>
 <section id="hard_parts">
@@ -92,8 +107,8 @@
     </ul>
 </section>
 <section id="prototypes">
-  <h3>Prototypical inheritance</h3>
-  <img src="../images/prototypes.png" />
+    <h3>Prototypical inheritance</h3>
+    <img src="../images/prototypes.png" />
 </section>
 <section id="event_loop">
     <h3>The event loop</h3>

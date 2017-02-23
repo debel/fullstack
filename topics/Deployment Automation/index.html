@@ -1,8 +1,4 @@
 <section>
-  <h3>Process Overview</h3>
-  <img src="../images/app_deploy_diagram.png" />
-</section>
-<section>
   <h3>Benefits</h3>
   <ul>
     <li>Repeatable &amp; reliable</li>
@@ -21,14 +17,14 @@
 </section>
 <section>
   <h3>Artifacts</h3>
-  <p>Building your application produces various <b>artifacts</b>. For example:</p>
+  <div>Building your application produces various <b>artifacts</b>. For example:</div>
   <ul>
     <li>Executable files</li>
     <li>Compressed resources</li>
     <li>Images, Fonts, etc</li>
   </ul>
   <hr/>
-  <p>Artifacts are deployed to the production server, not your entire codebase</p>
+  <div class="fragment">Artifacts are deployed to the production server, not your entire codebase</div>
 </section>
 <section>
   <h3>Workflows</h3>
@@ -49,10 +45,10 @@
 <section>
   <h3>Tools</h3>
   <ul>
-    <li>Git &amp; SSH</li>
     <li>FTP &amp; Rsync</li>
-    <li>Ansible</li>
-    <li>Terraform</li>
+    <li>Git &amp; SSH</li>
+    <li>Ansible &amp; Terraform</li>
+    <li>Docker swarm &amp; Kubernetes</li>
     <li>Provider specific options</li>
   </ul>
 </section>
@@ -70,6 +66,26 @@
   </code></pre>
 </section>
 <section>
+  <h3>Example kubernetes config</h3>
+  <pre><code class="javascript">
+//my_rails_service.json
+{
+  "id": "my_rails_service",
+  "kind": "Service",
+  "apiVersion": "v1beta1",
+  "port": 80,
+  "containerPort": 3000,
+  "labels": {
+    "name": "rails"
+  },
+  "selector": {
+    "name": "rails"
+  },
+  "createExternalLoadBalancer": true
+}
+  </code></pre>
+</section>
+<section>
   <h3>Blue/Green deployment</h3>
   <img width="80%" src="../images/blue_green.jpg" />
 </section>
@@ -83,6 +99,10 @@
     <li>New version (green) is monitored against predefined metrics</li>
     <li>If the new version performs well, continue with next server, else rollback</li>
   </ol>
+</section>
+<section>
+  <h3>Process Overview</h3>
+  <img src="../images/app_deploy_diagram.png" />
 </section>
 <section>
   <h3>Links:</h3>

@@ -139,29 +139,53 @@
   </ul>
 </section>
 <section>
+  <img src="../images/column-store.png" />
+</section>
+<section>
   <h4>Using Hbase with Java</h4>
   <pre><code class="java">
-  public String GetCell(String date, String symbol, byte[] column) throws IOException {
-    try (Connection conn = ConnectionFactory.createConnection(config)) {
+  public String GetClicks(String action, String date, byte[] column)
+    throws IOException {
+      try (Connection conn = ConnectionFactory.createConnection(config)) {
         Table table = conn.getTable(TableName.valueOf(TABLE_NAME));
-        
+
         Get get = new Get(makeKey(date, symbol));
         get.addColumn(COLUMN_FAMILY, column);
-        
+
         Result r = table.get(get);
-        
+
         if ( r.isEmpty() ) return null;
-        
+
         return new String(r.value());
-    }
+      }
   }
+  </code></pre>
+</section>
+<section>
+  <h3>Graphs</h3>
+  <ul>
+    <li>Nodes &amp; Edges</li>
+    <li>Model complex relationships</li>
+    <li>Many data storage options</li>
+  </ul>
+</section>
+<section>
+  <h3>Graphs</h3>
+  <img style="width: 65% !important" src="../images/graph-dbs.png" />
+</section>
+<section>
+  <h3>Using Neo4j</h3>
+  <pre><code class="neo4j">
+    MATCH (p1:Person {id: "me"})-[r:Follows]-(p2:Person {interest: "juggling"})
+    RETURN p1.name, r, p2.name; //Misho Follows Wes Peden
   </code></pre>
 </section>
 <section>
   <h3>Many others</h3>
   <ul>
-    <li>Full-text e.g. Elastic search</li>
-    <li>Graph dbs e.g. neo4j</li>
+    <li>Full-text: Elastic search</li>
+    <li>Cloud-based storage: S3, DocumentDB, BigTable</li>
+    <li>Redis provides many types of data structure as a service</li>
   </ul>
 </section>
 <section id="links">
