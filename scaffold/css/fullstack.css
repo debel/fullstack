@@ -168,6 +168,10 @@ code.boxed {
   padding: 0 !important;
 }
 
+.inlined>*{
+  display: inline !important;
+}
+
 ul.children-inline {
   display: inline !important;
   list-style: none;
