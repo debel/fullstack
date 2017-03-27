@@ -41,7 +41,7 @@
           var http = require('http'),
               server = http.createServer(function (req, res) {
                   //server executes callback on every connection
-                  res.end('Hello Web!');
+                  res.send('Hello Web!');
           });
 
           //start the server on port 8080
