@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Full stack technologies: Development Processes</title>
+    <meta charset="utf-8">
+    <meta name=viewport content="width=device-width, initial-scale=1">
+    <meta name="google-site-verification" content="Bfn8U25UAs2R5D9Sm6oIN-bnlijCLhvm98RiKJmWgU0">
+    <meta name="description" content="An overview course for full stack web development. Giving a broad overview of the frontend, backend, devops and networks. With a focus on linting, testing, monitoring, continous integration." />
+    <meta property="og:image" content="http://fullstack101.xyz/images/welcome-rick-and-morty.jpg">
+    <link rel="stylesheet" href="/fullstack/css/bundle.css" />
+</head>
+<body>
+    <div class="header">
+      <a href="/fullstack" class="title">INF397 Full Stack Technologies</a>
+      <a href="#" id="topics_toggle">View Schedule</a>
+      <a href="?print-pdf" target="_blank" id="print_topic">Print</a>
+    </div>
+    <div id="presentation" class="reveal">
+        <div class="slides">
+            <section><h2>Development Processes</h2></section>
+            <section>
+  <h3>Principles:</h3>
+  <ul>
+    <li>Virtualization &amp; Containers</li>
+    <li><a href="/Git/">Source Control</a> &amp; Infrastructure as code</li>
+    <li><a href='/fullstack/Testing'>Testing</a> &amp; <a href='/fullstack/Continuous_Integration'>Continuous Integration</a></li>
+    <li><a href='/fullstack/Monitoring'>Monitoring</a> &amp; <a href='/fullstack/Deployment_Automation'>Deployment Automation</a></li>
+  </ul>
+</section>
+<section>
+  <h3>Technologies:</h3>
+  <ul>
+    <li><a href="#bash">bash</a> &amp;
+      <a href="#ssh">ssh</a> (Command line tools)</li>
+    <li><a href="#vagrant">Vagrant (Virtualization)</a></li>
+    <li><a href="#docker">Docker (Containers)</a></li>
+    <li><a href='/fullstack/Git'>Git</a> (Source control)</li>
+    <li>Travis / Circle / Drone (<a href='/fullstack/Continuous_Integration'>Continuous Integration</a>)</li>
+    <li>LogStash &amp; Grafana (Logging and <a href='/fullstack/Monitoring'>Monitoring</a>)</li>
+  </ul>
+</section>
+<section id="bash">
+  <h3>Bash</h3>
+  <pre><code class="bash">
+    # Bash is a command prompt / shell
+
+    #Get the current date and time
+    date
+
+    # get the current user name
+    whoami # returns myName
+
+    #Get the name of the current computer
+    hostname #returns myServer
+
+    #set an environment variable
+    MY_VAR=value
+
+    #print the value of an env. var
+    echo $MY_VAR
+
+    #set a global variable to the result of a command
+    export MY_NAME=`whoami`
+
+    #print the value of a var plus some text
+    echo "my name is $MY_NAME"
+  </code></pre>
+</section>
+<section>
+  <h3>Bash</h3>
+  <pre><code class="bash">
+    #get the current directory
+    pwd #returns /usr/myName/
+
+    # / (slash) is the root directory
+    # ~ (tilda) is the user's home directory
+
+    #The ls command takes a path
+    #List files and directories in the root directory
+    ls /
+
+    #List all files in the user's directory as a list
+    ls ~/ -al
+
+    #Files and dirs begining with . (dot) are hidden
+    #Print the file's name if it exists in the root directory
+    ls /.hidden_file
+
+    #Absolute paths begin with / (slash) and start from the root
+    #Relative paths start from the current dir (or home dir with ~)
+    ls /my_project #lists a dir under root
+    ls my_project #lists a dir under the current dir
+  </code></pre>
+</section>
+<section>
+  <h3>Bash</h3>
+  <pre><code class="bash">
+    # . (just dot) is the current directory
+    # .. (double dot) is the parent directory
+    # - (dash) is the last directory
+
+    #Go to the root directory
+    cd /
+
+    #Go back to where you were before
+    cd -
+
+    #Go to the parent of the current dir
+    cd ..
+
+    #Go to a project under your home directory
+    cd ~/my_project
+
+    #Root is the parent of itself
+    cd /../../../ #still in root
+  </code></pre>
+</section>
+<section>
+  <h3>Bash</h3>
+  <pre><code class="bash">
+    #Create directory
+    mkdir NAME
+
+    #Copy files
+    cp FILE1 FILE2 DESTINATION
+
+    #move/rename file
+    mv FILE1 FILE2 #renames FILE1 to FILE2
+
+    #mv moves and renames file
+    mv src/FILE1 dist/FILE2
+
+    #delete files
+    rm FILE1 FILE_N
+
+    #delete directories with files inside
+    rm -r DIR_NAME
+
+    #use \ (backslach) to escape spaces in names
+    cp my\ file\ name.txt myNewFileName
+  </code></pre>
+</section>
+<section>
+  <h3>Bash</h3>
+  <pre><code class="bash">
+    #find text in a file
+    grep "some text" FILE
+
+    #Get currently running user processes
+    ps
+
+    #use | (pipe) to pass the output
+    #of one process to another
+    ps | grep "myApp"
+
+    #use > (greater sign) to write the output to a file
+    whoami > /my/path/user.txt
+
+    #use >> (double greater sign) to append the output to a file
+    cat todays_log >> combined_log
+
+    #root is also the name of the super user
+    #the sudo command runs commands as root
+    #get processes started by the super user
+    sudo ps
+
+    #install python on debian/ubuntu
+    sudo apt-get install python
+  </code></pre>
+</section>
+<section id="ssh">
+  <h3>SSH</h3>
+  <pre><code class="bash">
+    #Connect to a shell on another computer
+    #ssh can use either passwords or crypto keys
+    ssh USER@ADDRESS
+
+    whoami #returns localUser
+    hostname #returns myComputer
+    #Your prompt should include user and host information
+
+    #Use ssh to connect to another computer
+    ssh remoteUser@remoteHost
+
+    #We can now use bash on the remoteHost
+    whoami #returns remoteUser
+    hostname #returns remoteHost
+
+    #Disconnect/Close the terminal
+    exit #back to myComputer
+
+    whoami #returns localUser
+  </code></pre>
+</section>
+<section id="docker">
+  <h3>Docker: Overview</h3>
+  <p>Package your application in a standardized containers</p>
+  <ul>
+    <li>Container - lightweight process isolation mechanism</li>
+    <li>Dockerfile - container description as code</li>
+    <li>Docker CLI - shell commands<ul>
+      <li>docker - build and manage containers</li>
+      <li>docker-machine - Virtual Machines for running docker</li>
+      <li>docker-compose - automate common docker commands</li>
+    </ul></li>
+  </ul>
+</section>
+<section>
+  <h3>Containers vs Virtual Machines</h3>
+  <img style="margin-left:-25%;max-width: 200%;width: 150% !important  " src="../images/containers-vs-vms.png" />
+</section>
+<section>
+  <h3>Docker-Machine: shell commands</h3>
+  <pre><code class="bash">
+    #Check the version of docker-machine
+    docker-machine --version
+
+    #List locally available virtual machines
+    docker-machine ls
+
+    #Start a virtual machine
+    docker-machine create -d virtualbox [NAME]
+
+    #Start/Stop/Restart a virtual machine
+    docker-machine start [NAME]
+    docker-machine stop [NAME]
+    docker-machine restart [NAME]
+
+    #Delete a virtual machine
+    docker-machine rm [NAME]
+
+    #Connect to a virtual machine
+    docker-machine ssh [NAME]
+
+    #Apply a machine environment to your local git bash shell
+    #You need to do this for your local docker to work
+    eval $(docker-machine env [NAME])
+  </code></pre>
+</section>
+<section>
+  <h3>Docker: shell commands</h3>
+  <pre><code class="bash">
+    #Check the version of docker and tools
+    docker --version
+    docker-compose --version
+
+    #Get detailed information about docker
+    docker info
+
+    #List running containers
+    docker ps
+
+    #Lit both running and stopped containers
+    docker ps -a
+
+    #Run a container based on the hello-world image
+    #This will download and run a hello world app inside a container
+    docker run hello-world
+
+    #Run a container exposing a port with -p host:container
+    #This will download and run the nginx webserver inside a container
+    #Exposing it on the VMs 6700 port
+    docker run -p 6700:80 --name webserver nginx
+
+    #Delete a container
+    docker rm webserver
+
+    #Build a container image based on ./Dockerfile
+    docker build -t MY_APP_IMG .
+  </code></pre>
+</section>
+<section>
+  <h3>Dockerfile</h3>
+  <pre><code class="docker">
+    #Select the base image for your application
+    FROM node
+
+    #Copy your project files to the container
+    COPY my_app /
+
+    #Execute commands in the container context
+    RUN ["npm", "install"]
+    RUN ["npm", "run", "build"]
+
+    #Execute the main application process that will run in the container
+    CMD ["node", "/server.js"]
+  </code></pre>
+</section>
+<section id="vagrant">
+  <h3>Vagrant: Overview</h3>
+  <p>Create and configure reproducible virtual machines</p>
+  <ul>
+    <li>Boxes - Virtual Machine Templates</li>
+    <li>Provisioning - Setup Scripts</li>
+    <li>Vagrantfile - Configuration as ruby code</li>
+    <li>Vagrant CLI - shell commands</li>
+  </ul>
+</section>
+<section>
+  <h3>Vagrant: Client commands</h3>
+  <pre><code class="bash">
+    #Initialize a new Vagrantfile with examples and comments
+    vagrant init
+
+    #List locally available boxes
+    vagrant box list
+
+    #Start a virtual machine
+    vagrant up
+
+    #Stop a virtual machine
+    vagrant halt
+
+    #Restart a virtual machine
+    vagrant reload [--provision]
+
+    #Destroy a virtual machine
+    vagrant destroy
+
+    #Connect to a virtual machine
+    vagrant ssh
+  </code></pre>
+</section>
+<section>
+  <h3>Vagrantfile</h3>
+  <pre><code class="ruby">
+    Vagrant.configure("2") do |config|
+      config.vm.box = "ubuntu/trusty64"
+
+      # Create a forwarded port mapping. In this example,
+      # accessing "localhost:8080" will access port 80 on the guest machine.
+      config.vm.network "forwarded_port", guest: 80, host: 8080
+
+      # Create a private network access to the machine using a specific IP.
+      config.vm.network "private_network", ip: "192.168.33.10"
+
+      # Share an additional folder to the guest VM. The first argument is
+      # the path on the host to the actual folder. The second argument is
+      # the path on the guest to mount the folder.
+      config.vm.synced_folder "../data", "/vagrant_data"
+
+      config.vm.provider "virtualbox" do |vb|
+         vb.memory = "1024"
+      end
+
+      # Enable provisioning with a shell script.
+      config.vm.provision "shell", inline: <<-SHELL
+          # install node js on the virtual machine
+          sudo apt-get install -y curl
+          curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
+          sudo apt-get install -y nodejs
+         SHELL
+      end
+  </code></pre>
+</section>
+<section>
+  <h3>Links:</h3>
+  <ul>
+    <li><a href="http://www.dreamcreative.net/how-tos/guides-server-maintenance/linux-ssh-cheat-sheet-basics/">Basic Bash commands</li>
+    <li><a href="https://emson.co.uk/2009/06/18-useful-bash-scripts-for-web-developers/">Some Bash examples</a></li>
+    <li><a href="http://lzone.de/cheat-sheet/SSH">SSH Cheat Sheet</a></li>
+
+    <h6 class="thin-margins">Tools</h6>
+    <li><a href="https://www.docker.com/what-docker">Docker: Getting Started</a></li>
+    <li><a href="https://docs.docker.com/engine/reference/builder/">Dockerfile reference</a></li>
+
+    <li><a href="https://www.vagrantup.com/docs/getting-started/project_setup.html">Vagrant: Getting Started</a></li>
+    <h6 class="thin-margins">Infrastructure as Code</h6>
+    <li><a href="https://aws.amazon.com/cloudformation/">Amazon Cloudformation</a></li>
+    <li><a href="https://cloud.google.com/deployment-manager/">Google Deployment Manager</a></li>
+    <li><a href="https://blogs.technet.microsoft.com/devops/2016/01/27/vorlonjs-a-journey-to-devops-infrastructure-as-code-with-microsoft-azure-and-resource-manager/">
+      IaC with Microsoft Azure</a></li>
+  </ul>
+</section>
+
+            <section id="schedule">
+    <h3>Course Schedule:</h3>
+    <table class="reveal shifted-left">
+        <tr>
+            <td>week 1 03.02.2017</td>
+            <td><a href='/fullstack/History_of_the_web'>History of the web</a></td>
+            <td><a href='/fullstack/Fullstack_Principles'>Fullstack Principles</a></td>
+            <td><a href='/fullstack/Development_Processes'>Development Processes</a></td>
+            <td><a href='/fullstack/Agile_Processes'>Agile Processes</a></td>
+            <td><a href='/fullstack/DevOps_Basics'>DevOps Basics</a></td>
+            <td><a href='/fullstack/Git'>Git</a></td>
+        </tr>
+        <tr>
+            <td>week 2 10.02.2017</td>
+            <td><a href='/fullstack/Frontend_Overview'>Frontend Overview</a></td>
+            <td><a href='/fullstack/Backend_Overview'>Backend Overview</a></td>
+            <td><a href='/fullstack/Network_Overview'>Network Overview</a></td>
+            <td><a href='/fullstack/Testing'>Testing</a></td>
+            <td><a href='/fullstack/JavaScript_Overview'>JavaScript Overview</a></td>
+            <td><a href='/fullstack/JavaScript_Tooling'>JavaScript Tooling</a></td>
+        </tr>
+        <tr>
+            <td>week 3 17.02.2017</td>
+            <td><a href='/fullstack/Web_Architectures'>Web Architectures</a></td>
+            <td><a href='/fullstack/RESTful_principles'>RESTful principles</a></td>
+            <td><a href='/fullstack/SOLID_principles'>SOLID principles</a></td>
+            <td><a href='/fullstack/Web_Components'>Web Components</a></td>
+            <td><a href='/fullstack/Continuous_Integration'>Continuous Integration</a></td>
+        </tr>
+        <tr>
+            <td>week 4 24.02.2017</td>
+            <td><a href='/fullstack/Databases_basics'>Databases basics</a></td>
+            <td><a href='/fullstack/Using_APIs'>Using APIs</a></td>
+            <td><a href='/fullstack/Deployment_Automation'>Deployment Automation</a></td>
+            <td><a href='/fullstack/Monitoring'>Monitoring</a></td>
+            <td style="color: salmon;">In-class project consultations</td>
+        </tr>
+        <tr>
+            <td>week 5 17.03.2017</td>
+            <td colspan="4" style="color: salmon; vertical-align:middle; text-align: center;">
+                <a href="/About the course/#project">Project presentations</a><hr/>
+                <a href="/About the course/#quiz">Final Test</a><hr/>
+                Course Retrospective and Q&amp;A
+            </td>
+        </tr>
+    </table>
+</section>
+
+        </div>
+    </div>
+    <script src="/fullstack/js/bundle.js"></script>
+    <script>
+      window.FullStack101.initialize({
+        title: "Development Processes",
+        debug: false
+      });
+    </script>
+</body>
+</html>

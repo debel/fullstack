@@ -4,23 +4,19 @@ const clear = require('./gulp_tasks/clear');
 const topics = require('./gulp_tasks/topics');
 const render = require('./gulp_tasks/render');
 
-const buildAndDeploy = (deployPath, debug)  => () => {
+const buildAndDeploy = (deployPath, linkPath, debug)  => () => {
     clear.clearOldDeploy(deployPath)
         .then(() => topics.extractTopicNames())
         .then(topics => {
             topics.DEBUG_MODE = !!debug;
-            render.renderTopics(topics, deployPath);
-            render.renderIndex(topics, deployPath);
+            render.renderTopics(topics, deployPath, linkPath);
+            render.renderIndex(topics, deployPath, linkPath);
             libs.buildJs(deployPath);
             libs.buildCss(deployPath);
             libs.copyImages(deployPath);
         }).catch(error => console.log(error));
 };
 
-gulp.task('build-reveal', buildAndDeploy('./docs/'));
+gulp.task('build-github', buildAndDeploy('./docs/', '/fullstack'));
 
-gulp.task('build-home', buildAndDeploy('C:\\MixWay\\Web\\Fullstack\\', true));
-
-gulp.task('build-work', buildAndDeploy('C:\\Users\\mihailmikov\\HobbyProjects\\fullstack_local\\', true));
-
-gulp.task('default', ['build-reveal']);
+gulp.task('build-local', buildAndDeploy('./docs/', '/docs'));

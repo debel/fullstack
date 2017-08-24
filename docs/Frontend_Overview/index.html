@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>Full stack technologies: Monitoring</title>
+    <title>Full stack technologies: Frontend Overview</title>
     <meta charset="utf-8">
     <meta name=viewport content="width=device-width, initial-scale=1">
     <meta name="google-site-verification" content="Bfn8U25UAs2R5D9Sm6oIN-bnlijCLhvm98RiKJmWgU0">
@@ -18,91 +18,105 @@
     </div>
     <div id="presentation" class="reveal">
         <div class="slides">
-            <section><h2>Monitoring</h2></section>
-            <section>
+            <section><h2>Frontend Overview</h2></section>
+            <section id="the_browser">
+  <h4>The browser</h4>
   <ul>
-    <li>Collecting vs Reporting metrics</li>
-    <li>User Analytics</li>
-    <li>App Performance</li>
-    <li>Dashboards</li>
-    <li>Alerts</li>
+    <li>has been evolving for more than 20 years</li>
+    <li>recognizes the multitudes of interests that exist within a web application</li>
+    <li>is mostly open, transpent and easy-to-use</li>
+    <li>privides a built-in IDE for debugging and analysing your application</li>
   </ul>
 </section>
-<section>
-  <h3>Collecting vs Reporting metrics</h3>
+<section id="parts">
+  <h4>Parts of an web app's frontend:</h4>
+  <div>
+    <ul>
+      <li>Html, Css, JavaScript</li>
+      <li>Tests, Documentation</li>
+      <li>Configuration and Localization strings</li>
+      <li>Images, Sounds, Videos, Fonts</li>
+      <li>and all the supporting infrastructure</li>
+    </ul>
+  </div>
+</section>
+<section id="concepts">
+  <h4>Concepts:</h4>
   <ul>
-    <li>Reporting: application activly send metrics</li>
-    <li>Collecting: external agent collects data about the application</li>
-    <li>Healthcheck: asking the application if everything is ok</li>
+    <li>DOM, Rendering, the Event loop</li>
+    <li>Networking (Ajax) - Headers, Query Params, etc</li>
+    <li>Web APIs: History, Routing, Storage, Caching</li>
+    <li>Web APIs: Geolocation, Canvas, Audio</li>
+    <li>Security</li>
+    <li>Tracking, Analytics and Ads</li>
+    <li>Web Components, Web Workers, Web Assembly</li>
   </ul>
 </section>
-<section>
-  <h3>User Analytics</h3>
-  <p>Client-side user-related metrics</p>
+<section id="static_page">
+  <h3>Displaying a static page</h3>
+  <img src="../images/fetch-parse-flow-paint.png" />
+</section>
+<section id="dynamic_page">
+  <h3>Displaying a scripted page</h3>
+  <img src="../images/browser-loop.png" />
+</section>
+<section id="trade_offs">
+  <h4>Technical trade-offs:</h4>
   <ul>
-    <li>Audience: who are our users?
-      <br/>age, gender, language, location</li>
-    <li>Acquisition: where did the users come from?
-      <br/>direct, search, social, referral</li>
-    <li>Behavior: how are the users using the site?
-      <br/>visit length, pages viewed, buttons clicked</li>
+    <li>Single Page <span class="color-carrot">vs</span> Reloading</li>
+    <li>Server side <span class="color-carrot">vs</span> Client side rendering</li>
+    <li>Newer features <span class="color-carrot">vs</span> older browsers suppot</li>
+    <li>Resource bundling <span class="color-carrot">vs</span> no build step</li>
+    <li>Various tools and framework choices</li>
+    <li>Various design and usability choices</li>
   </ul>
 </section>
-<section>
-  <h3>Dashboards: Google Analytics</h3>
-  <img src="../images/ga.png" />
+<section id="application_structure">
+  <h3>Application structure</h3>
+  <div class="larger-font">Model-View-Controller
+    <span class="smaller-font"> vs </span>
+    Components
+  </div>
+  <hr/>
+  <div class="larger-font">Two-way binding
+    <span class="smaller-font"> vs </span>
+    Unidirectional data flow
+  </div>
 </section>
-<section>
-  <h3>App Performance</h3>
-  <p>Server-side app-related metrics</p>
+<section id="frameworks">
+  <h3>Frontend Frameworks</h3>
   <ul>
-    <li>Resources: how much is our app consuming?</li>
-    <li>Throughput: how much traffic can our app handle?</li>
-    <li>Events: what functionality is running and when?</li>
-    <li>Errors: what isn't working and why?</li>
+    <li>Angular</li>
+    <li>Aurelia</li>
+    <li>Polymer</li>
+    <li>React</li>
+    <li>Vue</li>
+  </ul>
+  <hr/>
+  <div class="smaller-font">and many others</div>
+</section>
+<section id="security">
+  <h3>Security</h3>
+  <ul>
+    <li>Code injection (XSS)</li>
+    <li>Malicious communication (Tracking)</li>
+    <li>Data Leak / Loss (Phishing)</li>
+    <li>Dark patterns</li>
   </ul>
 </section>
-<section>
- <h3>Dashboards: Grafana</h3>
-  <img src="../images/grafana.png" />
-</section>
-<section>
-  <h3>Alerts</h3>
-  <p>Recieve email/sms notification if something goes wrong. For example:</p>
+<section id="links">
+  <h4>Links:</h4>
   <ul>
-    <li>if response-time jumps over some threshold</li>
-    <li>if the number of errors jumps over some threshold</li>
-    <li>if a particular service is not responding</li>
-    <li>if a server runs out of cpu/memory/disk</li> 
+    <li><a href="http://www.html5rocks.com/en/">HTML5 Rocks</a></li>
+    <li><a href="http://diveintohtml5.info/">Dive into HTML5</a></li>
+    <li><a href="https://developer.mozilla.org/en-US/">Mozilla Developer Network</a></li>
+    <li><a href="https://www.gitbook.com/book/frontendmasters/front-end-handbook-2017/details">Frontend Handbook 2017</a></li>
+    <li><a href="https://www.youtube.com/watch?v=Lsg84NtJbmI">Intro to Front-end (youtube)</a></li>
+    <li><a href="https://www.youtube.com/watch?v=_pHx_1tlGN0">Does The Browser Have A Future (youtube)</a></li>
+    <li><a href="https://www.youtube.com/watch?v=wtURpqTgtUs">The Front-end is full stack (youtube)</a></li>
   </ul>
 </section>
-<section>
-  <h3>Tools</h3>
-  <p>Using statsd to report metrics</p>
-  <pre><code class="javascript">
-    var StatsD = require('node-statsd');
-    var client = new StatsD();
 
-    client.timing('my_app.response_time', 42);
-
-    client.increment('my_app.logins');
-
-    client.decrement('my_app.active_users');
-
-    client.gauge('my_app.running_tasks', 123);
-  </code></pre>
-</section>
-<section>
-  <h3>Links</h3>
-  <ul>
-    <li><a href="https://www.elastic.co/products/logstash">Logstash</li>
-    <li><a href="https://www.elastic.co/products/kibana">Kibana for logs</a></li>
-    <li><a href="https://github.com/etsy/statsd">StatsD for collecting metrics</a></li>
-    <li><a href="http://grafana.org/">Grafana for dashboards</a></li>
-    <li><a href="http://www.monitis.com/">Monitis suite</a></li>
-    <li><a href="https://victorops.com/">VictorOPS for alets</a></li>
-  </ul>
-</section>
             <section id="schedule">
     <h3>Course Schedule:</h3>
     <table class="reveal shifted-left">
@@ -156,7 +170,7 @@
     <script src="/fullstack/js/bundle.js"></script>
     <script>
       window.FullStack101.initialize({
-        title: "Monitoring",
+        title: "Frontend Overview",
         debug: false
       });
     </script>

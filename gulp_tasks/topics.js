@@ -18,7 +18,7 @@ const _trimTitle = path => {
     return path.substr(0, linuxDelimiter > 0 ? linuxDelimiter : windowsDelimiter).trim();
 };
 
-const linkTo = (topic, title) => `<a href='/${topic}'>${(title || topic)}</a>`;
+const linkTo = (topic, title) => `<a href='{{path}}/${topic}'>${(title || topic)}</a>`;
 const listTopics = topics => `<ul id="all_topics">${(topics.reduce((acc, topic) => acc += `<li>${linkTo(topic)}</li>`, ''))}</ul>`;
 
 const mapTopics = (topics) => {
@@ -29,18 +29,19 @@ const mapTopics = (topics) => {
 
     const result = values.reduce(
         (result, topic) => {
-            result[topic] = linkTo(topic);
+            const link = topic.replace(/ /g, '_');
+            result[topic] = linkTo(link, topic);
             return result;
         },
         data);
 
-    return result;    
+    return result;
 };
 
 const extractTopicNames = () => new Promise((y, n) => {
     const topics = Object.create(null);
     gulp.src(gulpData.paths.topics)
-        .pipe(tap(file => topics[file.path] = (_trimTitle(_trimPath(file.path)))))
+        .pipe(tap(file => topics[file.path] = (_trimTitle(_trimPath(file.path))).replace(/_/g, ' ')))
         .on('error', (error) => n(error))
         .on('end', () => {y(mapTopics(topics))});
 });

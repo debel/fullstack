@@ -8,11 +8,11 @@
     <meta name="google-site-verification" content="Bfn8U25UAs2R5D9Sm6oIN-bnlijCLhvm98RiKJmWgU0">
     <meta name="description" content="An overview course for full stack web development. Giving a broad overview of the frontend, backend, devops and networks. With a focus on linting, testing, monitoring, continous integration." />
     <meta property="og:image" content="http://fullstack101.xyz/images/welcome-rick-and-morty.jpg">
-    <link rel="stylesheet" href="../css/bundle.css" />
+    <link rel="stylesheet" href="{{path}}/css/bundle.css" />
 </head>
 <body>
     <div class="header">
-      <a href="/" class="title">INF397 Full Stack Technologies</a>
+      <a href="{{path}}" class="title">INF397 Full Stack Technologies</a>
       <a href="#" id="topics_toggle">View Schedule</a>
       <a href="?print-pdf" target="_blank" id="print_topic">Print</a>
     </div>
@@ -23,7 +23,7 @@
             {{schedule}}
         </div>
     </div>
-    <script src="../js/bundle.js"></script>
+    <script src="{{path}}/js/bundle.js"></script>
     <script>
       window.FullStack101.initialize({
         title: "{{title}}",

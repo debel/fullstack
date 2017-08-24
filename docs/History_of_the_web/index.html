@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>Full stack technologies: Monitoring</title>
+    <title>Full stack technologies: History of the web</title>
     <meta charset="utf-8">
     <meta name=viewport content="width=device-width, initial-scale=1">
     <meta name="google-site-verification" content="Bfn8U25UAs2R5D9Sm6oIN-bnlijCLhvm98RiKJmWgU0">
@@ -18,91 +18,89 @@
     </div>
     <div id="presentation" class="reveal">
         <div class="slides">
-            <section><h2>Monitoring</h2></section>
+            <section><h2>History of the web</h2></section>
             <section>
-  <ul>
-    <li>Collecting vs Reporting metrics</li>
-    <li>User Analytics</li>
-    <li>App Performance</li>
-    <li>Dashboards</li>
-    <li>Alerts</li>
-  </ul>
-</section>
-<section>
-  <h3>Collecting vs Reporting metrics</h3>
-  <ul>
-    <li>Reporting: application activly send metrics</li>
-    <li>Collecting: external agent collects data about the application</li>
-    <li>Healthcheck: asking the application if everything is ok</li>
-  </ul>
-</section>
-<section>
-  <h3>User Analytics</h3>
-  <p>Client-side user-related metrics</p>
-  <ul>
-    <li>Audience: who are our users?
-      <br/>age, gender, language, location</li>
-    <li>Acquisition: where did the users come from?
-      <br/>direct, search, social, referral</li>
-    <li>Behavior: how are the users using the site?
-      <br/>visit length, pages viewed, buttons clicked</li>
-  </ul>
-</section>
-<section>
-  <h3>Dashboards: Google Analytics</h3>
-  <img src="../images/ga.png" />
-</section>
-<section>
-  <h3>App Performance</h3>
-  <p>Server-side app-related metrics</p>
-  <ul>
-    <li>Resources: how much is our app consuming?</li>
-    <li>Throughput: how much traffic can our app handle?</li>
-    <li>Events: what functionality is running and when?</li>
-    <li>Errors: what isn't working and why?</li>
-  </ul>
-</section>
-<section>
- <h3>Dashboards: Grafana</h3>
-  <img src="../images/grafana.png" />
-</section>
-<section>
-  <h3>Alerts</h3>
-  <p>Recieve email/sms notification if something goes wrong. For example:</p>
-  <ul>
-    <li>if response-time jumps over some threshold</li>
-    <li>if the number of errors jumps over some threshold</li>
-    <li>if a particular service is not responding</li>
-    <li>if a server runs out of cpu/memory/disk</li> 
-  </ul>
-</section>
-<section>
-  <h3>Tools</h3>
-  <p>Using statsd to report metrics</p>
-  <pre><code class="javascript">
-    var StatsD = require('node-statsd');
-    var client = new StatsD();
+    <div class="event-year">1968</div>
+    <div class="event">Duglas Engelbart presens <a href="https://www.youtube.com/watch?v=yJDv-zdhzMY">the mother of all demos</a></div>
 
-    client.timing('my_app.response_time', 42);
+    <div class="event-year">1973</div>
+    <div class="event">Vint Cerf and Bob Kahn define the TCP/IP protocols at XeroxPARC</div>
 
-    client.increment('my_app.logins');
-
-    client.decrement('my_app.active_users');
-
-    client.gauge('my_app.running_tasks', 123);
-  </code></pre>
+    <div class="event-year">1989</div>
+    <div class="event">Tim Berners Lee defines the HTTP protocol at Cern</div>
 </section>
 <section>
-  <h3>Links</h3>
-  <ul>
-    <li><a href="https://www.elastic.co/products/logstash">Logstash</li>
-    <li><a href="https://www.elastic.co/products/kibana">Kibana for logs</a></li>
-    <li><a href="https://github.com/etsy/statsd">StatsD for collecting metrics</a></li>
-    <li><a href="http://grafana.org/">Grafana for dashboards</a></li>
-    <li><a href="http://www.monitis.com/">Monitis suite</a></li>
-    <li><a href="https://victorops.com/">VictorOPS for alets</a></li>
-  </ul>
+    <div class="event-year">1995</div>
+    <div class="event">Brendan Eich implements JavaScript for Netscape</div>
+    <div class="event">James Gosling implements Java for Sun</div>
+    <div class="event">Rasmus Lerdorf implements PHP for his Personal Home Page</div>
 </section>
+<section>
+    <div class="event-year">1997</div>
+    <div class="event"><span class="title">Browser wars: </span>Microsoft copies JavaScript in Internet Explorer</div>
+
+    <div class="event-year">1998</div>
+    <div class="event">Larry Page and Sergey Brin release the first version of Google</div>
+</section>
+<section>
+    <div class="event-year">2000</div>
+    <div class="event">The DotCom Crash</div>
+
+    <div class="event-year">2002</div>
+    <div class="event">Mozilla releases its first browser</div>
+    <div class="event"><span class="title">JavaScript: </span>Douglas Crockford writes JSLint and the JSON standard</div>
+</section>
+<section>
+    <div class="event-year">2005</div>
+    <div class="event">Jessie James Garret invents ajax</div>
+    <div class="event">David Heinemeier Hansson implements the first version of Ruby-on-rails</div>
+
+    <div class="event-year">2006</div>
+    <div class="event">John Resig implements the first version of jQuery</div>
+    <div class="event"><span class="title">Cloud: </span>Amazon launches AWS</div>
+    <div class="event"><span class="title">Social: </span>Mark Zuckerburg launches Facebook</div>
+</section>
+<section>
+    <div class="event-year">2008</div>
+    <div class="event"><span class="title">JavaScript: </span>Google release the V8 engine</div>
+
+    <div class="event-year">2009</div>
+    <div class="event"><span class="title">JavaScript: </span>Ryan Dahl creates node.js based on V8</div>
+</section>
+<section>
+    <div class="event-year">2010</div>
+    <div class="event"><span class="title">Cloud: </span>Microsoft launches Azure</div>
+    <div class="event">ECMAScript 5 Specification</div>
+    <div class="event">First version of AngularJS</div>
+
+    <div class="event-year">2011</div>
+    <div class="event">First version fo EmberJS</div>
+
+    <div class="event-year">2012</div>
+    <div class="event">WebSocket specification, socket.io</div>
+</section>
+<section>
+    <div class="event-year">2013</div>
+    <div class="event"><span class="title">Cloud: </span>Google launches Compute Engine</div>
+    <div class="event">First version fo ReactJS</div>
+
+    <div class="event-year">2014</div>
+    <div class="event"><span class="title">Front-end framework wars</span></div>
+    <div class="event">Docker released</div>
+
+    <div class="event-year">2015</div>
+    <div class="event"><span class="title">JavaScript: </span>ECMAScript 2015</div>
+</section>
+<section>
+    <h3>Links</h3>
+    <ul>
+        <li><a href="https://www.youtube.com/watch?v=ecIWPzGEbFc">The future of Programming by Uncle Bob (youtube)</a></li>
+        <li><a href="https://www.youtube.com/watch?v=JxAXlJEmNMg">Crockford on JavaScript - The Early Years (youtube)</a></li>
+        <li><a href="https://www.youtube.com/watch?v=lKXe3HUG2l4">The Mess We're In by Joe Armstrong (youtube)</a></li>
+
+    </ul>
+</section>
+
             <section id="schedule">
     <h3>Course Schedule:</h3>
     <table class="reveal shifted-left">
@@ -156,7 +154,7 @@
     <script src="/fullstack/js/bundle.js"></script>
     <script>
       window.FullStack101.initialize({
-        title: "Monitoring",
+        title: "History of the web",
         debug: false
       });
     </script>

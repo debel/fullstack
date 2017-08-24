@@ -22,7 +22,7 @@ const _render = (view, data) => {
 
 const renderSchedule = topics => _render(scheduleTemplate.toString(), Object.assign({}, scaffoldData, topics));
 
-const renderFiles = (files, extraData) => (topics, deployPath) => {
+const renderFiles = (files, extraData) => (topics, deployPath, linkPath) => {
     topics.topics_map.toString = () => '';
     const schedule = renderSchedule(topics);
     extraData = extraData || {};
@@ -36,7 +36,7 @@ const renderFiles = (files, extraData) => (topics, deployPath) => {
           { 'content': file.contents.toString() }
         );
 
-        file.contents = new Buffer(_render(fullPage, data));
+        file.contents = new Buffer(_render(_render(fullPage, data),  { path: linkPath }));
     })).pipe(gulp.dest(deployPath));
 };
 

@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>Full stack technologies: Monitoring</title>
+    <title>Full stack technologies: Using APIs</title>
     <meta charset="utf-8">
     <meta name=viewport content="width=device-width, initial-scale=1">
     <meta name="google-site-verification" content="Bfn8U25UAs2R5D9Sm6oIN-bnlijCLhvm98RiKJmWgU0">
@@ -18,91 +18,116 @@
     </div>
     <div id="presentation" class="reveal">
         <div class="slides">
-            <section><h2>Monitoring</h2></section>
+            <section><h2>Using APIs</h2></section>
             <section>
+    <h3>Using 3rd party services</h3>
+    <ul>
+        <li>Getting access</li>
+        <li>Making requests</li>
+        <li>Web Hooks</li>
+    </ul>
+</section>
+<section>
+  <h3>Open APIs</h3>
   <ul>
-    <li>Collecting vs Reporting metrics</li>
-    <li>User Analytics</li>
-    <li>App Performance</li>
-    <li>Dashboards</li>
-    <li>Alerts</li>
+    <li>Data is publicly available</li>
+    <li>No authentication or authorization needed</li>
+    <li>Example: GitHub's Public API</li>
   </ul>
 </section>
 <section>
-  <h3>Collecting vs Reporting metrics</h3>
+  <h3>Protected APIs</h3>
   <ul>
-    <li>Reporting: application activly send metrics</li>
-    <li>Collecting: external agent collects data about the application</li>
-    <li>Healthcheck: asking the application if everything is ok</li>
+    <li>Must register (pay) to access data</li>
+    <li>No end-user login or data available</li>
+    <li>Example: Numbeo, Google Maps (basic)</li>
   </ul>
 </section>
 <section>
-  <h3>User Analytics</h3>
-  <p>Client-side user-related metrics</p>
+  <h3>User resource APIs</h3>
   <ul>
-    <li>Audience: who are our users?
-      <br/>age, gender, language, location</li>
-    <li>Acquisition: where did the users come from?
-      <br/>direct, search, social, referral</li>
-    <li>Behavior: how are the users using the site?
-      <br/>visit length, pages viewed, buttons clicked</li>
+    <li>Must register your application with provider</li>
+    <li>End-user login and data is available through scopes</li>
+    <li>Example: Google, Facebook, Spotify, etc</li>
   </ul>
 </section>
 <section>
-  <h3>Dashboards: Google Analytics</h3>
-  <img src="../images/ga.png" />
+    <h3>OAuth 2</h3>
+    <ul>
+        <li>Authentication</li>
+        <li>Authorization</li>
+        <li>No user password sharing</li>
+        <li>Users can revoke access</li>
+    </ul>
 </section>
 <section>
-  <h3>App Performance</h3>
-  <p>Server-side app-related metrics</p>
-  <ul>
-    <li>Resources: how much is our app consuming?</li>
-    <li>Throughput: how much traffic can our app handle?</li>
-    <li>Events: what functionality is running and when?</li>
-    <li>Errors: what isn't working and why?</li>
-  </ul>
+    <h3>OAuth 2 concepts</h3>
+    <ul>
+        <li>Users, Client, Provider</li>
+        <li>App Id, App Secret &amp; Redirect Uri</li>
+        <li>User Id, User Tokens &amp; Scopes</li>
+    </ul>
 </section>
 <section>
- <h3>Dashboards: Grafana</h3>
-  <img src="../images/grafana.png" />
+  <h3>OAuth 2: Register your Application</h3>
+  <ol>
+    <li>Create a developer account with a provider</li>
+    <li>Submit an application name and callback url</li>
+    <li>Receive application id and secret</li>
+  </ol>
 </section>
 <section>
-  <h3>Alerts</h3>
-  <p>Recieve email/sms notification if something goes wrong. For example:</p>
-  <ul>
-    <li>if response-time jumps over some threshold</li>
-    <li>if the number of errors jumps over some threshold</li>
-    <li>if a particular service is not responding</li>
-    <li>if a server runs out of cpu/memory/disk</li> 
-  </ul>
+  <h3>OAuth 2: Register your Application</h3>
+  <img src="../images/oauth-register.png" />
 </section>
 <section>
-  <h3>Tools</h3>
-  <p>Using statsd to report metrics</p>
-  <pre><code class="javascript">
-    var StatsD = require('node-statsd');
-    var client = new StatsD();
+    <h3>OAuth 2: Authorization Workflow</h3>
+    <ol>
+        <li>App sends the provider its app id and callback url</li>
+        <li>Provider redirects user to login &amp; grant access</li>
+        <li>Provider redirects back to your application with access-token</li>
+    </ol>
+</section>
+<section>
+  <h3>OAuth 2: Workflow Illustrated</h3>
+  <img src="../images/oauth2-workflow.jpg" />
+</section>
+<section>
+    <h3>OAuth 2: Authorization Workflow</h3>
+    <img style="background-color: white;"
+      src="../images/oauth2-sequence.png" />
+</section>
+<section>
+    <h3>OAuth 2: Making requests</h3>
+    <ul>
+      <li>Request user resources with access-token</li>
+      <li>Be careful for quotas &amp; rate limits</li>
+      <li>Access-token MUST be kept securely</li>
+    </ul>
+</section>
+<section>
+    <h3>OAuth 2: Making requests</h3>
+    <img src="../images/oauth-making-requests.png" />
+</section>
+<section>
+    <h3>Security concerns using/exposing APIs</h3>
+    <ul>
+        <li>injection</li>
+        <li>phishing</li>
+        <li>request forgery</li>
+        <li>denial of service</li>
+        <li>sensitive data leak</li>
+    </ul>
+</section>
+<section>
+    <h3>Links:</h3>
+    <ul>
+        <li><a href="https://www.digitalocean.com/community/tutorials/an-introduction-to-oauth-2">
+          Introduction to OAuth 2 (Digital Ocean)</a></li>
+        <li><a href="https://www.youtube.com/watch?v=tFYrq3d54Dc">OAuth 2 workflow (short youtube)</a></li>
+    </ul>
+</section>
 
-    client.timing('my_app.response_time', 42);
-
-    client.increment('my_app.logins');
-
-    client.decrement('my_app.active_users');
-
-    client.gauge('my_app.running_tasks', 123);
-  </code></pre>
-</section>
-<section>
-  <h3>Links</h3>
-  <ul>
-    <li><a href="https://www.elastic.co/products/logstash">Logstash</li>
-    <li><a href="https://www.elastic.co/products/kibana">Kibana for logs</a></li>
-    <li><a href="https://github.com/etsy/statsd">StatsD for collecting metrics</a></li>
-    <li><a href="http://grafana.org/">Grafana for dashboards</a></li>
-    <li><a href="http://www.monitis.com/">Monitis suite</a></li>
-    <li><a href="https://victorops.com/">VictorOPS for alets</a></li>
-  </ul>
-</section>
             <section id="schedule">
     <h3>Course Schedule:</h3>
     <table class="reveal shifted-left">
@@ -156,7 +181,7 @@
     <script src="/fullstack/js/bundle.js"></script>
     <script>
       window.FullStack101.initialize({
-        title: "Monitoring",
+        title: "Using APIs",
         debug: false
       });
     </script>
