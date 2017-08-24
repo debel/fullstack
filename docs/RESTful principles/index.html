@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Full stack technologies: RESTful principles</title>
+    <meta charset="utf-8">
+    <meta name=viewport content="width=device-width, initial-scale=1">
+    <meta name="google-site-verification" content="Bfn8U25UAs2R5D9Sm6oIN-bnlijCLhvm98RiKJmWgU0">
+    <meta name="description" content="An overview course for full stack web development. Giving a broad overview of the frontend, backend, devops and networks. With a focus on linting, testing, monitoring, continous integration." />
+    <meta property="og:image" content="http://fullstack101.xyz/images/welcome-rick-and-morty.jpg">
+    <link rel="stylesheet" href="../css/bundle.css" />
+</head>
+<body>
+    <div class="header">
+      <a href="/" class="title">INF397 Full Stack Technologies</a>
+      <a href="#" id="topics_toggle">View Schedule</a>
+      <a href="?print-pdf" target="_blank" id="print_topic">Print</a>
+    </div>
+    <div id="presentation" class="reveal">
+        <div class="slides">
+            <section><h2>RESTful principles</h2></section>
+            <section id="rest">
+  <div>
+    REST stands for <span class="color-carrot">RE</span>presentational
+    <span class="color-carrot">S</span>tate <span class="color-carrot">T</span>ransfer.
+  </div>
+  <hr/>
+  <div class="smaller-font fragment">
+    Originally a PHD thesis descibing a set of architectural principles
+    for building scalable and maintainable web systems.
+  </div>
+</section>
+<section id="rules">
+  <h3>Rules</h3>
+  <ul>
+    <li>The system is organized as resources with capabilites</li>
+    <li>The system is connected through hyper-media</li>
+    <li>Stateless Communication</li>
+    <li>Uniform Interfaces</li>
+  </ul>
+</section>
+<section id="resouces">
+  <h3>Resources and Representations</h3>
+  <div>
+    URI stand for <span class="color-carrot">U</span>niform
+       <span class="color-carrot">R</span>esource <span class="color-carrot">I</span>ndentifier
+  </div>
+  <hr/>
+  <ul>
+    <li>Resources must have unique identities</li>
+    <li>Resources expose sets of capabilities</li>
+    <li>Resources can have multiple representations</li>
+    <li>Resources must difine a caching policy</li>
+    <li>Capabilities should be accessible through uniform interfaces</li>
+  </ul>
+</section>
+<section id="hyper_media">
+  <h3>Hyper-media</h3>
+  <div>
+    Links provide access to resources & capabilites
+  </div>
+  <ul>
+    <li>Links are the application entry points</li>
+    <li>Links decouple communication</li>
+    <li>Links are platform independant</li>
+  </ul>
+</section>
+<section id="actions_and_side_effects">
+  <h3>Actions and Side effects</h3>
+  <div>
+    Side effects are indirect consequences<br/>
+    e.g. unexpected state-mutation, event triggering
+  </div>
+  <ul>
+    <li>Actions should be predictable</li>
+    <li>Side effects should be made explict</li>
+  </ul>
+</section>
+<section id="http_verbs">
+  <h3>HTTP Verbs</h3>
+  <ul>
+    <li>GET: retrieve resources, should not change data</li>
+    <li>POST: create resources</li>
+    <li>PUT: change/update resources</li>
+    <li>DELETE: remove resources</li>
+    <li>HEAD: read resources headers</li>
+</section>
+<section id="does">
+  <h5>DOes:</h5>
+  <ul>
+    <li>Use well known formats and protocols</li>
+    <li>Do not keep session state on the server between requests</li>
+    <li>Return links to further actions and resources</li>
+    <li>Use templates and forms to help clients build complex requests</li>
+  </ul>
+</section>
+<section id="donts">
+  <h5>DONTs:</h5>
+  <ul>
+    <li>Thinking only about pretty looking templated URLs</li>
+    <li>Constructing URLs manually</li>
+    <li>Hardcoding URLs</li>
+  </ul>
+</section>
+<section id="example_representation">
+  <h3>To-do representation example</h3>
+  <pre><code class="json">
+  {
+    "id": "id123",
+    "message": "get milk",
+    "done": false,
+    "methods": {
+      "get": {  "url": "todo.xyz/task/id123", "method": "GET" },
+      "toggle": { "url": "todo.xyz/task/id123/toggle", "method": "PUT" },
+      "edit": { "url": "todo.xyz/task/id123/message", "method": "PUT" },
+      "delete": { "url": "todo.abc/task/id123", "method": "DELETE" }
+    }
+  }
+  </code></pre>
+  <pre><code class="html">
+    &lt;article сlass=&quot;todo-task&quot; id=&quot;id123&quot;&gt;
+      &lt;form сlass=&quot;toggle&quot;
+        action=&quot;todo.xyz/task/id123/toggle&quot; method=&quot;PUT&quot;&gt;
+        &lt;input type=&quot;checkbox&quot; checked/&gt;
+        &lt;input type=&quot;submit&quot; value=&quot;toggle&quot;/&gt;
+      &lt;/form&gt;
+      &lt;p class=&quot;message&quot;&gt;get milk&lt;/p&gt;
+      &lt;a href=&quot;todo.xyz/task/id123&quot;&gt;View item&lt;/a&gt;
+      &lt;form class=&quot;delete&quot; action=&quot;todo.abc/task/id123&quot;
+        method=&quot;DELETE&quot;&gt;
+        &lt;input type=&quot;submit&quot; value=&quot;delete&quot;/&gt;
+      &lt;/form&gt;
+    &lt;/article&gt;
+  </code></pre>
+</section>
+<section id="example_notes">
+  <h3>To-do representation example</h3>
+  <div class="fragment">Notice the shape of the example object. Creating a task returns a representation with all methods, not just an id.<hr/></div>
+  <div class="fragment">This means you can add functionality without changing the frontend.<hr/></div>
+  <div class="fragment">Do the urls need to be human readable? No, but's its a plus if they are easy to understand.</div>
+</section>
+<section id="webhooks">
+  <h3>Web Hooks</h3>
+  <div>A way for services to communicate asynchronous<hr/></div>
+  <ol>
+    <li class="fragment">A client service sends our service a callback url</li>
+    <li class="fragment">Our service stores the callback urls per event type</li>
+    <li class="fragment">Our service sends data to all callback urls
+      when a specific event happens within our sevice</li>
+    <li class="fragment">The client service processes the event data</li>
+  </ol>
+</section>
+<section id="links">
+  <h3>Links</h3>
+  <ul>
+    <li><a href="http://www.ics.uci.edu/~fielding/pubs/dissertation/rest_arch_style.htm">Original REST paper</a></li>
+    <li><a href="https://www.youtube.com/watch?v=pspy1H6A3FM">GOTO 2014 REST (youtube)</a></li>
+    <li><a href="http://www.piotrbuda.me/2012/03/some-dos-and-donts-for-rest.html">Does and Donts</a></li>
+  </ul>
+</section>
+
+            <section id="schedule">
+    <h3>Course Schedule:</h3>
+    <table class="reveal shifted-left">
+        <tr>
+            <td>week 1 03.02.2017</td>
+            <td><a href='/History of the web'>History of the web</a></td>
+            <td><a href='/Fullstack Principles'>Fullstack Principles</a></td>
+            <td><a href='/Development Processes'>Development Processes</a></td>
+            <td><a href='/Agile Processes'>Agile Processes</a></td>
+            <td><a href='/DevOps Basics'>DevOps Basics</a></td>
+            <td><a href='/Git'>Git</a></td>
+        </tr>
+        <tr>
+            <td>week 2 10.02.2017</td>
+            <td><a href='/Frontend Overview'>Frontend Overview</a></td>
+            <td><a href='/Backend Overview'>Backend Overview</a></td>
+            <td><a href='/Network Overview'>Network Overview</a></td>
+            <td><a href='/Testing'>Testing</a></td>
+            <td><a href='/JavaScript Overview'>JavaScript Overview</a></td>
+            <td><a href='/JavaScript Tooling'>JavaScript Tooling</a></td>
+        </tr>
+        <tr>
+            <td>week 3 17.02.2017</td>
+            <td><a href='/Web Architectures'>Web Architectures</a></td>
+            <td><a href='/RESTful principles'>RESTful principles</a></td>
+            <td><a href='/SOLID principles'>SOLID principles</a></td>
+            <td><a href='/Web Components'>Web Components</a></td>
+            <td><a href='/Continuous Integration'>Continuous Integration</a></td>
+        </tr>
+        <tr>
+            <td>week 4 24.02.2017</td>
+            <td><a href='/Databases basics'>Databases basics</a></td>
+            <td><a href='/Using APIs'>Using APIs</a></td>
+            <td><a href='/Deployment Automation'>Deployment Automation</a></td>
+            <td><a href='/Monitoring'>Monitoring</a></td>
+            <td style="color: salmon;">In-class project consultations</td>
+        </tr>
+        <tr>
+            <td>week 5 17.03.2017</td>
+            <td colspan="4" style="color: salmon; vertical-align:middle; text-align: center;">
+                <a href="/About the course/#project">Project presentations</a><hr/>
+                <a href="/About the course/#quiz">Final Test</a><hr/>
+                Course Retrospective and Q&amp;A
+            </td>
+        </tr>
+    </table>
+</section>
+
+        </div>
+    </div>
+    <script src="../js/bundle.js"></script>
+    <script>
+      window.FullStack101.initialize({
+        title: "RESTful principles",
+        debug: false
+      });
+    </script>
+</body>
+</html>

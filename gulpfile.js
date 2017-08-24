@@ -3,6 +3,7 @@ const libs = require('./gulp_tasks/libs');
 const clear = require('./gulp_tasks/clear');
 const topics = require('./gulp_tasks/topics');
 const render = require('./gulp_tasks/render');
+
 const buildAndDeploy = (deployPath, debug)  => () => {
     clear.clearOldDeploy(deployPath)
         .then(() => topics.extractTopicNames())
@@ -16,7 +17,7 @@ const buildAndDeploy = (deployPath, debug)  => () => {
         }).catch(error => console.log(error));
 };
 
-gulp.task('build-reveal', buildAndDeploy('/usr/share/nginx/html/'));
+gulp.task('build-reveal', buildAndDeploy('./docs/'));
 
 gulp.task('build-home', buildAndDeploy('C:\\MixWay\\Web\\Fullstack\\', true));
 

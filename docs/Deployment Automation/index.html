@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Full stack technologies: Deployment Automation</title>
+    <meta charset="utf-8">
+    <meta name=viewport content="width=device-width, initial-scale=1">
+    <meta name="google-site-verification" content="Bfn8U25UAs2R5D9Sm6oIN-bnlijCLhvm98RiKJmWgU0">
+    <meta name="description" content="An overview course for full stack web development. Giving a broad overview of the frontend, backend, devops and networks. With a focus on linting, testing, monitoring, continous integration." />
+    <meta property="og:image" content="http://fullstack101.xyz/images/welcome-rick-and-morty.jpg">
+    <link rel="stylesheet" href="../css/bundle.css" />
+</head>
+<body>
+    <div class="header">
+      <a href="/" class="title">INF397 Full Stack Technologies</a>
+      <a href="#" id="topics_toggle">View Schedule</a>
+      <a href="?print-pdf" target="_blank" id="print_topic">Print</a>
+    </div>
+    <div id="presentation" class="reveal">
+        <div class="slides">
+            <section><h2>Deployment Automation</h2></section>
+            <section>
+    <h3>Example Google Deployment Pipeline</li>
+  <img style="background-color:white;"
+    src="../images/google-travis-ci-process.png" />
+</section>
+<section>
+    <h3>Concepts</h3>
+    <ul>
+        <li>Containers vs VMs vs Bare metal</li>
+        <li>Infrastructure as Code</li>
+        <li>Artifacts</li>
+        <li>Workflows</li>
+        <li>Blue/Green</li>
+    </ul>
+</section>
+<section>
+    <h3>Containers vs VMs vs Bare metal</h3>
+    <ul>
+        <li>Containers: new, lite and provider agnostic</li>
+        <li>VMs: familiar, tested and provider agnostic</li>
+        <li>Bare metal: for when you need all the power you can get</li>
+    </ul>
+</section>
+<section>
+    <h3>Infrastructure as code</h3>
+    <ul>
+        <li>Configuration files describe servers, networks, etc</li>
+        <li>Keep config with your code in git</li>
+        <li>Avoid manually modifying servers</li>
+        <li>Small changes rather than big batches</li>
+    </ul>
+</section>
+<section>
+    <h3>Infrastructure as code</h3>
+    <img src="../images/infrastructure-as-code.png" />
+</section>
+<section>
+    <h3>Artifacts</h3>
+    <div>Building your application produces various artifacts:</div>
+    <ul class="fragment">
+        <li>Executable files</li>
+        <li>Compressed resources</li>
+        <li>Images, Fonts, etc</li>
+    </ul>
+    <div class="fragment">
+        <hr/>Artifacts are deployed to the production server, not your entire codebase</div>
+</section>
+<section>
+    <h3>Deployment Workflows</h3>
+    <ul>
+        <li>Manual: login to the server, upload the artifacts, start the application</li>
+        <li class="fragment">Git Push: a git hook on a specific remote triggers the deployment</li>
+        <li class="fragment">Through CI: service monitors repository and triggers a deployment after a successful build</li>
+        <li class="fragment">Provider Tool: most hosting environments provide specific tools for deployment</li>
+    </ul>
+</section>
+<section>
+    <h3>Tools</h3>
+    <ul>
+        <li>FTP &amp; Rsync</li>
+        <li>Git &amp; SSH</li>
+        <li>Ansible &amp; Terraform</li>
+        <li>Docker swarm &amp; Kubernetes</li>
+        <li>Provider specific options</li>
+    </ul>
+</section>
+<section>
+    <h3>Example AWS Cloudformation</h3>
+    <div class="smaller-font">Cloudformation creates/updates infrastructure based on json definition</div>
+    <pre><code class="json">
+  {
+    "Resources" : {
+      "FileBucket" : {
+        "Type" : "AWS::S3::Bucket",
+        "Properties" : {
+          "AccessControl" : "PublicRead"
+        }
+      },
+      "Ec2Instance" : {
+        "Type" : "AWS::EC2::Instance",
+        "Properties" : {
+          "SecurityGroups" : [ { "Ref" : "InstanceSecurityGroup" } ],
+          "ImageId" : "ami-7a11e213"
+        }
+      },
+      "InstanceSecurityGroup" : {
+        "Type" : "AWS::EC2::SecurityGroup",
+        "Properties" : { "...": "..." }
+      }
+    }
+  }
+  </code></pre>
+</section>
+<section>
+    <h3>Example AWS Cloudformation</h3>
+    <img src="../images/aws-cloudformation.png" />
+</section>
+<section>
+    <h3>Example git post-recieve hook</h3>
+    <div class="smaller-font">Git hooks are scripts that let you react to repository events. The post-recieve hook triggers after a push is recieved </div>
+    <pre><code class="bash">
+    # hooks/post-recieve
+    GIT_WORK_TREE=~/src-full-stack git checkout master -f &&
+    cd ~/src-full-stack &&
+    npm install &&
+    npm run build &&
+    echo "Deployed successfully"
+  </code></pre>
+</section>
+<section>
+    <h3>Example kubernetes config</h3>
+    <div class="smaller-font">Kubernetes deploys your code to a docker container cluster</div>
+    <pre><code class="yml">
+  apiVersion: extensions/v1beta1
+  kind: Deployment
+  metadata:
+    name: nginx-deployment
+  spec:
+    replicas: 2
+    template:
+      metadata:
+        labels:
+          app: nginx
+      spec:
+        containers:
+        - name: nginx
+          image: nginx:1.8
+          ports:
+          - containerPort: 80
+    </code></pre>
+</section>
+<section>
+    <h3>Blue/Green deployment</h3>
+    <img width="80%" src="../images/blue_green.jpg" />
+</section>
+<section>
+    <h3>Blue/Green deployment: Process overview</h3>
+    <ol>
+        <li>A new deployment is triggered</li>
+        <li>A new environment is setup (green)</li>
+        <li>Old version continues serving all requests (blue)</li>
+        <li>Small amount of traffic is given to the new version (green)</li>
+        <li>New version (green) is monitored against predefined metrics</li>
+        <li>If the new version performs well, continue with next server, else rollback</li>
+    </ol>
+</section>
+<section>
+    <h3>Example Ansible deployment diagram</h3>
+    <img src="../images/app_deploy_diagram.png" />
+</section>
+<section>
+    <h3>Benefits</h3>
+    <ul>
+        <li>Repeatable &amp; reliable</li>
+        <li>Easier management</li>
+        <li>Testable systems and processes</li>
+        <li>Self-documenting systems and processes</li>
+    </ul>
+</section>
+<section>
+    <h3>Links:</h3>
+    <ul>
+        <li><a href="https://www.ansible.com">Ansible (utility)</a></li>
+        <li><a href="https://www.terraform.io/">Terraform (utility)</a></li>
+        <li><a href="https://oncletom.io/2016/travis-ssh-deploy/">Deploying through Travis with RSync</a></li>
+        <li><a href="https://www.digitalocean.com/community/tutorials/how-to-deploy-a-basic-php-application-using-ansible-on-ubuntu-14-04">Deploying PHP via Ansible</a></li>
+        <li><a href="http://martinfowler.com/bliki/BlueGreenDeployment.html">Martin Fowler on Blue/Green deployment</a></li>
+        <li><a href="https://www.youtube.com/watch?v=ueAef9tNUck">Martin Folwer - Infrastructure as code (youtube)</a></li>
+        <li><a href="https://www.youtube.com/watch?v=K843Ukiw3d8">Infrastructure as code (youtube)</a></li>
+        <li><a href="https://docs.microsoft.com/en-us/aspnet/core/publishing/azure-continuous-deployment">
+          Continuous deployment on Azure</a></li>
+        <li><a href="https://cloud.google.com/solutions/continuous-delivery-with-travis-ci">
+            Continuous deployment on Google</a></li>
+        <li><a href="https://aws.amazon.com/devops/continuous-delivery/">
+              Continuous deployment on AWS</a></li>
+    </ul>
+</section>
+
+            <section id="schedule">
+    <h3>Course Schedule:</h3>
+    <table class="reveal shifted-left">
+        <tr>
+            <td>week 1 03.02.2017</td>
+            <td><a href='/History of the web'>History of the web</a></td>
+            <td><a href='/Fullstack Principles'>Fullstack Principles</a></td>
+            <td><a href='/Development Processes'>Development Processes</a></td>
+            <td><a href='/Agile Processes'>Agile Processes</a></td>
+            <td><a href='/DevOps Basics'>DevOps Basics</a></td>
+            <td><a href='/Git'>Git</a></td>
+        </tr>
+        <tr>
+            <td>week 2 10.02.2017</td>
+            <td><a href='/Frontend Overview'>Frontend Overview</a></td>
+            <td><a href='/Backend Overview'>Backend Overview</a></td>
+            <td><a href='/Network Overview'>Network Overview</a></td>
+            <td><a href='/Testing'>Testing</a></td>
+            <td><a href='/JavaScript Overview'>JavaScript Overview</a></td>
+            <td><a href='/JavaScript Tooling'>JavaScript Tooling</a></td>
+        </tr>
+        <tr>
+            <td>week 3 17.02.2017</td>
+            <td><a href='/Web Architectures'>Web Architectures</a></td>
+            <td><a href='/RESTful principles'>RESTful principles</a></td>
+            <td><a href='/SOLID principles'>SOLID principles</a></td>
+            <td><a href='/Web Components'>Web Components</a></td>
+            <td><a href='/Continuous Integration'>Continuous Integration</a></td>
+        </tr>
+        <tr>
+            <td>week 4 24.02.2017</td>
+            <td><a href='/Databases basics'>Databases basics</a></td>
+            <td><a href='/Using APIs'>Using APIs</a></td>
+            <td><a href='/Deployment Automation'>Deployment Automation</a></td>
+            <td><a href='/Monitoring'>Monitoring</a></td>
+            <td style="color: salmon;">In-class project consultations</td>
+        </tr>
+        <tr>
+            <td>week 5 17.03.2017</td>
+            <td colspan="4" style="color: salmon; vertical-align:middle; text-align: center;">
+                <a href="/About the course/#project">Project presentations</a><hr/>
+                <a href="/About the course/#quiz">Final Test</a><hr/>
+                Course Retrospective and Q&amp;A
+            </td>
+        </tr>
+    </table>
+</section>
+
+        </div>
+    </div>
+    <script src="../js/bundle.js"></script>
+    <script>
+      window.FullStack101.initialize({
+        title: "Deployment Automation",
+        debug: false
+      });
+    </script>
+</body>
+</html>

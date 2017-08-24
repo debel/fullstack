@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Full stack technologies: Git</title>
+    <meta charset="utf-8">
+    <meta name=viewport content="width=device-width, initial-scale=1">
+    <meta name="google-site-verification" content="Bfn8U25UAs2R5D9Sm6oIN-bnlijCLhvm98RiKJmWgU0">
+    <meta name="description" content="An overview course for full stack web development. Giving a broad overview of the frontend, backend, devops and networks. With a focus on linting, testing, monitoring, continous integration." />
+    <meta property="og:image" content="http://fullstack101.xyz/images/welcome-rick-and-morty.jpg">
+    <link rel="stylesheet" href="../css/bundle.css" />
+</head>
+<body>
+    <div class="header">
+      <a href="/" class="title">INF397 Full Stack Technologies</a>
+      <a href="#" id="topics_toggle">View Schedule</a>
+      <a href="?print-pdf" target="_blank" id="print_topic">Print</a>
+    </div>
+    <div id="presentation" class="reveal">
+        <div class="slides">
+            <section><h2>Git</h2></section>
+            <section>
+<section id="contents">
+  <h3>Git - distributed source code management</h3>
+ <ul>
+    <li>Concepts</li>
+    <li>Local commands</li>
+    <li>Remote commands</li>
+    <li>Workflows</li>
+    <li>Tools</li>
+  </ul>
+</section>
+<section>
+  <h3>I have all the code</h3>
+  <img src="../images/git.jpg" />
+</section>
+</section>
+<section>
+  <h3>Concepts</h3>
+  <ul>
+      <li>Repository</li>
+      <li>Working directory</li>
+      <li>Index</li>
+      <li>Commit</li>
+      <li>Remotes</li>
+      <li>Branches</li>
+    </ul>
+</section>
+<section id="concepts-1">
+  <h5>Repository</h5>
+  <p>All files and sub-folders in the prject folder.
+    <br/>Files can be excluded through the <code class="boxed">.gitignore</code> file</p>
+  <hr/>
+  <h5>Remotes</h5>
+  <p>Other repositories represented by a name and a url
+    <br/>List remotes by running <code class="boxed">git remote -v</code></p>
+  <hr/>
+  <h5>Working directory</h5>
+  <p>The current state of the repository
+    <br/>See changed files by running <code class="boxed">git status</code>
+    <br/>Or view all changes by running <code class="boxed">git diff</code></p>
+  <hr/>
+</section>
+<section>
+    <img width="80%" src="../images/git_index_structure.png" />
+</section>
+<section id="concepts-2">
+  <h5>Index</h5>
+  <p>Selected changes waiting to be committed.
+    <br/>Add changes by running the <code class="boxed">git add</code> command</p>
+  </p><hr/>
+  <h5>Commits</h5>
+  <p>A SHA1 identified package of changes. Each commit points to its parent commit.
+    The commit history can be explored with <code class="boxed">git log</code></p><hr/>
+  <h5>Branches</h5>
+  <p>Branches are simply pointers to commits.
+    <br/>The <code class="boxed">HEAD</code> points to the current commit.
+    <br/>List branches with <code class="boxed">git branch -v</code>
+  </p><hr/>
+</section>
+<section>
+  <img src="../images/git_log.png" />
+</section>
+<section id="local-cmds-1">
+  <h3>Local commands:</h3>
+  <pre><code class="bash">
+    #create a new repository in the current dir
+    $ git init
+
+    #add files to the index
+    $ git add
+
+    #create a new commit
+    $ git commit
+
+    #show the status of the working dir vs the index
+    $ git status
+
+    #get specific versions of files
+    $ git checkout
+
+    #manipulate branches
+    $ git branch
+  </code></pre>
+</section>
+<section id="local-cmds-2">
+  <h3>More local commands:</h3>
+  <pre><code class="bash">
+    #explore the tree of commits
+    $ git log
+
+    #move the HEAD pointer
+    $ git reset
+
+    #create a commit with muliple parent commits
+    $ git merge
+
+    #re-create a commit on top of a different parent
+    $ git rebase
+  </code></pre>
+</section>
+<section>
+  <img width="50%" src="../images/git_log_2.png" />
+</section>
+<section id="remote-cmds-1">
+  <h3>Remote commands:</h3>
+  <pre><code class="bash">
+    #download a repository from a given url
+    $ git clone
+
+    #download commits from a remote repository
+    $ git fetch
+
+    #upload commits to a remote repository
+    $ git push
+  </code></pre>
+</section>
+<section id="git-1">
+<div id="git-user">
+tell git your name and email
+  <pre><code class="bash">
+    git config --global user.name="XXX YYY"
+    git config --global user.email="ZZZ@aubg.bg"
+  </code></pre>
+</div>
+<div id="git-init" class="fragment">
+sets up a new repository in the current folder
+  <pre><code class="bash">
+    git init
+  </code></pre>
+</div>
+<div id="git-status" class="fragment">
+check the state of your git repository
+  <pre><code class="bash">
+    git status
+  </code></pre>
+</div>
+</section>
+<section id="git-2">
+<div id="git-add">
+promote code snippets to be included in the next commit
+  <pre><code class="bash">
+    git add -p
+  </code></pre>
+</div>
+<div id="git-commit" class="fragment">
+create a commit with the given message
+  <pre><code class="bash">
+    git commit -m "MSG MSG MSG"
+  </code></pre>
+</div>
+<div id="git-log" class="fragment">
+explore the history of commits in your project
+  <pre><code class="bash">
+    git log --graph --oneline
+  </code></pre>
+</div>
+</section>
+<section id="workflows">
+  <h3>Workflows</h3>
+  <ul>
+    <li>All-in-master</li>
+    <li>Feature branches</li>
+    <li>Pull/Merge requests</li>
+    <li>Multi-tier</li>
+  </ul>
+</section>
+<section>
+  <h3>Hooks:</h3>
+  <ul>
+    <li>Client eg. Pre-commit</li>
+    <li>Server eg. Post-update</li>
+  </ul>
+</section>
+<section>
+  <h3>Links:</h3>
+  <ul>
+    <li><a href="https://git-scm.com/book/en/v2">The git book</a></li>
+    <li><a href="https://codewords.recurse.com/issues/two/git-from-the-inside-out">Git from the inside out</a></li>
+    <li><a href="https://www.youtube.com/watch?v=dBSHLb1B8sw">Deep dive into GIT (youtube)</a></li>
+  </ul>
+</section>
+
+            <section id="schedule">
+    <h3>Course Schedule:</h3>
+    <table class="reveal shifted-left">
+        <tr>
+            <td>week 1 03.02.2017</td>
+            <td><a href='/History of the web'>History of the web</a></td>
+            <td><a href='/Fullstack Principles'>Fullstack Principles</a></td>
+            <td><a href='/Development Processes'>Development Processes</a></td>
+            <td><a href='/Agile Processes'>Agile Processes</a></td>
+            <td><a href='/DevOps Basics'>DevOps Basics</a></td>
+            <td><a href='/Git'>Git</a></td>
+        </tr>
+        <tr>
+            <td>week 2 10.02.2017</td>
+            <td><a href='/Frontend Overview'>Frontend Overview</a></td>
+            <td><a href='/Backend Overview'>Backend Overview</a></td>
+            <td><a href='/Network Overview'>Network Overview</a></td>
+            <td><a href='/Testing'>Testing</a></td>
+            <td><a href='/JavaScript Overview'>JavaScript Overview</a></td>
+            <td><a href='/JavaScript Tooling'>JavaScript Tooling</a></td>
+        </tr>
+        <tr>
+            <td>week 3 17.02.2017</td>
+            <td><a href='/Web Architectures'>Web Architectures</a></td>
+            <td><a href='/RESTful principles'>RESTful principles</a></td>
+            <td><a href='/SOLID principles'>SOLID principles</a></td>
+            <td><a href='/Web Components'>Web Components</a></td>
+            <td><a href='/Continuous Integration'>Continuous Integration</a></td>
+        </tr>
+        <tr>
+            <td>week 4 24.02.2017</td>
+            <td><a href='/Databases basics'>Databases basics</a></td>
+            <td><a href='/Using APIs'>Using APIs</a></td>
+            <td><a href='/Deployment Automation'>Deployment Automation</a></td>
+            <td><a href='/Monitoring'>Monitoring</a></td>
+            <td style="color: salmon;">In-class project consultations</td>
+        </tr>
+        <tr>
+            <td>week 5 17.03.2017</td>
+            <td colspan="4" style="color: salmon; vertical-align:middle; text-align: center;">
+                <a href="/About the course/#project">Project presentations</a><hr/>
+                <a href="/About the course/#quiz">Final Test</a><hr/>
+                Course Retrospective and Q&amp;A
+            </td>
+        </tr>
+    </table>
+</section>
+
+        </div>
+    </div>
+    <script src="../js/bundle.js"></script>
+    <script>
+      window.FullStack101.initialize({
+        title: "Git",
+        debug: false
+      });
+    </script>
+</body>
+</html>

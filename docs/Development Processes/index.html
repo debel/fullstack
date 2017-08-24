@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Full stack technologies: Development Processes</title>
+    <meta charset="utf-8">
+    <meta name=viewport content="width=device-width, initial-scale=1">
+    <meta name="google-site-verification" content="Bfn8U25UAs2R5D9Sm6oIN-bnlijCLhvm98RiKJmWgU0">
+    <meta name="description" content="An overview course for full stack web development. Giving a broad overview of the frontend, backend, devops and networks. With a focus on linting, testing, monitoring, continous integration." />
+    <meta property="og:image" content="http://fullstack101.xyz/images/welcome-rick-and-morty.jpg">
+    <link rel="stylesheet" href="../css/bundle.css" />
+</head>
+<body>
+    <div class="header">
+      <a href="/" class="title">INF397 Full Stack Technologies</a>
+      <a href="#" id="topics_toggle">View Schedule</a>
+      <a href="?print-pdf" target="_blank" id="print_topic">Print</a>
+    </div>
+    <div id="presentation" class="reveal">
+        <div class="slides">
+            <section><h2>Development Processes</h2></section>
+            <section>
+    <h3>Goals:</h3>
+    <ul>
+        <li class="fragment">Minimize design and implementation errors</li>
+        <li class="fragment">Increase effectivness and code quality</li>
+        <li class="fragment">Simplify team workflow</li>
+    </ul>
+</section>
+<section>
+    <h3>General Software Development Lifecycle:</h3>
+    <ol>
+        <li class="fragment">Plan</li>
+        <li class="fragment">Create</li>
+        <li class="fragment">Verify /Test/</li>
+        <li class="fragment">Configure &amp; Publish</li>
+        <li class="fragment">Monitor</li>
+        <li class="fragment">Automate</li>
+    </ol>
+</section>
+<section>
+    <section>
+        <h3>Theory of constraints</h3>
+        <ol>
+            <li>Identify the system's constraints</li>
+            <li>Decide how to exploit them</li>
+            <li>Subordinate everything else to the above decisions</li>
+            <li>Re-elevate the system's constraints</li>
+        </ol>
+    </section>
+    <section>
+        <h3>Theory of constraints</h3>
+        <img src="../images/weakest-link.jpg" />
+    </section>
+</section>
+<section>
+    <h3>Types of constraints</h3>
+    <ul>
+        <li>Equipment: misuse and under/over -utilization</li>
+        <li>People: lack of skills, bad mental models</li>
+        <li>Policy: explicit and implicit blockers</li>
+    </ul>
+</section>
+<section>
+  <h3>Programming styles</h3>
+  <ul>
+    <li>Imperative: C, Pascal, Basic</li>
+    <li>Declarative: SQL, HTML, CSS</li>
+    <li>Object Oriented: Java, C#</li>
+    <li>Functional: Clojure, Haskell, F#</li>
+    <li>Mixed: JavaScript, Scala</li>
+  </ul>
+  <hr/>
+  <div class="smaller-font">Your programmin style is independant
+    from your development methodology</div>
+</section>
+<section>
+    <h3>Common Development Methodologies:</h3>
+    <ul>
+        <li>Design driven (Waterfall)</li>
+        <li>Domain driven (DDD)</li>
+        <li>Prototype driven</li>
+        <li>Test driven (TDD)</li>
+    </ul>
+</section>
+<section>
+    <h3>Design driven (Waterfall)</h3>
+    <img src="../images/waterfall_model.png" />
+</section>
+<section>
+    <h3>Design driven (Waterfall)</h3>
+    <ul>
+        <li>Based on the civil engineering disciplines</li>
+        <li>Splits design from implementation</li>
+        <li>Final requirments agreed at the start of the project</li>
+        <li>Slow reaction to errors</li>
+    </ul>
+</section>
+<section>
+    <h3>Domain driven</h3>
+    <img src="../images/ddd.png" />
+</section>
+<section>
+    <h3>Domain driven</h3>
+    <ul>
+        <li>Mimics the domain and domain logic</li>
+        <li>Design based on a model of the domain</li>
+        <li>Collaboration between technical and domain experts</li>
+        <li>Change is driven by the domain</li>
+    </ul>
+</section>
+<section>
+    <h3>Prototype driven</h3>
+    <img src="../images/prototype-model.png" />
+</section>
+<section>
+    <h3>Prototype driven</h3>
+    <ul>
+        <li>Throw away code</li>
+        <li>Try to solve core problems first</li>
+        <li>Release the product as soon as possible</li>
+        <li>Requirments are re-examined after each release</li>
+    </ul>
+</section>
+<section>
+    <h3>Test driven</h3>
+    <img src="../images/tdd.png" />
+</section>
+<section>
+    <h3>Test driven</h3>
+    <ul>
+        <li>Write tests before product code</li>
+        <li>Quickly uncover edge-cases, bugs and pitfalls</li>
+        <li>Refactor and integrate with confidence</li>
+    </ul>
+</section>
+<section>
+    <h3>Test Driven Workflow</h3>
+    <ol>
+        <li class="fragment">Write a failing test</li>
+        <li class="fragment">Right just enough code to make the test pass</li>
+        <li class="fragment">Refactor the code without breaking the test</li>
+        <li class="fragment">Repeat</li>
+    </ol>
+</section>
+<section>
+    <section>
+        <h3>Pair programming</h3>
+        <ul>
+            <li>Group works as a unit</li>
+            <li>One team member write the code</li>
+            <li>The other(s) observe, learn and suggest improvments</li>
+            <li>Another team member starts to write the code</li>
+        </ul>
+    </section>
+    <section>
+        <img src="../images/pair-programming-joke.jpg" />
+    </section>
+</section>
+<section>
+    <h3>Technical discussions</h3>
+    <ul>
+        <li>During planning / when needed</li>
+        <li>Several or all team members should:<ul>
+            <li>Analyze the problem in question</li>
+            <li>Reach a working solution</li>
+            <li>Write a report / documentation</li>
+            <li>Create implementation cards</li>
+          </ul>
+        </lu>
+    </ul>
+</section>
+<section>
+  <h3>Research spike</h3>
+  <ul>
+    <li>Select the best technology for a task</li>
+    <li>Discover the best agorithm for a task</li>
+    <li>Answer a question or gathering information rather than at producing shippable product.</li>
+  </ul>
+</section>
+<section>
+    <h3>Code reviews</h3>
+    <ul>
+        <li>Upon request / when code is done</li>
+        <li>One or several team members should:
+            <ul>
+                <li>study and test the new code</li>
+                <li>write down issues / comments related to the code</li>
+                <li>suggest improvements</li>
+                <li>mark the code as ready</li>
+            </ul>
+        </li>
+    </ul>
+</section>
+<section>
+    <h3>Links:</h3>
+    <ul>
+        <li><a href="https://www.youtube.com/watch?v=Led34f3Pcq4">Development Processes, George Fairbanks (youtube)</li></a>
+        <li><a href="https://en.wikipedia.org/wiki/Theory_of_constraints">Theory of constraints</a></li>
+        <li><a href="https://en.wikipedia.org/wiki/DevOps_toolchain">The DevOps toolchain</a></li>
+        <li><a href="http://butunclebob.com/ArticleS.UncleBob.TheThreeRulesOfTdd">Uncle Bob on TDD</a></li>
+        <li><a href="https://blog.scottnonnenberg.com/top-ten-pull-request-review-mistakes/">Common code review mistakes</a></li>
+    </ul>
+</section>
+
+            <section id="schedule">
+    <h3>Course Schedule:</h3>
+    <table class="reveal shifted-left">
+        <tr>
+            <td>week 1 03.02.2017</td>
+            <td><a href='/History of the web'>History of the web</a></td>
+            <td><a href='/Fullstack Principles'>Fullstack Principles</a></td>
+            <td><a href='/Development Processes'>Development Processes</a></td>
+            <td><a href='/Agile Processes'>Agile Processes</a></td>
+            <td><a href='/DevOps Basics'>DevOps Basics</a></td>
+            <td><a href='/Git'>Git</a></td>
+        </tr>
+        <tr>
+            <td>week 2 10.02.2017</td>
+            <td><a href='/Frontend Overview'>Frontend Overview</a></td>
+            <td><a href='/Backend Overview'>Backend Overview</a></td>
+            <td><a href='/Network Overview'>Network Overview</a></td>
+            <td><a href='/Testing'>Testing</a></td>
+            <td><a href='/JavaScript Overview'>JavaScript Overview</a></td>
+            <td><a href='/JavaScript Tooling'>JavaScript Tooling</a></td>
+        </tr>
+        <tr>
+            <td>week 3 17.02.2017</td>
+            <td><a href='/Web Architectures'>Web Architectures</a></td>
+            <td><a href='/RESTful principles'>RESTful principles</a></td>
+            <td><a href='/SOLID principles'>SOLID principles</a></td>
+            <td><a href='/Web Components'>Web Components</a></td>
+            <td><a href='/Continuous Integration'>Continuous Integration</a></td>
+        </tr>
+        <tr>
+            <td>week 4 24.02.2017</td>
+            <td><a href='/Databases basics'>Databases basics</a></td>
+            <td><a href='/Using APIs'>Using APIs</a></td>
+            <td><a href='/Deployment Automation'>Deployment Automation</a></td>
+            <td><a href='/Monitoring'>Monitoring</a></td>
+            <td style="color: salmon;">In-class project consultations</td>
+        </tr>
+        <tr>
+            <td>week 5 17.03.2017</td>
+            <td colspan="4" style="color: salmon; vertical-align:middle; text-align: center;">
+                <a href="/About the course/#project">Project presentations</a><hr/>
+                <a href="/About the course/#quiz">Final Test</a><hr/>
+                Course Retrospective and Q&amp;A
+            </td>
+        </tr>
+    </table>
+</section>
+
+        </div>
+    </div>
+    <script src="../js/bundle.js"></script>
+    <script>
+      window.FullStack101.initialize({
+        title: "Development Processes",
+        debug: false
+      });
+    </script>
+</body>
+</html>

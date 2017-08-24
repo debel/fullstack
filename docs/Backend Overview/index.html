@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Full stack technologies: Backend Overview</title>
+    <meta charset="utf-8">
+    <meta name=viewport content="width=device-width, initial-scale=1">
+    <meta name="google-site-verification" content="Bfn8U25UAs2R5D9Sm6oIN-bnlijCLhvm98RiKJmWgU0">
+    <meta name="description" content="An overview course for full stack web development. Giving a broad overview of the frontend, backend, devops and networks. With a focus on linting, testing, monitoring, continous integration." />
+    <meta property="og:image" content="http://fullstack101.xyz/images/welcome-rick-and-morty.jpg">
+    <link rel="stylesheet" href="../css/bundle.css" />
+</head>
+<body>
+    <div class="header">
+      <a href="/" class="title">INF397 Full Stack Technologies</a>
+      <a href="#" id="topics_toggle">View Schedule</a>
+      <a href="?print-pdf" target="_blank" id="print_topic">Print</a>
+    </div>
+    <div id="presentation" class="reveal">
+        <div class="slides">
+            <section><h2>Backend Overview</h2></section>
+            <section id="static_server">
+    <h3>Static web server</h3>
+    <p>Return only the contents of files</p>
+</section>
+<section id="cgi_server">
+    <h3>CGI Protocol</h3>
+    <p>Common Gateway Interface - run a program to generate a response</p>
+</section>
+<section id="app_server">
+    <h3>Application Server</h3>
+    <p>Language/Platform specific http implementations</p>
+    <ul>
+        <li>CGI - PHP</li>
+        <li>webContainer - Java</li>
+        <li>USAPI - dotNet</li>
+        <li>uWSGI - Python</li>
+        <li>libUV - node.js</li>
+    </ul>
+</section>
+<section id="serverless">
+    <h3>Serverless</h3>
+    <div>Execute code on shared cloud infrastructure</div>
+</section>
+<section id="app_structure">
+    <h3>CLEAN application structure</h3>
+    <img src="../images/clean-architecture.jpg" />
+</section>
+<section id="app_structure_2">
+    <h3>CLEAN application structure</h3>
+    <ul>
+        <li>Use-cases encapsulate Domain/Business logic</li>
+        <li>Use-cases have input &amp; output interfaces</li>
+        <li>Controllers initiate use-cases</li>
+        <li>Presenters observe use-case results</li>
+    </ul>
+</section>
+<section id="node_js_server">
+    <h3>http server in node.js</h3>
+    <pre><code class="javascript">
+          /* server.js */
+          var http = require('http'),
+              server = http.createServer(function (req, res) {
+                  //server executes callback on every connection
+                  res.end('Hello Web!');
+          });
+
+          //start the server on port 8080
+          server.listen(8080);
+          </code></pre>
+    <div>run the server from the console</div>
+    <pre><code class="bash">
+      node server.js
+  </code></pre>
+</section>
+<section id="routing">
+    <h3>Routing</h3>
+    <ol>
+        <li>Parse the URL</li>
+        <li>Select the most appropriate response strategy</li>
+        <li>Execute it with on the request parameters</li>
+    </ol>
+</section>
+<section id="express">
+    <h3>Express for Node.js</h3>
+    <pre><code class="javascript">
+    //create new tasks
+     srv.post('/task', (req, res) => {
+       task = tasks.createTask(req.params);
+       res.json(task);
+     });
+
+     //get an existing task
+     srv.get('/task/:id', (req, res) => {
+       res.json(tasks.get(req.params.id));
+     });
+
+     //toggle task done
+     srv.put('/task/:id/toggle', (req, res) => {
+       const task = tasks.get(req.params.id);
+       task.done = !task.done;
+       res.json(task);
+     });
+  </code></pre>
+</section>
+<section id="flask">
+    <h3>Flask for Python</h3>
+    <pre><code class="python">
+    @app.route('/')
+    def show_entries():
+      db_cursor = db.execute('SELECT title, text FROM entries')
+      entries = db_cursor.fetchall()
+      return render_template('show_entries.html', entries=entries)
+
+    @app.route('/add', methods=['POST'])
+    def add_entry():
+      if not session.get('logged_in'):
+        abort(401)
+      db.execute('INSERT INTO entries (title, text) VALUES (?, ?)',
+                      [request.form['title'], request.form['text']])
+      db.commit()
+      flash('New entry was successfully posted')
+      return redirect(url_for('show_entries'))
+  </code></pre>
+</section>
+<section id="vertx">
+    <h3>Vert.x for Java</h3>
+    <pre><code class="java">
+      public static void main(String[] args) {
+        Router router = Router.router(vertx);
+
+        router.get("/products").handler(this::handleListProducts);
+
+        vertx.createHttpServer()
+          .requestHandler(router::accept)
+          .listen(8080);
+      }
+
+      private void handleListProducts(RoutingContext routingContext) {
+        JsonArray results = new JsonArray();
+
+        products.forEach((k, v) -> results.add(v));
+
+        routingContext.response()
+          .putHeader("content-type", "application/json")
+          .end(results.encodePrettily());
+      }
+    </code></pre>
+</section>
+<section id="security">
+  <h3>Security</h3>
+  <ul>
+    <li>System take-ove (rootkit)</li>
+    <li>Code execution (SQL injection)</li>
+    <li>Data leak / loss (Ransomware)</li>
+    <li>Malicious communication (CSRF, DDOS)</li>
+  </ul>
+</section>
+<section id="links">
+    <h3>Links</h3>
+    <ul>
+        <li><a href="http://flask.pocoo.org/">Flask for Pythons</a></li>
+        <li><a href="http://expressjs.com/">Express for NodeJS</a></li>
+        <li><a href="http://guides.rubyonrails.org/getting_started.html">Rails for Ruby</a></li>
+        <li><a href="https://docs.asp.net/en/latest/tutorials/first-mvc-app/">ASP.NET for C#</a></li>
+        <li><a href="http://vertx.io/docs/">Vert.x for Java</a></li>
+  </ul>
+</section>
+
+            <section id="schedule">
+    <h3>Course Schedule:</h3>
+    <table class="reveal shifted-left">
+        <tr>
+            <td>week 1 03.02.2017</td>
+            <td><a href='/History of the web'>History of the web</a></td>
+            <td><a href='/Fullstack Principles'>Fullstack Principles</a></td>
+            <td><a href='/Development Processes'>Development Processes</a></td>
+            <td><a href='/Agile Processes'>Agile Processes</a></td>
+            <td><a href='/DevOps Basics'>DevOps Basics</a></td>
+            <td><a href='/Git'>Git</a></td>
+        </tr>
+        <tr>
+            <td>week 2 10.02.2017</td>
+            <td><a href='/Frontend Overview'>Frontend Overview</a></td>
+            <td><a href='/Backend Overview'>Backend Overview</a></td>
+            <td><a href='/Network Overview'>Network Overview</a></td>
+            <td><a href='/Testing'>Testing</a></td>
+            <td><a href='/JavaScript Overview'>JavaScript Overview</a></td>
+            <td><a href='/JavaScript Tooling'>JavaScript Tooling</a></td>
+        </tr>
+        <tr>
+            <td>week 3 17.02.2017</td>
+            <td><a href='/Web Architectures'>Web Architectures</a></td>
+            <td><a href='/RESTful principles'>RESTful principles</a></td>
+            <td><a href='/SOLID principles'>SOLID principles</a></td>
+            <td><a href='/Web Components'>Web Components</a></td>
+            <td><a href='/Continuous Integration'>Continuous Integration</a></td>
+        </tr>
+        <tr>
+            <td>week 4 24.02.2017</td>
+            <td><a href='/Databases basics'>Databases basics</a></td>
+            <td><a href='/Using APIs'>Using APIs</a></td>
+            <td><a href='/Deployment Automation'>Deployment Automation</a></td>
+            <td><a href='/Monitoring'>Monitoring</a></td>
+            <td style="color: salmon;">In-class project consultations</td>
+        </tr>
+        <tr>
+            <td>week 5 17.03.2017</td>
+            <td colspan="4" style="color: salmon; vertical-align:middle; text-align: center;">
+                <a href="/About the course/#project">Project presentations</a><hr/>
+                <a href="/About the course/#quiz">Final Test</a><hr/>
+                Course Retrospective and Q&amp;A
+            </td>
+        </tr>
+    </table>
+</section>
+
+        </div>
+    </div>
+    <script src="../js/bundle.js"></script>
+    <script>
+      window.FullStack101.initialize({
+        title: "Backend Overview",
+        debug: false
+      });
+    </script>
+</body>
+</html>

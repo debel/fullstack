@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Full stack technologies: JavaScript Tooling</title>
+    <meta charset="utf-8">
+    <meta name=viewport content="width=device-width, initial-scale=1">
+    <meta name="google-site-verification" content="Bfn8U25UAs2R5D9Sm6oIN-bnlijCLhvm98RiKJmWgU0">
+    <meta name="description" content="An overview course for full stack web development. Giving a broad overview of the frontend, backend, devops and networks. With a focus on linting, testing, monitoring, continous integration." />
+    <meta property="og:image" content="http://fullstack101.xyz/images/welcome-rick-and-morty.jpg">
+    <link rel="stylesheet" href="../css/bundle.css" />
+</head>
+<body>
+    <div class="header">
+      <a href="/" class="title">INF397 Full Stack Technologies</a>
+      <a href="#" id="topics_toggle">View Schedule</a>
+      <a href="?print-pdf" target="_blank" id="print_topic">Print</a>
+    </div>
+    <div id="presentation" class="reveal">
+        <div class="slides">
+            <section><h2>JavaScript Tooling</h2></section>
+            <section>
+  <h3>Tools</h3>
+  <ul>
+    <li class="fragment">make us more productive</li>
+    <li class="fragment">take away a mental burden</li>
+    <li class="fragment">evolve with our code</li>
+  </ul>
+</section>
+<section id="contents">
+  <h3>Content</h3>
+  <ul>
+    <li>Package managment - npm</li>
+    <li>Code quality - eslint</li>
+    <li>Testing - mocha, chai</li>
+    <li>Processing - gulp, babel</li>
+  </ul>
+</section>
+<section>
+  <h4>npm - node package manager</h4>
+  <pre><code class="javascript">
+  /* package.json */
+  {
+    "name": "nodejs-todo",
+    "version": "1.0.0",
+    "scripts": {
+      "test": "mocha",
+      "build": "node node_modules/gulp/bin/gulp.js",
+      "start": "node server/server.js"
+    },
+    "author": "Mihail Mikov",
+    "devDependencies": {
+      "babel-preset-es2015": "^6.14.0",
+      "gulp": "^3.9.1"
+    },
+    "dependencies": {
+      "express": "^4.14.0",
+      "whatwg-fetch": "^1.0.0"
+    }
+  }
+  </code></pre>
+</section>
+<section>
+  <h4>using npm from the console</h4>
+<pre><code class="bash">
+    #interactivly create a package.json file
+    npm init
+
+    #installs dependencies from package.json
+    npm install
+
+    #update installed packages
+    npm update
+
+    #run scripts
+    npm run build
+    npm run test
+</code></pre>
+</section>
+<section id="linting">
+  <h4>eslint - flexible static code analysis</h4>
+  <pre><code class="bash">
+    #install through npm
+    npm install -g eslint
+  </code></pre>
+  <pre><code class="javascript">
+    /* .eslintrc */
+    {
+      "env": {
+        "es6": true,
+        "browser": true,
+        "node": true
+      },
+      "rules": {
+        "semi": "error",
+        "eqeqeq": "error",
+        "curly": "error",
+        "no-undef": "error"
+        "no-alert": "error",
+        "no-console": "warn",
+        "no-unused-vars": "warn",
+      }
+    }
+  </code></pre>
+</section>
+<section id="testing">
+  <h4>mocha &amp; chai - test runner &amp; framework<h4>
+  <pre><code class="bash">
+    #install through npm
+    npm install -g mocha
+    npm install --save-dev chai
+
+    #run tests
+    mocha tests_folder/
+  </code></pre>
+  <pre><code class="javascript">
+  describe('todo-server', () => {
+    it('should be an object', () => {
+      todos.should.be.an('object');
+    });
+
+    it('should have an add method', () => {
+      todos.add.should.be.a('function');
+    });
+
+    describe('add(item)', () => {
+      it('should throw without an item', () => {
+        todos.add.should.throw();
+      });
+    });
+  });
+  </code></pre>
+</section>
+<section id="processing">
+  <h4>gulp - automate development tasks</h4>
+  <pre><code class="bash">
+    #install bower globally
+    npm install -g gulp
+  </code></pre>
+  <pre><code class="javascript">
+  /* gulpFile.js */
+  /* get files from multiple locations,
+    transpile them with babel,
+    concatenate and minify them into one file
+    save the result to a specified location */
+
+  gulp.task('build-js', function () {
+    return gulp.src(['array/of/paths', 'to/all/*.js'])
+      .pipe(babel({ presets: ['es2015']}))
+      .pipe(concat('app.min.js'))
+      .pipe(uglify())
+      .pipe(gulp.dest('client/js/build/'));
+  });
+</code></pre>
+</section>
+<section>
+  <h3>Links</h3>
+  <ul>
+    <li><a href="https://nodesource.com/blog/eleven-npm-tricks-that-will-knock-your-wombat-socks-off/">Npm tricks</a></li>
+    <li><a href="http://eslint.org/docs/user-guide/configuring">Getting started with Eslint</a></li>
+    <li><a href="http://mherman.org/blog/2015/09/10/testing-node-js-with-mocha-and-chai/#.V--N3yh942w">Testing with mocha and chai</a></li>
+    <li><a href="https://github.com/gulpjs/gulp/blob/master/docs/getting-started.md">Getting started with Gulp</a></li>
+    <li><a href="https://babeljs.io/">Getting started with the Babel transpiler</a></li>
+  </ul>
+</section>
+
+            <section id="schedule">
+    <h3>Course Schedule:</h3>
+    <table class="reveal shifted-left">
+        <tr>
+            <td>week 1 03.02.2017</td>
+            <td><a href='/History of the web'>History of the web</a></td>
+            <td><a href='/Fullstack Principles'>Fullstack Principles</a></td>
+            <td><a href='/Development Processes'>Development Processes</a></td>
+            <td><a href='/Agile Processes'>Agile Processes</a></td>
+            <td><a href='/DevOps Basics'>DevOps Basics</a></td>
+            <td><a href='/Git'>Git</a></td>
+        </tr>
+        <tr>
+            <td>week 2 10.02.2017</td>
+            <td><a href='/Frontend Overview'>Frontend Overview</a></td>
+            <td><a href='/Backend Overview'>Backend Overview</a></td>
+            <td><a href='/Network Overview'>Network Overview</a></td>
+            <td><a href='/Testing'>Testing</a></td>
+            <td><a href='/JavaScript Overview'>JavaScript Overview</a></td>
+            <td><a href='/JavaScript Tooling'>JavaScript Tooling</a></td>
+        </tr>
+        <tr>
+            <td>week 3 17.02.2017</td>
+            <td><a href='/Web Architectures'>Web Architectures</a></td>
+            <td><a href='/RESTful principles'>RESTful principles</a></td>
+            <td><a href='/SOLID principles'>SOLID principles</a></td>
+            <td><a href='/Web Components'>Web Components</a></td>
+            <td><a href='/Continuous Integration'>Continuous Integration</a></td>
+        </tr>
+        <tr>
+            <td>week 4 24.02.2017</td>
+            <td><a href='/Databases basics'>Databases basics</a></td>
+            <td><a href='/Using APIs'>Using APIs</a></td>
+            <td><a href='/Deployment Automation'>Deployment Automation</a></td>
+            <td><a href='/Monitoring'>Monitoring</a></td>
+            <td style="color: salmon;">In-class project consultations</td>
+        </tr>
+        <tr>
+            <td>week 5 17.03.2017</td>
+            <td colspan="4" style="color: salmon; vertical-align:middle; text-align: center;">
+                <a href="/About the course/#project">Project presentations</a><hr/>
+                <a href="/About the course/#quiz">Final Test</a><hr/>
+                Course Retrospective and Q&amp;A
+            </td>
+        </tr>
+    </table>
+</section>
+
+        </div>
+    </div>
+    <script src="../js/bundle.js"></script>
+    <script>
+      window.FullStack101.initialize({
+        title: "JavaScript Tooling",
+        debug: false
+      });
+    </script>
+</body>
+</html>

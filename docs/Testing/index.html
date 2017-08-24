@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Full stack technologies: Testing</title>
+    <meta charset="utf-8">
+    <meta name=viewport content="width=device-width, initial-scale=1">
+    <meta name="google-site-verification" content="Bfn8U25UAs2R5D9Sm6oIN-bnlijCLhvm98RiKJmWgU0">
+    <meta name="description" content="An overview course for full stack web development. Giving a broad overview of the frontend, backend, devops and networks. With a focus on linting, testing, monitoring, continous integration." />
+    <meta property="og:image" content="http://fullstack101.xyz/images/welcome-rick-and-morty.jpg">
+    <link rel="stylesheet" href="../css/bundle.css" />
+</head>
+<body>
+    <div class="header">
+      <a href="/" class="title">INF397 Full Stack Technologies</a>
+      <a href="#" id="topics_toggle">View Schedule</a>
+      <a href="?print-pdf" target="_blank" id="print_topic">Print</a>
+    </div>
+    <div id="presentation" class="reveal">
+        <div class="slides">
+            <section><h2>Testing</h2></section>
+            <section>
+    Testing is a vital part of the full stack engineering process.<hr/>
+     <div class="fragment">It forces the developer to think about all cases.<hr/></div>
+     <div class="fragment">It allows for easy and secure continuous refactoring.</div>
+</section>
+<section>
+    <h3>Many types of testing:</h3>
+    <ul class="two-columns">
+        <li>Unit</li>
+        <li>Integration</li>
+        <li>End-to-End</li>
+        <li>Acceptance</li>
+        <li>A/B</li>
+        <li>Security</li>
+        <li>Accessibility</li>
+        <li>Target Group</li>
+    </ul>
+</section>
+<section>
+    <section>
+        <h3>Unit testing</h3>
+        <ul>
+            <li>unit means a function, class or module
+                <li>internal to the project, white-box</li>
+                <li>executed locally and on the continuous integration server</li>
+                <li>smoothens cooperation within a team</li>
+                <li>aim for optimum code coverage</li>
+        </ul>
+    </section>
+    <section>
+        <img src="../images/vader-tests.jpg" />
+    </section>
+</section>
+<section>
+    <h3>Integration testing</h3>
+    <ul>
+        <li>test integrations between components / modules / services</li>
+        <li>inter-component, interface driven, white &amp; black-box</li>
+        <li>executed on staging and production as part of deployment</li>
+    </ul>
+</section>
+<section>
+    <h3>End-2-End testing</h3>
+    <ul>
+        <li>testing an application feature / behaviour from start to finish</li>
+        <li>simulate user behaviour, write- &amp; black-box</li>
+        <li>executed locally or on continuous integration server</li>
+    </ul>
+</section>
+<section>
+    <h3>Acceptance testing</h3>
+    <ul>
+        <li>externally specified tests, black-box</li>
+        <li>testing whether our changes break:
+            <ul>
+                <li>dependant services</li>
+                <li>non-functional client specifications</li>
+            </ul>
+        </li>
+        <li>periodically executed on both staging and production environments</li>
+    </ul>
+</section>
+<section>
+    <h3>A/B testing</h3>
+    <ul>
+        <li>hypothesis driven</li>
+        <li>does this change have a statistically significant effect on metrics</li>
+        <li>tested variants are usually product, but could be technical</li>
+    </ul>
+</section>
+<section>
+    <h3>Security testing</h3>
+    <ul>
+        <li>attack surface</li>
+        <li>penetration testing</li>
+        <li>data privacy</li>
+    </ul>
+</section>
+<section>
+    <h3>User Testing</h3>
+    <ul>
+        <li>Alpha</li>
+        <li>Beta</li>
+        <li>Accessibility</li>
+        <li>Fixing bugs in Production</li>
+    </ul>
+</section>
+<section>
+  <section>
+    <img src="../images/automatedtestingpyramid.png" />
+  </section>
+  <section>
+    <img src="../images/where_are_the_tests.jpg" />
+  </section>
+</section>
+
+            <section id="schedule">
+    <h3>Course Schedule:</h3>
+    <table class="reveal shifted-left">
+        <tr>
+            <td>week 1 03.02.2017</td>
+            <td><a href='/History of the web'>History of the web</a></td>
+            <td><a href='/Fullstack Principles'>Fullstack Principles</a></td>
+            <td><a href='/Development Processes'>Development Processes</a></td>
+            <td><a href='/Agile Processes'>Agile Processes</a></td>
+            <td><a href='/DevOps Basics'>DevOps Basics</a></td>
+            <td><a href='/Git'>Git</a></td>
+        </tr>
+        <tr>
+            <td>week 2 10.02.2017</td>
+            <td><a href='/Frontend Overview'>Frontend Overview</a></td>
+            <td><a href='/Backend Overview'>Backend Overview</a></td>
+            <td><a href='/Network Overview'>Network Overview</a></td>
+            <td><a href='/Testing'>Testing</a></td>
+            <td><a href='/JavaScript Overview'>JavaScript Overview</a></td>
+            <td><a href='/JavaScript Tooling'>JavaScript Tooling</a></td>
+        </tr>
+        <tr>
+            <td>week 3 17.02.2017</td>
+            <td><a href='/Web Architectures'>Web Architectures</a></td>
+            <td><a href='/RESTful principles'>RESTful principles</a></td>
+            <td><a href='/SOLID principles'>SOLID principles</a></td>
+            <td><a href='/Web Components'>Web Components</a></td>
+            <td><a href='/Continuous Integration'>Continuous Integration</a></td>
+        </tr>
+        <tr>
+            <td>week 4 24.02.2017</td>
+            <td><a href='/Databases basics'>Databases basics</a></td>
+            <td><a href='/Using APIs'>Using APIs</a></td>
+            <td><a href='/Deployment Automation'>Deployment Automation</a></td>
+            <td><a href='/Monitoring'>Monitoring</a></td>
+            <td style="color: salmon;">In-class project consultations</td>
+        </tr>
+        <tr>
+            <td>week 5 17.03.2017</td>
+            <td colspan="4" style="color: salmon; vertical-align:middle; text-align: center;">
+                <a href="/About the course/#project">Project presentations</a><hr/>
+                <a href="/About the course/#quiz">Final Test</a><hr/>
+                Course Retrospective and Q&amp;A
+            </td>
+        </tr>
+    </table>
+</section>
+
+        </div>
+    </div>
+    <script src="../js/bundle.js"></script>
+    <script>
+      window.FullStack101.initialize({
+        title: "Testing",
+        debug: false
+      });
+    </script>
+</body>
+</html>

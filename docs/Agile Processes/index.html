@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Full stack technologies: Agile Processes</title>
+    <meta charset="utf-8">
+    <meta name=viewport content="width=device-width, initial-scale=1">
+    <meta name="google-site-verification" content="Bfn8U25UAs2R5D9Sm6oIN-bnlijCLhvm98RiKJmWgU0">
+    <meta name="description" content="An overview course for full stack web development. Giving a broad overview of the frontend, backend, devops and networks. With a focus on linting, testing, monitoring, continous integration." />
+    <meta property="og:image" content="http://fullstack101.xyz/images/welcome-rick-and-morty.jpg">
+    <link rel="stylesheet" href="../css/bundle.css" />
+</head>
+<body>
+    <div class="header">
+      <a href="/" class="title">INF397 Full Stack Technologies</a>
+      <a href="#" id="topics_toggle">View Schedule</a>
+      <a href="?print-pdf" target="_blank" id="print_topic">Print</a>
+    </div>
+    <div id="presentation" class="reveal">
+        <div class="slides">
+            <section><h2>Agile Processes</h2></section>
+            <section>
+    <h3>The goal of agile is to:</h3>
+    <ul>
+        <li>enable team productivity</li>
+        <li>reduce the cost of changes in requirements</li>
+        <li>create a short consistent development cylce</li>
+        <li>and a predictable deployment schedule</li>
+        <li>use team metrics and feedback</li>
+    </ul>
+</section>
+<section>
+    <h3>The Agile manifesto</h3>
+    <ul>
+        <li><span class="larger-font">Individuals and interactions</span> &gt; <span class="smaller-font">processes and tools</span></li>
+        <li><span class="larger-font">Working software</span> &gt; <span class="smaller-font">comprehensive documentation</span></li>
+        <li><span class="larger-font">Customer collaboration</span> &gt; <span class="smaller-font">contract negotiation</span></li>
+        <li><span class="larger-font">Responding to change</span> &gt; <span class="smaller-font">following a plan</span></li>
+    </ul>
+    <hr/>
+    <p>* when you have to make a trade-off<br/> prefer the thing on the left.</p>
+</section>
+<section>
+    <h3>Actors</h3>
+    <ul>
+        <li>Investors / Stackholders</li>
+        <li>Product Manager / - Owner</li>
+        <li>Development Team</li>
+        <li>Clients / Users</li>
+    </ul>
+</section>
+<section>
+    <h3>Self organizing <span class="smaller-font">and</span> Self directing teams</h3>
+    <img src="../images/Team-Organization.png" />
+</section>
+<section style="width:120%;left:-10%;">
+    <h3>Functional <span class="smaller-font">vs</span> Cross-Functional Teams Composition</h3>
+    <img src="../images/functional-vs-cross-functional.png" />
+</section>
+<section>
+    <h3>General iteration cycle</h3>
+    <ul>
+        <li>Planning (and Estimation)</li>
+        <li>Stand-ups and Code reviews</li>
+        <li>Retrospective and Backlog management</li>
+    </ul>
+</section>
+<section>
+  <h3>Conway's law</h3>
+  <div>Organizations are constrained to produce systems
+     which are copies of the communication structures of the organizations
+   </div>
+</section>
+<section>
+    <h3>Agile Methodologies:</h3>
+    <ul>
+        <li>Extreem Programming (XP)</li>
+        <li>The lean startup</li>
+        <li>Scrum</li>
+        <li>Kanban</li>
+    </ul>
+    <hr/>
+    <p class="smaller-font">
+        * In reality each team/company creates its own processes; mixing-and-matching aspects of different methods.
+    </p>
+</section>
+<section>
+    <h3>Extreme Programming</h3>
+    <img src="../images/extremeprogramming.gif" />
+</section>
+<section>
+    <h3>Extreem Programming</h3>
+    <ul>
+        <li>Developed in the 90s</li>
+        <li>Shortens the development cycle<br/> from years to months</li>
+        <li>Practices:
+            <ul>
+                <li>Pair Programming</li>
+                <li>Embracing change</li>
+                <li>Test driven development</li>
+            </ul>
+        </li>
+    </ul>
+</section>
+<section>
+    <img src="../images/the-lean-startup.png" alt="the lean statup" />
+</section>
+<section>
+    <h3>The lean startup principles</h3>
+    <div>
+        <ul>
+            <li>Entrepreneurs are everywhere</li>
+            <li>Build-Measure-Learn</li>
+            <li>Measure processes &amp; products</li>
+            <li>Validated learning</li>
+            <li>Eliminate uncertainty</li>
+            <li>Work smarter not harder</li>
+            <li>Build a Minimum Viable Product</li>
+        </ul>
+    </div>
+</section>
+<section>
+    <h3>Scrum</h3>
+    <img src="../images/Scrum-Sprint.png" />
+</section>
+<section>
+    <section>
+        <h3>Scrum Values:</h3>
+        <ul>
+            <li>Transparency and Openness</li>
+            <li>Inspection and Introspection</li>
+            <li>Adaptation and Innovation</li>
+            <li>Estimation and Delivery</li>
+            <li>Focus and Respect</li>
+        </ul>
+    </section>
+    <section>
+        <img src="../images/scrum_estimates_joke.png" />
+    </section>
+</section>
+<section>
+    <h3>Project board</h3>
+    <img src="../images/kanban-board.jpg" />
+</section>
+<section>
+    <h3>Kanban</h3>
+    <ul>
+        <li>Visualize your workflow</li>
+        <li>Limit work in progress</li>
+        <li>Make policies explicit</li>
+        <li>Implement feedback loops</li>
+        <li>Improve collaboratively</li>
+        <li>Evolve experimentally</li>
+    </ul>
+</section>
+<section>
+    <h3>Estimation time tables</h3>
+    <table class="reveal">
+        <tr>
+            <td></td>
+            <td>XP</td>
+            <td>Lean</td>
+            <td>Scrum</td>
+            <td>Kanban</td>
+        </tr>
+        <tr>
+            <td>Dev Cycle</td>
+            <td>weeks</td>
+            <td>none</td>
+            <td>velocity</td>
+            <td>past performance</td>
+        </tr>
+        <tr>
+            <td>Release Cycle</td>
+            <td>months</td>
+            <td>as soon as possible</td>
+            <td>weeks</td>
+            <td>upon request</td>
+        </tr>
+        <tr>
+    </table>
+</section>
+<section>
+    <h3>Backlog</h3>
+    <div>List of outstanding work</div>
+    <hr/>
+    <ul>
+        <li>Feature ideas &amp; requests</li>
+        <li>Bugs &amp; Improvements</li>
+        <li>Tooling, Production /Operational/ </li>
+        <li>Research &amp; Analysis tasks</li>
+    </ul>
+</section>
+<section>
+    <h3>Stand up</h3>
+    <ul>
+        <li>Short regular (daily) meeting</li>
+        <li>Keeps the team in sync</li>
+        <li>Each team member shares with the team:
+            <ul>
+                <li>What am I working on?</li>
+                <li>Do I need help / Am I blocked?</li>
+                <li>Is there anything else the team should know?</li>
+            </ul>
+        </li>
+    </ul>
+</section>
+<section>
+    <h3>Planning</h3>
+    <ul>
+        <li>Scheduled meeting</li>
+        <li>Discuss features, bugs and improvements</li>
+        <li>Create and update cards on the agile board</li>
+        <li>Each team member should know and agree on:
+            <ul>
+                <li>what work will be done next</li>
+                <li>when should the work be complete</li>
+                <li>how will the problems be solved</li>
+            </ul>
+        </li>
+    </ul>
+</section>
+<section>
+    <h3>Retrospective</h3>
+    <ul>
+        <li>Scheduled meeting</li>
+        <li>Discuss work-flow, processes and improvements</li>
+        <li>Create and update cards on the agile board</li>
+        <li>Each team member should:
+            <ul>
+                <li>share their views on the overall process</li>
+                <li>suggest improvements</li>
+                <li>make a personal commitment to improve</li>
+            </ul>
+        </li>
+    </ul>
+</section>
+<section>
+    <h3>Links:</h3>
+    <ul>
+        <li><a href="http://agilemanifesto.org/">Agile Manifesto</li>
+        <li><a href="http://theleanstartup.com/principles">The lean startup principles</a></li>
+        <li><a href="https://www.youtube.com/watch?v=iFLBG_bilrg">Dan North - Agile in 2016 (youtube)</a></li>
+        <li><a href="http://martinfowler.com/articles/newMethodology.html">Martin Folwer on Agile Methodologies</a></li>
+        <li><a href="https://8thlight.com/blog/uncle-bob/2013/12/10/Thankyou-Kent.html">Uncle Bob on Extreem Programming</a></li>
+    </ul>
+</section>
+
+            <section id="schedule">
+    <h3>Course Schedule:</h3>
+    <table class="reveal shifted-left">
+        <tr>
+            <td>week 1 03.02.2017</td>
+            <td><a href='/History of the web'>History of the web</a></td>
+            <td><a href='/Fullstack Principles'>Fullstack Principles</a></td>
+            <td><a href='/Development Processes'>Development Processes</a></td>
+            <td><a href='/Agile Processes'>Agile Processes</a></td>
+            <td><a href='/DevOps Basics'>DevOps Basics</a></td>
+            <td><a href='/Git'>Git</a></td>
+        </tr>
+        <tr>
+            <td>week 2 10.02.2017</td>
+            <td><a href='/Frontend Overview'>Frontend Overview</a></td>
+            <td><a href='/Backend Overview'>Backend Overview</a></td>
+            <td><a href='/Network Overview'>Network Overview</a></td>
+            <td><a href='/Testing'>Testing</a></td>
+            <td><a href='/JavaScript Overview'>JavaScript Overview</a></td>
+            <td><a href='/JavaScript Tooling'>JavaScript Tooling</a></td>
+        </tr>
+        <tr>
+            <td>week 3 17.02.2017</td>
+            <td><a href='/Web Architectures'>Web Architectures</a></td>
+            <td><a href='/RESTful principles'>RESTful principles</a></td>
+            <td><a href='/SOLID principles'>SOLID principles</a></td>
+            <td><a href='/Web Components'>Web Components</a></td>
+            <td><a href='/Continuous Integration'>Continuous Integration</a></td>
+        </tr>
+        <tr>
+            <td>week 4 24.02.2017</td>
+            <td><a href='/Databases basics'>Databases basics</a></td>
+            <td><a href='/Using APIs'>Using APIs</a></td>
+            <td><a href='/Deployment Automation'>Deployment Automation</a></td>
+            <td><a href='/Monitoring'>Monitoring</a></td>
+            <td style="color: salmon;">In-class project consultations</td>
+        </tr>
+        <tr>
+            <td>week 5 17.03.2017</td>
+            <td colspan="4" style="color: salmon; vertical-align:middle; text-align: center;">
+                <a href="/About the course/#project">Project presentations</a><hr/>
+                <a href="/About the course/#quiz">Final Test</a><hr/>
+                Course Retrospective and Q&amp;A
+            </td>
+        </tr>
+    </table>
+</section>
+
+        </div>
+    </div>
+    <script src="../js/bundle.js"></script>
+    <script>
+      window.FullStack101.initialize({
+        title: "Agile Processes",
+        debug: false
+      });
+    </script>
+</body>
+</html>

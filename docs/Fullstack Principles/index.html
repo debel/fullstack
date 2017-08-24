@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Full stack technologies: Fullstack Principles</title>
+    <meta charset="utf-8">
+    <meta name=viewport content="width=device-width, initial-scale=1">
+    <meta name="google-site-verification" content="Bfn8U25UAs2R5D9Sm6oIN-bnlijCLhvm98RiKJmWgU0">
+    <meta name="description" content="An overview course for full stack web development. Giving a broad overview of the frontend, backend, devops and networks. With a focus on linting, testing, monitoring, continous integration." />
+    <meta property="og:image" content="http://fullstack101.xyz/images/welcome-rick-and-morty.jpg">
+    <link rel="stylesheet" href="../css/bundle.css" />
+</head>
+<body>
+    <div class="header">
+      <a href="/" class="title">INF397 Full Stack Technologies</a>
+      <a href="#" id="topics_toggle">View Schedule</a>
+      <a href="?print-pdf" target="_blank" id="print_topic">Print</a>
+    </div>
+    <div id="presentation" class="reveal">
+        <div class="slides">
+            <section><h2>Fullstack Principles</h2></section>
+            <section>
+    <div class="question">
+        Full Stack means understanding and working on all parts of a system.
+    </div>
+    <div class="fragment answer">
+        <span class="color-azure">Electronics Systems</span> require understanding chips &amp; sensors<br/>
+        <span class="color-azure">Cryptographic systems</span> require mathematics and threat modeling<br/>
+        <span class="color-azure">Games</span> - 3d, game theory, networking
+    </div>
+    <div class="fragment"><hr/>
+        This course focuses on Full Stack <span class="color-azure">Web Development</span>.
+    </div>
+</section>
+<section>
+    <div class="question">
+        Which technologies are full stack?
+    </div>
+    <div class="fragment answer">
+        Being Full Stack does <u>NOT</u> mean knowing a set of technologies. It means knowing the <span class="color-azure">layers</span> and the <span class="color-azure">principles</span>        by which they operate and connect.
+    </div>
+</section>
+<section>
+    <div class="question">
+        What are the web layers?
+    </div>
+    <div class="fragment answer">
+        There are, basically, four layers:
+        <span>Front-end</span>,
+        <span>Back-end</span>,
+        the <span>Network</span>
+        and <span>DevOps</span>
+    </div>
+</section>
+<section class="frontend">
+    <h3>Frontend</h3>
+    <div>
+        Can be a static page in a browser, an ajax -, or a mobile app.
+        Your code runs on the user's device with restricted previliages.
+        In all cases, the frontend is the user faceing side of the system.
+        The input/output mechanism of the web application.
+    </div>
+    <div class="smaller-font top-border">
+        <a href='/Frontend Overview'>Frontend Overview</a> | {{Frontend Frameworks}}
+    </div>
+</section>
+<section class="backend">
+    <h3>Backend</h3>
+    <div>
+        Can be a home pc, data center rack or a virtual container in the cloud.
+        On the backend your code is king.
+        It is where the complex, secret, and long-running tasks should run.
+        The backend is the "heart" of the web application.
+    </div>
+    <div class="smaller-font top-border">
+        <a href='/Backend Overview'>Backend Overview</a> | {{Backend Tooling}}
+    </div>
+</section>
+<section class="network">
+    <h3>Network</h3>
+    <div>
+        The network connects the front-end, the back-end and the WORLD.
+        The internet is based on the TCP/IP protocol.
+        The web is based on the HTTP protocol.
+        Other important web protocols include: SSL and WebSockets.
+    </div>
+    <div class="smaller-font top-border">
+        <a href='/Network Overview'>Network Overview</a>
+    </div>
+</section>
+<section class="network">
+    <h3>DevOps</h3>
+    <div>
+        DevOps is about setting up your development and production environments,
+        using tools such as source control, build tools and package managment;
+        and automating your processes.
+        It is a the vital glue that helps the application work.
+    </div>
+    <div class="smaller-font top-border">
+        <a href='/DevOps Basics'>DevOps Basics</a> | <a href='/Git'>Git</a>
+    </div>
+</section>
+<section>
+    <div class="question">
+        Are there any general full stack principles?
+    </div>
+    <div class="answer">
+        <ul>
+            <li class="fragment">Quality</li>
+            <li class="fragment">Testing</li>
+            <li class="fragment">Automation</li>
+            <li class="fragment">Monitoring</li>
+            <li class="fragment">Staying agile</li>
+        </ul>
+    </div>
+</section>
+<section id="readability-quote">
+    <h4>Quality</h4>
+    <div class="fragment fade-in">
+        <div class="fragment fade-out">IFYOUWANTYOURCODETOBEEASYTOWRITEMAKEITEASYTOREAD</div>
+        <div class="fragment">If you want your code to be easy to write, make it easy to read.
+            <br/>
+            <div style="text-align: right;">--Uncle Bob</div>
+        </div>
+    </div>
+</section>
+<section>
+    <h4>Quality</h4>
+    <ul>
+        <li>respect the code</li>
+        <li>write documentation</li>
+        <li>utilze tools</li>
+        <li>follow standards</li>
+        <li>perform regular code reviews</li>
+    </ul>
+</section>
+<section id="automation-quote">
+    <h4>{{Automation}}</h4>
+    <div class="fragment">The art of programming is the art of organizing complexity
+        <br/>
+        <div style="text-align: right">--Edsger Dijkstra</div>
+    </div>
+</section>
+<section>
+    <h4>{{Automation}}</h6>
+    <div>automate standard procedures</div>
+    <ul>
+        <li>analysis</li>
+        <li>testing</li>
+        <li>generation</li>
+        <li>integration</li>
+        <li>deployment</li>
+    </ul>
+</section>
+<section id="testing-quote">
+    <h4><a href='/Testing'>Testing</a></h4>
+    <div class="fragment">Beware of bugs in the above code;
+        <br/>I have only proved it correct, not tried it.
+        <br/>
+        <div style="text-align: right"> --Donald Knuth</div>
+    </div>
+</section>
+<section>
+    <h4><a href='/Testing'>Testing</a></h4>
+    <ul>
+        <li>create automated test suits with unit, integration, acceptence tests</li>
+        <li>ensure changes to the code do not break existing expectations</li>
+        <li>keep the tests and code in sync and together at all times</li>
+        <li>catch problems as early as possible</li>
+    <ul>
+</section>
+<section id="monitoring-quote">
+    <h4><a href='/Monitoring'>Monitoring</a></h4>
+    <div class="fragment">
+        The number of states 3 JavaScript variables can have is greater than the total number of atoms of the Earth.
+        <div style="text-align: right"> --Joe Armstrong</div>
+    </div>
+</section>
+<section>
+    <h4><a href='/Monitoring'>Monitoring</a></h4>
+    <div>
+        ensure there is sufficient visibility into both the technical and business aspects of the system
+        <hr/>
+        technical: timings, throughputs, resource usage, etc
+        <hr/>
+        business: visits, sells, funnel interactions, etc
+
+    </div>
+</section>
+<section id="evolution-quote">
+    <h4><a href='/Agile Processes'>Agile Processes</a></h4>
+    <div class="fragment">“The best way to predict the future is to implement it.”
+        <br/>
+        <div style="text-align: right;">--Alan Kay</div>
+    </div>
+</section>
+<section>
+    <h4><a href='/Agile Processes'>Agile Processes</a></h4>
+    <ul>
+      <li>make your working units (tasks) optimally small</li>
+      <li>create a short and focused production loop based</li>
+       <li>analyze team &amp; process through monitoring and feedback</li>
+       <li>learn from failures &amp; errors. Fail forward</li>
+     </ul>
+</section>
+<section>
+    <div class="question">
+        What are the typical tasks for a full stack developer?
+    </div>
+    <ul class="answer">
+        <li class="fragment">Analysing project specific processes and data.</li>
+        <li class="fragment">Writing code, tests, automation scripts and documentation.</li>
+        <li class="fragment">Creating monitoring dashboards and alerts for both the application and the underlying infrastructure.</li>
+        <li class="fragment">Analysing the current state of both the code-base and the running application.</li>
+        <li class="fragment">Fixing bugs, improving performance and usability.</li>
+    </ul>
+</section>
+
+            <section id="schedule">
+    <h3>Course Schedule:</h3>
+    <table class="reveal shifted-left">
+        <tr>
+            <td>week 1 03.02.2017</td>
+            <td><a href='/History of the web'>History of the web</a></td>
+            <td><a href='/Fullstack Principles'>Fullstack Principles</a></td>
+            <td><a href='/Development Processes'>Development Processes</a></td>
+            <td><a href='/Agile Processes'>Agile Processes</a></td>
+            <td><a href='/DevOps Basics'>DevOps Basics</a></td>
+            <td><a href='/Git'>Git</a></td>
+        </tr>
+        <tr>
+            <td>week 2 10.02.2017</td>
+            <td><a href='/Frontend Overview'>Frontend Overview</a></td>
+            <td><a href='/Backend Overview'>Backend Overview</a></td>
+            <td><a href='/Network Overview'>Network Overview</a></td>
+            <td><a href='/Testing'>Testing</a></td>
+            <td><a href='/JavaScript Overview'>JavaScript Overview</a></td>
+            <td><a href='/JavaScript Tooling'>JavaScript Tooling</a></td>
+        </tr>
+        <tr>
+            <td>week 3 17.02.2017</td>
+            <td><a href='/Web Architectures'>Web Architectures</a></td>
+            <td><a href='/RESTful principles'>RESTful principles</a></td>
+            <td><a href='/SOLID principles'>SOLID principles</a></td>
+            <td><a href='/Web Components'>Web Components</a></td>
+            <td><a href='/Continuous Integration'>Continuous Integration</a></td>
+        </tr>
+        <tr>
+            <td>week 4 24.02.2017</td>
+            <td><a href='/Databases basics'>Databases basics</a></td>
+            <td><a href='/Using APIs'>Using APIs</a></td>
+            <td><a href='/Deployment Automation'>Deployment Automation</a></td>
+            <td><a href='/Monitoring'>Monitoring</a></td>
+            <td style="color: salmon;">In-class project consultations</td>
+        </tr>
+        <tr>
+            <td>week 5 17.03.2017</td>
+            <td colspan="4" style="color: salmon; vertical-align:middle; text-align: center;">
+                <a href="/About the course/#project">Project presentations</a><hr/>
+                <a href="/About the course/#quiz">Final Test</a><hr/>
+                Course Retrospective and Q&amp;A
+            </td>
+        </tr>
+    </table>
+</section>
+
+        </div>
+    </div>
+    <script src="../js/bundle.js"></script>
+    <script>
+      window.FullStack101.initialize({
+        title: "Fullstack Principles",
+        debug: false
+      });
+    </script>
+</body>
+</html>

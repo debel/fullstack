@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Full stack technologies: Continuous Integration</title>
+    <meta charset="utf-8">
+    <meta name=viewport content="width=device-width, initial-scale=1">
+    <meta name="google-site-verification" content="Bfn8U25UAs2R5D9Sm6oIN-bnlijCLhvm98RiKJmWgU0">
+    <meta name="description" content="An overview course for full stack web development. Giving a broad overview of the frontend, backend, devops and networks. With a focus on linting, testing, monitoring, continous integration." />
+    <meta property="og:image" content="http://fullstack101.xyz/images/welcome-rick-and-morty.jpg">
+    <link rel="stylesheet" href="../css/bundle.css" />
+</head>
+<body>
+    <div class="header">
+      <a href="/" class="title">INF397 Full Stack Technologies</a>
+      <a href="#" id="topics_toggle">View Schedule</a>
+      <a href="?print-pdf" target="_blank" id="print_topic">Print</a>
+    </div>
+    <div id="presentation" class="reveal">
+        <div class="slides">
+            <section><h2>Continuous Integration</h2></section>
+            <section>
+  <h3>Process Overview</h3>
+  <img src="../images/ci-architecture.png" />
+</section>
+<section>
+  <h3>Process Overview</h3>
+  <ol>
+    <li>Commit code changes</li>
+    <li>Run build &amp; test locally</li>
+    <li>Push code to team repository</li>
+    <li>CI runs build &amp; tests</li>
+    <li>CI reports outcomes</li>
+    <li>CI triggers deployment on success</li>
+  </ol>
+</section>
+<section>
+  <h3>Benefits</h3>
+  <ul>
+    <li>Automatically running tests</li>
+    <li>Automatically running builds</li>
+    <li>Infrastructure as code</li>
+    <li>Seamless integraton with Source Control</li>
+  </ul>
+</section>
+<section>
+  <h3>Hosted vs SaaS</h3>
+  <ul>
+    <li>Hosted: more control</li>
+    <li>SaaS: less management</li>
+  </ul>
+</section>
+<section>
+  <h3>Many existing tools</h3>
+  <ul>
+    <li>Drone.io</li>
+    <li>TravisCI</li>
+    <li>CircleCI</li>
+    <li>SnapCI</li>
+    <li>Codeship</li>
+    <li>Jenkins</li>
+    <li>TeamCity</li>
+    <li>Many others</li>
+  </ul>
+</section>
+<section>
+  <h3>Common settings</h3>
+  <ul>
+    <li>Build environment</li>
+    <li>Build variables</li>
+    <li>Encrypted secrets</li>
+    <li>Test commands</li>
+    <li>Notification</li>
+    <li>Deployment</li>
+  </ul>
+</section>
+<section>
+  <h3>Example .drone.yml</h3>
+  <pre><code class="yml">
+    build:
+      frontend:
+        image: node:4.4
+        commands:
+          - npm install
+          - npm run test
+      backend:
+        image: python:3.5
+        commands:
+          - pip install -r requirments.txt
+          - pytest tests/
+    notify:
+      email:
+        from: noreply@github.com
+        host: smtp.mailgun.org
+        username: USER
+        password: PASS
+        recipients:
+          - m.mikoff@gmail.com
+    deploy:
+      rsync:
+        user: m_mikoff
+        host: 104.199.157.108
+        port: 22
+        source: path/to/repo/artifacts
+        target: path/on/server
+        recursive: true
+        commands:
+          - service nginx restart 
+  </code></pre>
+</section>
+<section>
+  <h3>Example .travis.yml</h3>
+  <pre><code class="yml">
+    language: node_js
+    node_js: '6'
+    env:
+      global:
+        secure: ENCRYPTED-GIT-KEY
+    before_install:
+      - openssl aes-256-cbc -K $encrypted_033b91806de4_key -iv $encrypted_033b91806de4_iv 
+        -in .deploy_key.pem.enc -out .deploy_key.pem -d
+    install:
+      - npm install
+    script:
+      - npm run lint
+      - npm run build
+      - npm run test
+    after_success:
+      - eval "$(ssh-agent -s)"
+      - chmod 600 .deploy_key.pem
+      - ssh-add .deploy_key.pem
+      - ssh-keyscan 104.199.157.108 >> ~/.ssh/known_hosts
+      - git remote add deploy m_mikoff@104.199.157.108:~/node-todo-example
+      - git push deploy master -f
+    notifications:
+      slack:
+        secure: ENCRYPTED-SLACK-KEY
+  </code></pre>
+</section>
+<section>
+  <h3>Links</h3>
+  <ul>
+    <li><a href="https://drone.io/">Drone.io</a></li>
+    <li><a href="https://travis-ci.org/">TravisCI</a></li>
+    <li><a href="https://circleci.com/">CircleCI</a></li>
+    <li><a href="https://jenkins.io/">Jenkins</a></li>
+    <li><a href="https://snap-ci.com/">SnapCI</a></li>
+    <li><a href="https://codeship.com/">Codeship</a></li>
+    <li><a href="https://www.jetbrains.com/teamcity/">TeamCity</a></li>
+  </ul>
+</section>
+
+            <section id="schedule">
+    <h3>Course Schedule:</h3>
+    <table class="reveal shifted-left">
+        <tr>
+            <td>week 1 03.02.2017</td>
+            <td><a href='/History of the web'>History of the web</a></td>
+            <td><a href='/Fullstack Principles'>Fullstack Principles</a></td>
+            <td><a href='/Development Processes'>Development Processes</a></td>
+            <td><a href='/Agile Processes'>Agile Processes</a></td>
+            <td><a href='/DevOps Basics'>DevOps Basics</a></td>
+            <td><a href='/Git'>Git</a></td>
+        </tr>
+        <tr>
+            <td>week 2 10.02.2017</td>
+            <td><a href='/Frontend Overview'>Frontend Overview</a></td>
+            <td><a href='/Backend Overview'>Backend Overview</a></td>
+            <td><a href='/Network Overview'>Network Overview</a></td>
+            <td><a href='/Testing'>Testing</a></td>
+            <td><a href='/JavaScript Overview'>JavaScript Overview</a></td>
+            <td><a href='/JavaScript Tooling'>JavaScript Tooling</a></td>
+        </tr>
+        <tr>
+            <td>week 3 17.02.2017</td>
+            <td><a href='/Web Architectures'>Web Architectures</a></td>
+            <td><a href='/RESTful principles'>RESTful principles</a></td>
+            <td><a href='/SOLID principles'>SOLID principles</a></td>
+            <td><a href='/Web Components'>Web Components</a></td>
+            <td><a href='/Continuous Integration'>Continuous Integration</a></td>
+        </tr>
+        <tr>
+            <td>week 4 24.02.2017</td>
+            <td><a href='/Databases basics'>Databases basics</a></td>
+            <td><a href='/Using APIs'>Using APIs</a></td>
+            <td><a href='/Deployment Automation'>Deployment Automation</a></td>
+            <td><a href='/Monitoring'>Monitoring</a></td>
+            <td style="color: salmon;">In-class project consultations</td>
+        </tr>
+        <tr>
+            <td>week 5 17.03.2017</td>
+            <td colspan="4" style="color: salmon; vertical-align:middle; text-align: center;">
+                <a href="/About the course/#project">Project presentations</a><hr/>
+                <a href="/About the course/#quiz">Final Test</a><hr/>
+                Course Retrospective and Q&amp;A
+            </td>
+        </tr>
+    </table>
+</section>
+
+        </div>
+    </div>
+    <script src="../js/bundle.js"></script>
+    <script>
+      window.FullStack101.initialize({
+        title: "Continuous Integration",
+        debug: false
+      });
+    </script>
+</body>
+</html>

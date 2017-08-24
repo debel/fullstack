@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Full stack technologies: JavaScript Overview</title>
+    <meta charset="utf-8">
+    <meta name=viewport content="width=device-width, initial-scale=1">
+    <meta name="google-site-verification" content="Bfn8U25UAs2R5D9Sm6oIN-bnlijCLhvm98RiKJmWgU0">
+    <meta name="description" content="An overview course for full stack web development. Giving a broad overview of the frontend, backend, devops and networks. With a focus on linting, testing, monitoring, continous integration." />
+    <meta property="og:image" content="http://fullstack101.xyz/images/welcome-rick-and-morty.jpg">
+    <link rel="stylesheet" href="../css/bundle.css" />
+</head>
+<body>
+    <div class="header">
+      <a href="/" class="title">INF397 Full Stack Technologies</a>
+      <a href="#" id="topics_toggle">View Schedule</a>
+      <a href="?print-pdf" target="_blank" id="print_topic">Print</a>
+    </div>
+    <div id="presentation" class="reveal">
+        <div class="slides">
+            <section><h2>JavaScript Overview</h2></section>
+            <section id="code-ahead">
+    <h4 style="margin-bottom:0">Attention! Code ahead!</h4>
+    <img src="../images/jsatt.jpg" />
+    <h4>Attention! Code ahead!</h4>
+</section>
+<section id="bad_parts">
+    <h3>The bad parts</h3>
+    <div>"Some of the worst ideas in the history of programming languages can be found in JavaScript"
+        <div style="float:right">-- Douglas Crockford</div>
+    </div>
+    <hr />
+    <div>"Perhaps my perspective is skewed, because I've seen the real WTFs in JavaScript"
+        <div style="float:right">-- Kyle Simpson</div>
+    </div>
+</section>
+<section id="bad_parts">
+    <h3>The bad parts</h3>
+    <ul>
+        <li>global scope</li>
+        <li>eval, with, void</li>
+        <li>type coersion</li>
+        <li>arguments meta parameter</li>
+        <li>function statment vs expression</li>
+        <li>incorrect math</li>
+        <hr/>
+        <li>users run different versions</li>
+    </ul>
+</section>
+<section id="bad_parts_examples">
+    <h4>Bad parts</h4>
+    <pre class="es5"><code class="javascript">
+      //local variable
+      var a = 5;
+      //implicit global
+      b = 10;
+
+      //globals are accessible to any script on the page
+      window.a // undefined
+      window.b // returns 10
+
+      //Bad math
+      0.1 + 0.2 === 0.3 // false
+      Number.MIN_VALUE > 0 // true
+
+      //function weirdness
+      function () {} // SyntaxError
+      var f = function () {} // no problem
+
+      //arguments meta parameter
+      (function (a) {
+        // a = 1
+        arguments[0] = arguments[1];
+        // a = 2
+      }(1, 2));
+    </code></pre>
+</section>
+<section id="bad_parts_more_examples">
+    <h4>Bad parts</h4>
+    <pre class="es5"><code class="javascript">
+      //type weirdness
+      typeof null // object
+
+      typeof (new String('abc')) // object
+      typeof 'abc' //string
+
+      typeof (new Boolean(true)) //object
+      typeof true //boolean
+
+      typeof (new Array()) //object
+      typeof [] // object
+
+      typeof (new Function()) // function
+      typeof function () {} // function
+
+      //Type coersion
+      if ([]) { doStuff(); } // gets called
+      if ([] == true) { doStuff(); } // DOSN'T get called
+      if ([] === false) { doStuff(); } // DOSN'T get called
+    </code></pre>
+</section>
+<section id="bad_parts_more_examples_2">
+    <h4>Bad parts</h4>
+    <pre class="es5"><code class="javascript">
+  hello //Error: hello is not defined
+  hello! //SyntaxError: Unexpected token !
+
+  //statment position
+  function () {} //SyntaxError: Unexpected token (
+  (function () {}) //returns the function
+  function f() {} //returns undefined, but f is defined
+
+  function f() {}, 'hi' //SyntaxError: Unexpected token ,
+  (function f() {}, 'hi') //"hi"
+
+  //Any much more..
+    </code></pre>
+</section>
+<section id="hard_parts">
+    <h3>The hard parts</h3>
+    <ul>
+        <li>async and event loop</li>
+        <li>prototypal inheritance</li>
+        <li>this, scope and common pitfalls</li>
+        <hr/>
+        <li>tooling</li>
+        <li>execution context</li>
+    </ul>
+</section>
+<section id="prototypes">
+    <h3>Prototypical inheritance</h3>
+    <img src="../images/prototypes.png" />
+</section>
+<section id="event_loop">
+    <h3>The event loop</h3>
+    <img src="../images/event-loop.png" />
+</section>
+<section id="good_parts">
+    <h3>The good parts</h3>
+    <ul>
+        <li>Flexible Objects</li>
+        <li>Flexible Functions</li>
+        <li>Lexical Closure</li>
+        <hr/>
+        <li>OOP &amp; Functional</li>
+        <li>Modern engines</li>
+    </ul>
+</section>
+<section id="new-parts">
+    <h3>ES2015: The new parts</h3>
+    <ul>
+        <li>JavaScript language specification, released in June 2015</li>
+        <li>Incrementally implemented in browsers and other environments</li>
+        <li>Introduces a plethora of new features and improvements</li>
+    </ul>
+</section>
+<section id="es6-features">
+    <h3>Some of the new features in ES2015</h3>
+    <ul>
+        <li>Arrow functions</li>
+        <li>Classes</li>
+        <li>Object literals syntax</li>
+        <li>Destructuring</li>
+        <li>Default parameters</li>
+        <li>Array spreading</li>
+        <li>Variable declarations</li>
+        <li>Generators</li>
+    </ul>
+    <ul style="margin-left: 100px;">
+        <li>Promises</li>
+        <li>Iterators</li>
+        <li>Symbols</li>
+        <li>Number methods</li>
+        <li>Template strings</li>
+        <li>Sets</li>
+        <li>Maps</li>
+        <li>WeakMap</li>
+    </ul>
+</section>
+<section id="mind-blown">
+    <img src="../images/mind-blown.jpeg" />
+</section>
+<section id="let-const-declarations">
+    <h4>Variable declaration</h4>
+    <pre class="es5"><code class="javascript">
+      //es5
+      function incCounter() {
+          counter += five;
+
+          if (false) {
+              var five = 5;
+          }
+          //logical error! - the value of five is undefined
+      }
+
+      var counter = 0;
+
+      //this code "works" because of var hoisting
+  </code></pre>
+    <pre class="es6"><code class="javascript">
+    //es6
+    if (condition) {
+        let j = 12; //j exists only inside the if block
+    }
+
+    console.log(j); //throws an Error
+
+    const pi = { value: 3.14 }; //pi cannot be reassigned
+
+    pi = 3.14; //throws an Error
+
+    //we can still change properties of the object
+    pi.value = 4;
+
+    //the "me" object cannot be changed
+    const me = Object.freeze({ name: 'Mihail' });
+  </code></pre>
+</section>
+<section id="why-let-const-declarations">
+    <h4>How do const and let help?</h4>
+    <ul>
+        <li>Clear intent</li>
+        <li>Block scope (const, let)</li>
+        <li>Immutable binding (const)</li>
+    </ul>
+</section>
+<section id="arrow-functions">
+    <h4>Arrow functions</h4>
+    <pre class="es5"><code class="javascript">
+      //es5
+      [1, 2, 3, 4].map(function square(i) {
+          return i*i;
+      }); // [1, 4, 9, 16]
+
+      getNumbersAsync(function callback(a, b) {
+          return a + b;
+      });
+
+      fancyObject.coolMethod = function () {
+          var self = this;
+          this.elements.forEach(function (el) {
+              self.processElement(el); //different "this", use self
+          });
+      }
+  </code></pre>
+    <pre class="es6"><code class="javascript">
+    //es6
+    [1, 2, 3, 4].map(i => i*i); // [1, 4, 9, 16]
+
+    getNumbersAsync((a, b) => a + b);
+
+    fancyObject.coolMethod = () => {
+        this.elements.forEach(el => {
+            this.processElement(el);
+            //error! - "this" doesn't point to fancyObject
+        });
+    }
+  </code></pre>
+</section>
+<section id="why-arrows-functions">
+    <h4>How do arrow functions help?</h4>
+    <ul>
+        <li>Concise &amp; Clear intent</li>
+        <li>Uses the outer scope's "this"</li>
+        <li>No arguments meta parameter</li>
+        <li style="color: #aa1717">Not a full substitute of functions</li>
+    </ul>
+</section>
+<section id="classes">
+    <h4>Classes</h4>
+    <pre class="es5"><code class="javascript">
+      //es5
+      function Car(model, color) {
+          this.model = model;
+          this.color = color;
+      }
+
+      Car.prototype.startEngine = function () {
+          return "Started the engine of the " + this.model;
+      };
+
+      var myCar = new Car('Tesla', 'white');
+    </code></pre>
+    <pre class="es6"><code class="javascript">
+      //es6
+      class Car {
+          constructor(model, color) {
+              this.model = model;
+              this.color = color;
+          }
+
+          startEngine() {
+              return "Started the engine of the " + this.model;
+          }
+      }
+
+      let myCar = new Car('Tesla', 'white');
+    </code></pre>
+</section>
+<section id="why-classes">
+    <h4>How do classes help?</h4>
+    <ul>
+        <li>All declarations stay together</li>
+        <li>Methods on the prototype by default</li>
+    </ul>
+</section>
+<section id="object-literal-syntax">
+    <h4>Object literals syntax</h4>
+    <pre class="es5"><code class="javascript">
+      //es5
+      var name = 'Mihail',
+          myObject = {
+              name: name,
+              getFriends: function () { ... }
+          };
+
+      myObject[getPropertyName()] = 'some value';
+    </code></pre>
+    <pre class="es6"><code class="javascript">
+      //es6
+      let name = 'Mihail',
+          myObject = {
+              name,
+              getFriends() { ... },
+              [getPropertyName()]: 'some value'
+          };
+    </code></pre>
+</section>
+<section id="why-object-literal-syntax">
+    <h4>How does object literals syntax help?</h4>
+    <ul>
+        <li>Compact &amp; clear intent</li>
+        <li>All declarations stay together</li>
+    </ul>
+</section>
+<section id="destructuring">
+    <h4>Destructuring</h4>
+    <pre class="es5"><code class="javascript">
+      //es5
+      var coordinates = [23, 14],
+          x = coordinates[0],
+          y = coordinates[1];
+
+      var personalInfo = getPersonalInfo(),
+          name = personalInfo.name,
+          age = personalInfo.age,
+          petName = personalInfo.pet.name;
+    </code></pre>
+    <pre class="es6"><code class="javascript">
+        //es6
+        let [x, y] = [23, 14];
+
+        let { name, age, pet: { name: petName } } = getPersonalInfo();
+
+        //with function parameters
+        function sayHi({ name }) {
+            console.log('Hi, ' + name);
+        }
+
+        sayHi(getPersonalInfo());
+    </code></pre>
+</section>
+<section id="why-destructuring">
+    <h4>How does destructuring help?</h4>
+    <ul>
+        <li>Clear intent</li>
+        <li>Pattern Matching</li>
+    </ul>
+</section>
+<section id="spreading">
+    <h4>Array spreading</h4>
+    <pre class="es5"><code class="javascript">
+        //es5
+        function variableNumberOfArguments() {
+            //hack to get the arguments as an array
+            var args = Array.prototype.splice.call(arguments, 0);
+        }
+
+        var numbers = [1, 2, 3],
+            letters = ['a', 'b', 'c'],
+            both = numbers.concat(letters);
+    </code></pre>
+    <pre class="es6"><code class="javascript">
+        //es6
+        function variableNumberOfArguments(...args) {
+            //args is already an array with all arguments
+        }
+
+        let numbers = [1, 2, 3],
+            letters = ['a', 'b', 'c'],
+            both = [...numbers, ...letters];
+    </code></pre>
+</section>
+<section id="why-spreading">
+    <h4>How does spreading help?</h4>
+    <ul>
+        <li>Concise and composable</li>
+        <li>No need for the "arguments" parameter</li>
+    </ul>
+</section>
+<section id="default-parameters">
+    <h4>Default parameters</h4>
+    <pre class="es5"><code class="javascript">
+        //es5
+        function makeCaption(text, style) {
+            text = text || 'default caption';
+            style = typeof style === 'object' ? style : { color: 'red' };
+
+            myH1.style.color = style.color;
+            myH1.text = text;
+        }
+    </code></pre>
+    <pre class="es6"><code class="javascript">
+        //es6
+        function h1(text = 'text', { color } = { color: 'red' }) {
+            const myH1 = document.createElement('h1');
+            myH1.style.color = color;
+            myH1.textContent = text;
+            return myH1;
+        }
+    </code></pre>
+</section>
+<section id="why-default-parameters">
+    <h4>How do default parameters help?</h4>
+    <ul>
+        <li>Readability</li>
+        <li>Prevents undefined behaviour</li>
+    </ul>
+</section>
+<section id="string-templates">
+    <h4>Template strings</h4>
+    <pre class="es5"><code class="javascript">
+        //es5
+        "A " + car.color + " " + car.model + " just drove by"
+    </code></pre>
+    <pre class="es6"><code class="javascript">
+        //es6
+        `A ${car.color} ${car.model} just drove by`
+    </code></pre>
+</section>
+<section id="why-string-templates">
+    <h4>How do template strings help?</h4>
+    <ul>
+        <li>Built-in template engine</li>
+        <li>Customizable through functions</li>
+    </ul>
+</section>
+<section id="maps-and-sets">
+    <h4>Sets &amp; Maps</h4>
+    <pre class="es6"><code class="javascript">
+        //es6
+        //Sets
+        var key = 'any type of value',
+            set = new Set();
+
+        set.add(key);
+        set.delete(key);
+        set.has(key) //returns true or false
+
+        //Maps
+        let key = { a: 1 },
+            value = { b: 2 },
+            map = new Map();
+
+        map.set(key, value);
+        map.delete(key);
+        map.get(key); //returns value
+    </code></pre>
+</section>
+<section id="why-maps-and-sets">
+    <h4>How do sets & maps help?</h4>
+    <ul>
+        <li>Ability to relate any values types</li>
+        <li>No more abusing objects and arrays<br/> for sets and maps</li>
+        <li>WeakMap and WeakSet help stop memory leaks</li>
+        <li>Built-in implementations improve performance</li>
+    </ul>
+</section>
+<section id="promises">
+    <h4>Promises</h4>
+    <pre class="es6"><code class="javascript">
+        //es6
+        //how to create a promise
+        let getData = (url) => new Promise((resolve, reject) => {
+            ajax(url, (error, data) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    resolve(data);
+                }
+            });
+        });
+
+        //using the promise
+        getData('http://somesite.com/data')
+            .then(doSomethingClever)
+            .catch(logError);
+    </code></pre>
+</section>
+<section id="promises-continued">
+    <h4>Promises</h4>
+    <pre class="es6"><code class="javascript">
+        //es6
+        //chaining promises
+        getNumbersAsync()
+            .then(([a, b]) => a + b)
+            .then(checkSumWithServer)
+            .then(handleServerResponse)
+            .catch(logError);
+
+        //promise helper methods
+        Promise.resolve(value) //returns a "thenable" promise
+        Promise.reject(error) //returns a "catchable" promise
+        Promise.all([array, of, promises]) // waits for all
+        Promise.race([array, of, promises]) //the first to resolve wins
+    </code></pre>
+</section>
+<section id="why-promises">
+    <h4>How do promises help?</h4>
+    <ul>
+        <li>Clear and natural API</li>
+        <li>Reduce callback hell</li>
+        <li>Future value semantics</li>
+        <li>Invert the flow of control</li>
+        <li>Basis for implementing the async/await pattern</li>
+    </ul>
+</section>
+<section id="generators">
+    <h4>Generators</h4>
+    <pre class="es6"><code class="javascript">
+        //es6
+        function* squaresMaker() {
+            let i = 1;
+            while (true) {
+                let step = yield i*i;
+                i += step || 1;
+            }
+        };
+
+        let squares = squaresMaker();
+        squares.next();  // { value: 1, done: false }
+        squares.next();  // { value: 4, done: false }
+        squares.next();  // { value: 9, done: false }
+        squares.next(2); // { value: 16, done: false }
+        //step = 2
+        squares.next();  // { value: 36, done: false }
+    </code></pre>
+</section>
+<section id="why-generators">
+    <h4>How do generators help?</h4>
+    <ul>
+        <li>State machine inside a function</li>
+        <li>Two way message passing</li>
+        <li>Co-routines and flow of control</li>
+        <li>Basis for implementing the async/await pattern</li>
+    </ul>
+</section>
+<section id="async-await">
+    <h4>Async/Await</h4>
+    <pre class="es7"><code class="javascript">
+        //es7
+        async function combinedQuery() {
+            let firstAnswer = await firstQuery(),
+                secondAnswer = await secondQuery(firstAnswer);
+
+            return secondAnswer;
+        }
+
+        //use inside another async function
+        async function useQueryAsync() {
+            let answer = await combinedQuery();
+            doSomethingClever(answer);
+        }
+
+        //or use the result as a promise
+        function useQuery() {
+            combinedQuery().then(doSomethingClever);
+        }
+    </code></pre>
+</section>
+<section id="annotations">
+    <h4>Annotations</h4>
+    <pre class="es7"><code class="javascript">
+        //es7
+        let myObject = {
+            //built-in annotation
+            @readonly
+            myConstant: 42
+        };
+
+        myObject.constant = 7; //throws an error
+
+        //annotation definitions are just functions
+        function authorized() { ... }
+
+        //using our custom annotation
+        @authorized
+        function getData() { ... }
+    </code></pre>
+</section>
+<section id="webassembly">
+    <h4>WebAssembly</h4>
+    <ul>
+        <li>A byte-code for the web</li>
+        <li>Decouples the language from the runtime</li>
+        <li>Compiled from many languages</li>
+    </ul>
+</section>
+<section id="links">
+    <h4>Links:</h4>
+    <ul>
+        <li><a href="https://www.youtube.com/watch?v=2pL28CcEijU">Kyle Simpson: What the... JavaScript? (youtube)</a></li>
+        <li><a href="https://www.youtube.com/watch?v=lTWGoL1N-Kc">Douglas Crockford: Really. JavaScript. (youtube)</a></li>
+        <li><a href="https://github.com/getify/You-Dont-Know-JS">You don't know JavaScript book series</a></li>
+        <li><a href="http://exploringjs.com/">Exploring ES6</a></li>
+        <li><a href="https://addyosmani.com/resources/essentialjsdesignpatterns/book/">JavaScript Design Patterns</a></li>
+        <li><a href="https://github.com/tc39">JavaScript language development committee</a></li>
+    </ul>
+</section>
+
+            <section id="schedule">
+    <h3>Course Schedule:</h3>
+    <table class="reveal shifted-left">
+        <tr>
+            <td>week 1 03.02.2017</td>
+            <td><a href='/History of the web'>History of the web</a></td>
+            <td><a href='/Fullstack Principles'>Fullstack Principles</a></td>
+            <td><a href='/Development Processes'>Development Processes</a></td>
+            <td><a href='/Agile Processes'>Agile Processes</a></td>
+            <td><a href='/DevOps Basics'>DevOps Basics</a></td>
+            <td><a href='/Git'>Git</a></td>
+        </tr>
+        <tr>
+            <td>week 2 10.02.2017</td>
+            <td><a href='/Frontend Overview'>Frontend Overview</a></td>
+            <td><a href='/Backend Overview'>Backend Overview</a></td>
+            <td><a href='/Network Overview'>Network Overview</a></td>
+            <td><a href='/Testing'>Testing</a></td>
+            <td><a href='/JavaScript Overview'>JavaScript Overview</a></td>
+            <td><a href='/JavaScript Tooling'>JavaScript Tooling</a></td>
+        </tr>
+        <tr>
+            <td>week 3 17.02.2017</td>
+            <td><a href='/Web Architectures'>Web Architectures</a></td>
+            <td><a href='/RESTful principles'>RESTful principles</a></td>
+            <td><a href='/SOLID principles'>SOLID principles</a></td>
+            <td><a href='/Web Components'>Web Components</a></td>
+            <td><a href='/Continuous Integration'>Continuous Integration</a></td>
+        </tr>
+        <tr>
+            <td>week 4 24.02.2017</td>
+            <td><a href='/Databases basics'>Databases basics</a></td>
+            <td><a href='/Using APIs'>Using APIs</a></td>
+            <td><a href='/Deployment Automation'>Deployment Automation</a></td>
+            <td><a href='/Monitoring'>Monitoring</a></td>
+            <td style="color: salmon;">In-class project consultations</td>
+        </tr>
+        <tr>
+            <td>week 5 17.03.2017</td>
+            <td colspan="4" style="color: salmon; vertical-align:middle; text-align: center;">
+                <a href="/About the course/#project">Project presentations</a><hr/>
+                <a href="/About the course/#quiz">Final Test</a><hr/>
+                Course Retrospective and Q&amp;A
+            </td>
+        </tr>
+    </table>
+</section>
+
+        </div>
+    </div>
+    <script src="../js/bundle.js"></script>
+    <script>
+      window.FullStack101.initialize({
+        title: "JavaScript Overview",
+        debug: false
+      });
+    </script>
+</body>
+</html>
